@@ -100,7 +100,6 @@ uav-cuas-datasets/
 - **Program:** Senior Capstone, Computer Engineering
 - **Theme:** NATO / C4ISR-aligned defense-tech architecture
 - **Team size:** 4
-- **Maintained by:** Yağız Akkaya (project data lead)
 
 ---
 
