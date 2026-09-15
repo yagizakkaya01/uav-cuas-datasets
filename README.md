@@ -66,7 +66,7 @@ Total sources catalogued:     35+
 Fully open (🟢):               22
 Open with conditions (🟡):      8
 Gated / registration (🔴):      5
-Personally verified (✅):        2 (and growing)
+Personally verified (✅):       15 (and growing)
 Unverifiable / excluded (⚫):    1
 ```
 
