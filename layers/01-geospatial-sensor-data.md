@@ -4,6 +4,8 @@
 
 This layer handles terrain modeling, road/building context, baseline air-traffic patterns, real UAV detection/tracking sensor data, and real-world incident geolocation. It is the foundation the grid/graph engine (Layer 3) and the fusion layer (Layer 4) build on.
 
+> 🇹🇷 **Kısaca:** Sistemin temel verileri burada. Arazinin yükseklik haritası, yollar ve binalar, normal hava trafiği, kamera/radar/ses ile kaydedilmiş gerçek dron tespit verileri ve daha önce yaşanmış dron olaylarının konumları bu katmanda yer alır.
+
 [← Back to README](../README.md)
 
 ---

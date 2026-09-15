@@ -4,6 +4,8 @@
 
 > Sources that appeared during research but were deliberately **not** included in the layer catalogs, with the reason why. Keeping this list is itself part of the evidence-based methodology: it shows due diligence, not just cherry-picked wins.
 
+> 🇹🇷 **Kısaca:** Araştırma sırasında karşılaşılan ama gerçekliği veya erişilebilirliği doğrulanamadığı için kullanılmayan kaynaklar ve bunların neden çıkarıldığı.
+
 ---
 
 | Source | Reason for Exclusion |

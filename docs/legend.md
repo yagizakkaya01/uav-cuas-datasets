@@ -2,6 +2,8 @@
 
 [← Back to README](../README.md)
 
+> 🇹🇷 **Kısaca:** Kaynakların yanındaki renkli işaretlerin ve lisans türlerinin ne anlama geldiğini açıklar. Kısaca: yeşil olanlar serbestçe kullanılabilir, sarı olanların lisans şartı vardır, kırmızı olanlar için kayıt veya izin gerekir.
+
 ---
 
 | Badge | Meaning | Practical Implication |

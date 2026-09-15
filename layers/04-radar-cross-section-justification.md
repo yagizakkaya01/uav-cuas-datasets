@@ -4,6 +4,8 @@
 
 This layer needs a quantitative answer to one question: **why does the architecture fuse EO/IR + semantic reasoning instead of relying on radar alone?** The measured radar cross-section (RCS) literature below provides real numbers, not intuition.
 
+> 🇹🇷 **Kısaca:** Küçük dronlar radarda çok küçük göründüğü için yalnızca radarla güvenilir şekilde tespit edilemez. Buradaki ölçüm çalışmaları bunu sayılarla kanıtlar. Bu yüzden sistemimiz radarı kamera, termal kamera gibi diğer sensörlerle birlikte kullanır.
+
 [← Back to README](../README.md)
 
 ---

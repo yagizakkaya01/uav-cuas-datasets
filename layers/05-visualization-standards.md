@@ -4,6 +4,8 @@
 
 The C2 map view needs standards-compliant symbology, not custom icons — this is what makes the demo read as a credible tactical picture rather than a generic dashboard.
 
+> 🇹🇷 **Kısaca:** Harita üzerinde dost, düşman ve bilinmeyen unsurlar, NATO'nun kullandığı standart askeri sembollerle gösterilir. Bu sembolleri çizmek için ücretsiz ve açık kaynaklı bir kütüphane kullanılır.
+
 [← Back to README](../README.md)
 
 ---

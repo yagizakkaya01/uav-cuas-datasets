@@ -4,6 +4,8 @@
 
 This layer has no single labeled benchmark dataset — instead, the flood-fill/BFS risk-propagation and A\*/Dijkstra route-planning design choices are validated **against published, peer-reviewed precedent**, and stated as such rather than implying a benchmark corpus exists.
 
+> 🇹🇷 **Kısaca:** Sistem, haritayı küçük karelere böler; tehlikeli bölgeleri işaretler ve bu bölgelerden kaçınan en güvenli rotayı hesaplar. Bu yöntemin doğru ve geçerli olduğunu göstermek için benzer yaklaşımları kullanan bilimsel makaleler burada listelenmiştir.
+
 [← Back to README](../README.md)
 
 ---

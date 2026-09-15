@@ -4,6 +4,8 @@
 
 > A running log of sources the team has **personally accessed, downloaded, or tested** — not just found in a search. This is the strongest form of evidence for the advisor: proof of actual reachability, not just a link that theoretically works.
 
+> 🇹🇷 **Kısaca:** Ekibimizin bizzat açıp indirdiği ve çalıştığını doğruladığı kaynakların kaydı. Her satırda tarih, kaynak ve sonucu yer alır.
+
 ---
 
 | Date | Source | Layer | Verified By | Outcome |

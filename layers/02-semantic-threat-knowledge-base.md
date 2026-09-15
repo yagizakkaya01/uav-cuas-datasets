@@ -4,6 +4,8 @@
 
 This layer populates a Retrieval-Augmented-Generation (RAG) vector database with **unclassified, publicly readable doctrine and analysis** — the material the system draws on to answer "what is this threat and what procedure applies," with citations back to real documents.
 
+> 🇹🇷 **Kısaca:** Sistemin "bilgi bankası". Dron tehditlerine karşı nasıl davranılacağını anlatan, herkese açık resmi askeri belgeler ve uzman analiz raporlarından oluşur. Sistem bir tehdit hakkında öneri verirken bu belgelere dayanır ve kaynağını gösterir.
+
 [← Back to README](../README.md)
 
 ---
