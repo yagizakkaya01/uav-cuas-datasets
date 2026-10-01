@@ -105,8 +105,8 @@ uav-cuas-datasets/
 - **Programs:** Computer Engineering (CNG) and Electrical & Electronics Engineering (EEE)
 - **Team:** 5 students — 4 CNG, 1 EEE
 - **Supervisors:**
-  - Meryem Erbilek — Computer Engineering (CNG)
-  - Muhammad Sohail — Electrical & Electronics Engineering (EEE)
+  - [Asst. Prof. Dr. Meryem Erbilek](https://avesis.ncc.metu.edu.tr/merbilek) — Computer Engineering (CNG)
+  - [Dr. Muhammad Sohail](https://avesis.ncc.metu.edu.tr/msohail) — Electrical & Electronics Engineering (EEE)
 - **Theme:** NATO / C4ISR-aligned counter-UAS decision support
 - **Proposal:** [ESC 491/492 project proposal (revised after advisor meeting, 1 Oct 2026)](./docs/proposal/ESC-491-Proposal-2026-10-01.docx)
 
