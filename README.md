@@ -1,12 +1,14 @@
 # İHA Tehdit Haritası ve Karar Destek Sistemi
 
-### UAV/C-UAS Threat Mapping & C2 Engine — Real Data Sources
+### UAV Threat Map and Decision Support System — Real Data Sources
+
+*ESC 491/492 interdisciplinary senior design project · METU Northern Cyprus Campus · CNG + EEE*
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![License](https://img.shields.io/badge/license-CC0%201.0-blue)
 ![Layers](https://img.shields.io/badge/architecture%20layers-5-informational)
 ![Sources](https://img.shields.io/badge/verified%20sources-35%2B-success)
-![Last Updated](https://img.shields.io/badge/last%20updated-2026--09--15-lightgrey)
+![Last Updated](https://img.shields.io/badge/last%20updated-2026--10--01-lightgrey)
 
 <p align="center">
   <img src="./assets/demo-threat-map.gif" alt="Concept animation: sensor detection, risk propagation and route replanning on a grid threat map" width="860">
@@ -26,7 +28,7 @@ This repository exists because a good architecture is not enough — a defensibl
 
 | Layer | Purpose | Primary Real Data Sources |
 |---|---|---|
-| **1. Geospatial & Sensor Ingestion** | Terrain, road/building context, baseline air traffic, real UAV detection sensor data, real incident geolocations | Copernicus DEM, AW3D30, OpenStreetMap, OpenSky Network, DUT Anti-UAV, UAVSwarm, MMAUD, Halmstad, DroneRF, FAA Sightings, ACLED |
+| **1. Geospatial & Sensor Ingestion** | Terrain, road/building context, baseline air traffic, real UAV detection sensor data, real incident geolocations, team-recorded field data | Copernicus DEM, AW3D30, OpenStreetMap, OpenSky Network, DUT Anti-UAV, UAVSwarm, MMAUD, Halmstad, DroneRF, FAA Sightings, ACLED, mast sensor node recordings |
 | **2. Semantic Threat Knowledge Base** | Doctrine/TTP corpus for RAG-based threat reasoning | ATP 3-01.81, DoD C-UAS Strategy, RAND, CNAS, RUSI, ISW, NATO releases |
 | **3. Grid/Graph Algorithm Engine** | Risk propagation & route-planning validated against published methods | Peer-reviewed A\*/terrain-masking/threat-cost literature |
 | **4. Fusion & C2 Decision Layer** | Quantitative justification for sensor fusion over radar-only detection | Measured radar cross-section (RCS) literature |
@@ -87,6 +89,8 @@ uav-cuas-datasets/
 │   ├── 04-radar-cross-section-justification.md
 │   └── 05-visualization-standards.md
 └── docs/
+    ├── proposal/
+    │   └── ESC-491-Proposal-2026-10-01.docx
     ├── legend.md
     ├── verified-access-log.md
     └── excluded-sources.md
@@ -96,10 +100,35 @@ uav-cuas-datasets/
 
 ## Project Context
 
-- **Project:** İHA Tehdit Haritası ve Karar Destek Sistemi (UAV/SIHA Field Operations — Spatial-Semantic Threat Mapping & C2 Engine)
-- **Program:** Senior Capstone, Computer Engineering
-- **Theme:** NATO / C4ISR-aligned defense-tech architecture
-- **Team size:** 4
+- **Project:** UAV Threat Map and Decision Support System (İHA Tehdit Haritası ve Karar Destek Sistemi)
+- **Course:** ESC 491 / ESC 492 — interdisciplinary senior design, METU Northern Cyprus Campus
+- **Programs:** Computer Engineering (CNG) and Electrical & Electronics Engineering (EEE)
+- **Team:** 5 students — 4 CNG, 1 EEE
+- **Supervisors:** Meryem Erbilek (CNG) · EEE supervisor to be determined
+- **Theme:** NATO / C4ISR-aligned counter-UAS decision support
+- **Proposal:** [ESC 491/492 project proposal (revised after advisor meeting, 1 Oct 2026)](./docs/proposal/ESC-491-Proposal-2026-10-01.docx)
+
+### Team & Roles
+
+| Member | Focus | Main work |
+|---|---|---|
+| EEE student | Sensor nodes & RF sensing | Mast-mounted node hardware, power and data links, Wi-Fi/RF control-link detection, detection-range model; joint design of the physical demo and project-wide integration |
+| CNG student 1 | Geospatial risk engine | PostGIS terrain + OSM model, grid risk propagation, terrain masking, A\*/Dijkstra safe routes |
+| CNG student 2 | Visual detection & tracking | Edge-AI UAV detection on camera nodes, multi-target and swarm tracking, OpenSky baseline anomalies |
+| CNG student 3 | Threat knowledge base | RAG over unclassified doctrine, local LLM, mandatory source citation |
+| CNG student 4 | Fusion, C2 engine & interface | Composite threat score, recommendations, web C2 map with MIL-STD-2525 symbols |
+
+### Physical Demonstration
+
+The system will be demonstrated **physically**, not only in simulation:
+
+- **Edge sensor nodes** (Jetson / Raspberry Pi + camera + Wi-Fi receiver) mounted on **masts** around a test area
+- A **3D-printed drone mock-up** carrying a Wi-Fi transmitter is moved through the area to emulate an approaching UAV
+- The nodes detect it **visually** (edge-AI object detection) and through its **Wi-Fi control link**; detections are fused, mapped on the real terrain model and explained on the operator interface in real time
+
+Detection models are trained and evaluated on the public datasets in [`/layers`](./layers); the field recordings from the demo are logged as **team-collected data** (see Layer 1, section 1.5).
+
+> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışman: Meryem Erbilek; EEE danışmanı henüz belli değil). Demo fiziksel olarak yapılacak: direklere monte edilen kamera + Wi-Fi sensör düğümleri, 3D yazıcıyla basılmış bir dron maketini hem görüntüden hem Wi-Fi sinyalinden edge AI ile tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
 
 ---
 

@@ -53,6 +53,21 @@ This layer handles terrain modeling, road/building context, baseline air-traffic
 
 ---
 
+## 1.5 Team-Collected Field Data (Physical Demo)
+
+Recorded by the team during field tests with the mast-mounted sensor nodes. Status: **planned** — rows are added to [`docs/verified-access-log.md`](../docs/verified-access-log.md) once recorded.
+
+| Data | Sensor | Purpose | Notes |
+|---|---|---|---|
+| Camera footage of the 3D-printed drone mock-up | Node cameras (USB/CSI) | Fine-tuning and field evaluation of the visual detector | Reduces the domain gap between public datasets and our mock-up; annotate in YOLO format |
+| Wi-Fi control-link captures | Wi-Fi adapters in monitor mode / ESP32 | Training and testing the RF detection chain | 2.4 GHz band, same band family as the DroneRF and DroneDetect recordings |
+| Node positions and orientations | GPS / surveyed coordinates | Placing detections on the terrain model, line-of-sight and coverage checks | Stored in PostGIS alongside the DEM and OSM layers |
+| Ground-truth mock-up trajectory | Manual log / GPS on the mock-up | Measuring detection range, latency and localisation error | Basis for the evaluation reported in ESC 492 |
+
+> 🇹🇷 Fiziksel demoda ekibin kendi topladığı veriler: dron maketinin kamera görüntüleri, Wi-Fi sinyal kayıtları, sensör düğümlerinin konumları ve maketin gerçek rotası. Bu veriler hem modelleri sahaya uyarlamak hem de sistemin başarımını ölçmek için kullanılacak.
+
+---
+
 ## Add a New Source
 
 ```markdown
