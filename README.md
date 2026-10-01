@@ -104,7 +104,9 @@ uav-cuas-datasets/
 - **Course:** ESC 491 / ESC 492 — interdisciplinary senior design, METU Northern Cyprus Campus
 - **Programs:** Computer Engineering (CNG) and Electrical & Electronics Engineering (EEE)
 - **Team:** 5 students — 4 CNG, 1 EEE
-- **Supervisors:** Meryem Erbilek (CNG) · EEE supervisor to be determined
+- **Supervisors:**
+  - Meryem Erbilek — Computer Engineering (CNG)
+  - Muhammad Sohail — Electrical & Electronics Engineering (EEE)
 - **Theme:** NATO / C4ISR-aligned counter-UAS decision support
 - **Proposal:** [ESC 491/492 project proposal (revised after advisor meeting, 1 Oct 2026)](./docs/proposal/ESC-491-Proposal-2026-10-01.docx)
 
@@ -128,7 +130,7 @@ The system will be demonstrated **physically**, not only in simulation:
 
 Detection models are trained and evaluated on the public datasets in [`/layers`](./layers); the field recordings from the demo are logged as **team-collected data** (see Layer 1, section 1.5).
 
-> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışman: Meryem Erbilek; EEE danışmanı henüz belli değil). Demo fiziksel olarak yapılacak: direklere monte edilen kamera + Wi-Fi sensör düğümleri, 3D yazıcıyla basılmış bir dron maketini hem görüntüden hem Wi-Fi sinyalinden edge AI ile tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
+> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışmanlar: Meryem Erbilek — CNG, Muhammad Sohail — EEE). Demo fiziksel olarak yapılacak: direklere monte edilen kamera + Wi-Fi sensör düğümleri, 3D yazıcıyla basılmış bir dron maketini hem görüntüden hem Wi-Fi sinyalinden edge AI ile tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
 
 ---
 
