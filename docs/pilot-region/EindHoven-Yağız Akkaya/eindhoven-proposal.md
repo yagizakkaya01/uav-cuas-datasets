@@ -1,4 +1,4 @@
-> **Durum (6 Kasım 2026):** Pilot bölge kararı henüz kesinleşmedi. Bu belge Eindhoven önerisinin tam gerekçesidir; diğer adaylar için [`README.md`](./README.md).
+> **Durum (6 Kasım 2026):** Pilot bölge kararı henüz kesinleşmedi. Bu belge Eindhoven önerisinin tam gerekçesidir; diğer adaylar için [`README.md`](../README.md).
 > Bölüm 1–8 seçim sürecinin önceki adımlarıdır (kampüs, Delft, Rotterdam); güncel öneri bölüm 9.
 
 # Pilot Bölge Önerisi ve Coğrafi Veri Kaynakları

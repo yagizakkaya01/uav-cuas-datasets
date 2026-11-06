@@ -8,10 +8,13 @@ The pilot region is used **only by the decision engine** (risk grid, line of sig
 
 ## Candidates
 
+Each proposal sits in a folder named after the region and its author: `EindHoven-Yağız Akkaya/`, `Gatwick-Yaren Duyan/` (Helsinki, the earlier proposal, is in the same folder).
+
+
 | | **Eindhoven Airport / Air Base (NL)** | **London Gatwick Airport (UK)** | Helsinki (FI) — superseded |
 |---|---|---|---|
 | Proposed by | Yağız Akkaya, CNG 3 (18–19 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) |
-| Document | [eindhoven-proposal.md](./eindhoven-proposal.md) · [talking points](./eindhoven-talking-points.md) | [gatwick-proposal.pdf](./gatwick-proposal.pdf) | [helsinki-proposal.pdf](./helsinki-proposal.pdf) |
+| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) |
 | AOI (WGS84 bbox) | `5.355, 51.440, 5.420, 51.470` | not yet defined | not defined (city-wide) |
 | Facility type | Joint civil–military airfield (fits NATO theme) | Civil airport | City |
 | Real drone incident | 22 Nov 2025: traffic suspended, C-UAS activated | Dec 2018: the best-known drone airport closure | none cited |
