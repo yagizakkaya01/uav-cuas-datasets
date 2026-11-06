@@ -1,85 +1,75 @@
-# Görev Dağılımı ve Dönem Planı
+# Task Distribution and Semester Plan
 
-> **İlk plan (15 Ekim 2026).** Plan rollerle yazıldı; roller ve kişiler:
->
-> | Rol | Kişi |
-> |---|---|
-> | EEE | Adil Mert İş |
-> | CNG 1 | Yaren Duyan |
-> | CNG 2 | Aydan Doğan |
-> | CNG 3 | Yağız Akkaya |
-> | CNG 4 | Mert Gökalp |
+*First plan, 15 October 2026. Kept as written at the time: hardware details (Jetson, local LLM, multi-node masts) were later replaced by the single IP camera setup in [`hardware/`](./hardware/).*
 
-Oct 15, 2026 · @yağız akkaya
+## Summary
 
-## Özet
+The team has 5 members (4 Computer Engineering, 1 Electrical & Electronics Engineering) and the system has 5 layers. Everyone owns one **primary layer** and also takes a **secondary task** that peaks when their primary work is quiet. That way, whenever one person's work slows down, the other picks up, and nobody sits idle during the semester.
 
-Ekip 5 kişi (4 CNG + 1 EEE) ve sistem 5 katmanlı; herkes bir **birincil katmanın** sahibi olur, yoğunluğu ters zamana düşen bir **ikincil iş** de alır. Böylece birinin işi azaldığında diğer işi yoğunlaşır ve dönem boyunca kimse boş kalmaz.
+The key to balance is the **interface contracts** written in the first weeks (track message, risk grid API, RAG API). With these, everyone can start with mock data from week one, and nobody waits for someone else's module.
 
-Dengenin anahtarı ilk haftalarda yazılacak **arayüz sözleşmeleridir** (track mesajı, risk grid API, RAG API). Bunlar sayesinde herkes sahte (mock) veriyle ilk haftadan çalışabilir; kimse başkasının modülünü beklemez.
+Assumption: ESC 491 is a 14-week semester, week 1 is the end of September, and today is around week 3–4. If the calendar differs, the phases shift.
 
-Varsayım: ESC 491 için 14 haftalık dönem, 1. hafta Eylül sonu; bugün yaklaşık 3–4. haftadayız. Takvim farklıysa fazlar kaydırılır.
+## Who owns which layer
 
-## Kim hangi katmandan sorumlu
+Primary layers match the roles table in the main README; the secondary tasks are new, with the weeks they become active.
 
-Birincil katmanlar README'deki rol tablosuyla aynıdır; yeni olan ikincil işler ve bunların hangi haftalarda devreye girdiğidir.
-
-| Kişi | Birincil (sahibi olduğu katman) | İkincil (ters zamanda yoğunlaşan iş) | Birincilin yoğun haftaları | İkincilin yoğun haftaları |
+| Person | Primary (owned layer) | Secondary (task during quiet weeks) | Primary busy weeks | Secondary busy weeks |
 | --- | --- | --- | --- | --- |
-| EEE | Sensör düğümü donanımı + Wi-Fi/RF kontrol linki tespiti (Katman 1, sensör kısmı) | Tespit menzili / link bütçesi modeli ve RCS gerekçesi (Katman 4); saha testi lideri | 4–12 | 1–3 ve 11–14 |
-| CNG 1 | Arazi + OSM modeli, grid risk yayılımı, görüş hattı, A\*/Dijkstra rota (Katman 1 harita + Katman 3) | Risk modelinin FAA/ACLED kayıtlarıyla doğrulanması, performans testleri; C2 haritasına katman verisi | 1–9 | 9–14 |
-| CNG 2 | Kamera ile edge-AI tespit ve sürü takibi (Katman 1, görüntü kısmı) | EEE ile Jetson'a TensorRT kurulumu; sahada kendi veri setimizin kaydı ve etiketlenmesi | 3–10 | 10–14 |
-| CNG 3 | Doktrin bilgi bankası, RAG + yerel LLM, kaynakça zorunluluğu (Katman 2) | Test senaryoları ve değerlendirme metrikleri; raporların editörü; arayüzdeki açıklama metinleri | 1–9 | 8–14 |
-| CNG 4 | Füzyon, tehdit skoru, öneri motoru, C2 web arayüzü + MIL-STD-2525 semboller (Katman 4 + 5) | Sistem mimarisi, arayüz sözleşmeleri ve sahte veri simülatörü; entegrasyon lideri | 6–14 | 1–5 |
+| Adil Mert İş (EEE) | Sensor node hardware + Wi-Fi/RF control-link detection (Layer 1, sensor part) | Detection range / link budget model and RCS justification (Layer 4); field test lead | 4–12 | 1–3 and 11–14 |
+| Yaren Duyan | Terrain + OSM model, grid risk propagation, line of sight, A\*/Dijkstra routing (Layer 1 map + Layer 3) | Validating the risk model with FAA/ACLED records, performance tests; layer data for the C2 map | 1–9 | 9–14 |
+| Aydan Doğan | Camera-based edge-AI detection and swarm tracking (Layer 1, vision part) | TensorRT setup on the Jetson with the EEE member; recording and labelling our own field dataset | 3–10 | 10–14 |
+| Yağız Akkaya | Doctrine knowledge base, RAG + local LLM, mandatory citations (Layer 2) | Test scenarios and evaluation metrics; report editor; explanation texts in the interface | 1–9 | 8–14 |
+| Mert Gökalp | Fusion, threat score, recommendation engine, C2 web interface + MIL-STD-2525 symbols (Layers 4 + 5) | System architecture, interface contracts and mock data simulator; integration lead | 6–14 | 1–5 |
 
-## Boş kalma riski nerede
+## Where idle time could occur
 
-Katmanlar aynı anda yoğunlaşmadığı için, önlem alınmazsa iki kişi dönem başında, bir kişi dönem sonunda boşta kalır.
+Because the layers are not busy at the same time, without precautions two people would be idle at the start and one at the end of the semester.
 
-- **CNG 4 (füzyon/C2) başta boş kalır**, çünkü tüm katmanların çıktısını bekler. Önlem: ilk 5 haftada mimariyi, mesaj şemalarını ve sahte track üreten simülatörü yazar; arayüz iskeletini bu sahte veriyle kurar.
-- **EEE başta donanımı bekler** (Jetson/Pi, kamera, Wi-Fi adaptörü, direk, 3D baskı). Önlem: donanım gelene kadar DroneRF verisiyle RF tespitini masa başında geliştirir ve link bütçesi / menzil modelini kurar.
-- **CNG 3 (RAG) erken biter**, çünkü bilgi bankası diğer katmanlardan bağımsızdır. Önlem: 8. haftadan itibaren test senaryoları, değerlendirme ve rapor editörlüğü ona geçer.
-- **CNG 1 ve CNG 2 ortada çok yoğun**, sonda hafifler. Önlem: sonda doğrulama, saha verisi ve edge kurulumu gibi ikincil işleri alırlar.
+- **Mert (fusion/C2) is idle at the start**, because this layer needs the outputs of all the others. Precaution: in the first 5 weeks Mert writes the architecture, message schemas and a mock track simulator, and builds the interface skeleton on this mock data.
+- **Adil Mert (EEE) waits for hardware at the start** (Jetson/Pi, camera, Wi-Fi adapter, masts, 3D print). Precaution: until the hardware arrives, Adil Mert develops RF detection on a desk with the DroneRF dataset and builds the link budget / range model.
+- **Yağız (RAG) finishes early**, because the knowledge base does not depend on other layers. Precaution: from week 8, test scenarios, evaluation and report editing come first.
+- **Yaren and Aydan are very busy in the middle** and lighter at the end. Precaution: at the end they take on secondary tasks such as validation, field data and edge setup.
 
-## 14 haftalık takvim: her fazda herkesin işi
+## 14-week schedule: everyone's work in each phase
 
-Dönem 5 faza bölünür ve her hücre o kişinin o fazdaki somut işidir; boş hücre yoktur. Her faz çalışan bir çıktıyla biter.
+The semester has 5 phases, and every cell is that person's concrete work in that phase; there are no empty cells. Each phase ends with a working output.
 
-| Faz | EEE | CNG 1 (harita + risk) | CNG 2 (görüntü tespit) | CNG 3 (bilgi bankası) | CNG 4 (füzyon + C2) |
+| Phase | Adil Mert (EEE) | Yaren (map + risk) | Aydan (visual detection) | Yağız (knowledge base) | Mert (fusion + C2) |
 | --- | --- | --- | --- | --- | --- |
-| **F1 · Hafta 1–3** Gereksinim ve sözleşmeler | Donanım listesi ve sipariş; link bütçesi ve tespit menzili hesabı; RF mesaj alanlarını tanımlar | Kampüs test alanını seçer; AW3D30 + OSM'yi PostGIS'e yükler | DUT Anti-UAV, UAVSwarm, Halmstad indirme ve format dönüşümü; YOLO baseline | Doktrin korpusunu toplar (ATP 3-01.81, RAND, CNAS…), sayfa numaralı parçalar | Sistem mimarisi; track / risk / RAG JSON şemaları; repo, Docker, GitHub proje panosu |
-| **F2 · Hafta 4–6** Bağımsız prototipler | DroneRF ile RF tespit modeli; ilk Pi/ESP32 monitor-mode denemesi | Grid risk yayılımı + görüş hattı (terrain masking) | YOLO eğitimi ve mAP ölçümü | FAISS/Qdrant + Ollama ile kaynak gösteren RAG | Sahte track simülatörü; Leaflet haritası + milsymbol iskeleti |
-| **F3 · Hafta 7–9** İlk uçtan uca (masa başı) | Tek düğümün kamera + Wi-Fi ile kurulumu; RF track mesajı yayınlar | A\*/Dijkstra güvenli rota; risk API'si | Çoklu hedef / sürü takibi; kayıtlı videodan track mesajı | RAG API'si; ilk test senaryoları (8. haftadan) | Füzyon + tehdit skoru; tüm modülleri kayıtlı veriyle birleştirir |
-| **F4 · Hafta 10–12** Donanımda ve sahada | 2–3 düğüm, direkler, güç; 3D baskı dron maketi + verici; saha testi yönetimi | Risk modelini FAA/ACLED ile doğrular; performans | EEE ile Jetson'da TensorRT; saha kayıtlarını etiketler | Senaryo bazlı değerlendirme (doğruluk, kaynak isabeti); açıklama metinleri | Öneri motoru; canlı veriyle arayüz; gecikme ölçümü |
-| **F5 · Hafta 13–14** Final | Donanım ve saha testi bölümü; demo kurulumu | Algoritma bölümü + harita figürleri | Tespit sonuçları bölümü | Rapor editörlüğü, kaynakça, sunum akışı | Mimari bölümü; demo senaryosu ve canlı gösterim |
+| **P1 · Weeks 1–3** Requirements and contracts | Hardware list and order; link budget and detection range calculation; define RF message fields | Choose campus test area; load AW3D30 + OSM into PostGIS | Download and convert DUT Anti-UAV, UAVSwarm, Halmstad; YOLO baseline | Collect doctrine corpus (ATP 3-01.81, RAND, CNAS…), page-numbered chunks | System architecture; track / risk / RAG JSON schemas; repo, Docker, GitHub project board |
+| **P2 · Weeks 4–6** Independent prototypes | RF detection model with DroneRF; first Pi/ESP32 monitor-mode test | Grid risk propagation + line of sight (terrain masking) | YOLO training and mAP measurement | RAG with citations using FAISS/Qdrant + Ollama | Mock track simulator; Leaflet map + milsymbol skeleton |
+| **P3 · Weeks 7–9** First end-to-end (desk) | Single node with camera + Wi-Fi; publishes RF track messages | A\*/Dijkstra safe route; risk API | Multi-target / swarm tracking; track messages from recorded video | RAG API; first test scenarios (from week 8) | Fusion + threat score; integrate all modules with recorded data |
+| **P4 · Weeks 10–12** On hardware and in the field | 2–3 nodes, masts, power; 3D-printed drone mock-up + transmitter; field test lead | Validate risk model with FAA/ACLED; performance | TensorRT on the Jetson with the EEE member; label field recordings | Scenario-based evaluation (accuracy, citation proof); explanation texts | Recommendation engine; interface with live data; latency measurement |
+| **P5 · Weeks 13–14** Final | Hardware and field test chapter; demo setup | Algorithm chapter + map figures | Detection results chapter | Report editing, references, presentation flow | Architecture chapter; demo scenario and live presentation |
 
-ESC 491 yalnızca tasarım raporuyla bitiyorsa F4 ve F5'in uygulama kısmı ESC 492'ye kayar; dağılım aynı kalır.
+If the ESC 491 report ends with the design report, the implementation part of P4 and P5 moves to ESC 492; the distribution stays the same.
 
-## Teslim noktaları ve denge kuralları
+## Deliverables and balance rules
 
-Her faz sonunda herkesin gösterebileceği bir çıktı olur; bir kişi bunu gösteremiyorsa iş dağılımı o hafta düzeltilir.
+At the end of each phase there is an output everyone can show; if someone cannot show it, the work split is adjusted that week.
 
-| Hafta | Teslim | Sorumlu |
+| Week | Deliverable | Owner |
 | --- | --- | --- |
-| 3 | Arayüz sözleşmeleri (JSON şemaları) ve donanım siparişi | CNG 4, EEE |
-| 6 | Her katman sahte veriyle tek başına çalışıyor | Herkes |
-| 8 | Ara rapor / ilerleme sunumu | CNG 3 (editör), herkes kendi bölümü |
-| 9 | Kayıtlı veriyle uçtan uca demo (masa başı) | CNG 4 |
-| 12 | Sahada tek düğümlü canlı tespit, haritada gösterim | EEE, CNG 2 |
-| 14 | Final rapor, sunum, demo v1 | Herkes |
+| 3 | Interface contracts (JSON schemas) and hardware order | Mert, Adil Mert |
+| 6 | Every layer runs on its own with mock data | Everyone |
+| 8 | Interim report / progress presentation | Yağız (editor), everyone their own chapter |
+| 9 | End-to-end demo with recorded data (desk) | Mert |
+| 12 | Live detection with a single node in the field, shown on the map | Adil Mert, Aydan |
+| 14 | Final report, presentation, demo v1 | Everyone |
 
-- **Haftalık 15 dakikalık toplantı:** herkes "bu hafta çalışan ne gösteriyorum" sorusuna cevap verir.
-- **Her iş bir GitHub issue'su:** sahibi ve hafta etiketi olur; panoda bir kişinin açık işi kalmadıysa ikincil listesinden çeker.
-- **Dönüşümlü entegrasyon nöbetçisi:** her hafta bir kişi ana dalın çalıştığını kontrol eder; böylece entegrasyon yükü yalnız CNG 4'e kalmaz.
-- **Rapor yazımı sürekli:** herkes kendi bölümünü faz sonunda bir sayfa olarak yazar; son iki haftaya yığılmaz.
-- **EEE yalnız değil:** donanım işlerinde her fazda bir CNG kişisi eş olarak atanır (F1–F2 CNG 4, F3–F5 CNG 2), çünkü 1 EEE kişisi fiziksel demonun tamamını taşıyamaz.
+- **Weekly 15-minute meeting:** everyone answers "what am I showing working this week".
+- **Every task is a GitHub issue:** with an owner and a week label; if someone has no open task on the board, they pull from their secondary list.
+- **Rotating integration duty:** each week one person checks that the main branch works, so the integration load does not fall on Mert alone.
+- **Report writing is continuous:** everyone writes their chapter as one page at the end of each phase; nothing piles up in the last two weeks.
+- **The EEE member is not alone:** for hardware work, a Computer Engineering member is paired in each phase (P1–P2 Mert, P3–P5 Aydan), because one EEE member cannot carry the whole physical demo.
 
-## ESC 492'de devam
+## Continuing in ESC 492
 
-Aynı birincil sahiplikler korunur; ikinci dönemde yoğunluk sahaya ve iyileştirmeye kayar.
+The same primary ownerships are kept; in the second semester the focus moves to the field and to refinement.
 
-- **EEE:** düğüm sayısını artırma, RF'den yaklaşık yön/konum, güç ve dayanıklılık.
-- **CNG 1:** çoklu düğüm görüş alanıyla risk haritası, dinamik yeniden rota.
-- **CNG 2:** saha verisiyle ince ayar (fine-tune), sürü senaryoları, OpenSky anomali tespiti.
-- **CNG 3:** RAG kalitesinin ölçülmesi, final raporun editörlüğü, kullanıcı testi.
-- **CNG 4:** çoklu sensör füzyonu, operatör arayüzünün cilası, final demo senaryosu.
+- **Adil Mert (EEE):** more nodes, rough direction/position from RF, power and durability.
+- **Yaren:** risk map with multi-node field of view, dynamic re-routing.
+- **Aydan:** fine-tuning with field data, swarm scenarios, OpenSky anomaly detection.
+- **Yağız:** measuring RAG quality, final report editing, user testing.
+- **Mert:** multi-sensor fusion, polishing the operator interface, final demo scenario.
