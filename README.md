@@ -8,7 +8,7 @@
 ![License](https://img.shields.io/badge/license-CC0%201.0-blue)
 ![Layers](https://img.shields.io/badge/architecture%20layers-5-informational)
 ![Sources](https://img.shields.io/badge/verified%20sources-35%2B-success)
-![Last Updated](https://img.shields.io/badge/last%20updated-2026--10--01-lightgrey)
+![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--06-lightgrey)
 
 <p align="center">
   <img src="./assets/demo-threat-map.gif" alt="Concept animation: sensor detection, risk propagation and route replanning on a grid threat map" width="860">
@@ -91,6 +91,9 @@ uav-cuas-datasets/
 └── docs/
     ├── proposal/
     │   └── ESC-491-Proposal-2026-10-01.docx
+    ├── pilot-region/                          ← pilot region proposals (Eindhoven, Gatwick, Helsinki)
+    ├── hardware/                              ← accepted procurement list & demo setup
+    ├── team-plan.md                           ← task distribution & semester plan (first plan, 15 Oct 2026)
     ├── legend.md
     ├── verified-access-log.md
     └── excluded-sources.md
@@ -116,21 +119,24 @@ uav-cuas-datasets/
 |---|---|---|
 | EEE student | Sensor nodes & RF sensing | Mast-mounted node hardware, power and data links, Wi-Fi/RF control-link detection, detection-range model; joint design of the physical demo and project-wide integration |
 | CNG student 1 | Geospatial risk engine | PostGIS terrain + OSM model, grid risk propagation, terrain masking, A\*/Dijkstra safe routes |
-| CNG student 2 | Visual detection & tracking | Edge-AI UAV detection on camera nodes, multi-target and swarm tracking, OpenSky baseline anomalies |
-| CNG student 3 | Threat knowledge base | RAG over unclassified doctrine, local LLM, mandatory source citation |
+| CNG student 2 | Visual detection & tracking | UAV detection on the IP camera stream, multi-target and swarm tracking, OpenSky baseline anomalies |
+| CNG student 3 | Threat knowledge base | RAG over unclassified doctrine, LLM (via API for the demo), mandatory source citation |
 | CNG student 4 | Fusion, C2 engine & interface | Composite threat score, recommendations, web C2 map with MIL-STD-2525 symbols |
 
 ### Physical Demonstration
 
-The system will be demonstrated **physically**, not only in simulation:
+The system will be demonstrated **physically**, not only in simulation. Current setup (Nov 2026, accepted by the supervisors):
 
-- **Edge sensor nodes** (Jetson / Raspberry Pi + camera + Wi-Fi receiver) mounted on **masts** around a test area
-- A **3D-printed drone mock-up** carrying a Wi-Fi transmitter is moved through the area to emulate an approaching UAV
-- The nodes detect it **visually** (edge-AI object detection) and through its **Wi-Fi control link**; detections are fused, mapped on the real terrain model and explained on the operator interface in real time
+- **One fixed PoE IP camera** (4 MP, motorized 2.8–12 mm varifocal) on a tripod at the edge of a ~15 m × 17 m outdoor area next to Academic Hall 1
+- **All processing on a laptop**: visual detection, risk engine and C2 interface; the LLM is called through an API for the demo
+- A **mock drone** carrying an **ESP32 Wi-Fi transmitter**; a second ESP32 on the laptop confirms the drone through its Wi-Fi signal (known MAC), while the camera provides its position
+- Detections are mapped on the **pilot-region terrain model** and explained on the operator interface in real time
+
+The multi-node design in the proposal is kept as the scaling path in the report; the demo uses a single node. Details, procurement list and scope assumptions: [`docs/hardware/`](./docs/hardware/). Pilot region candidates (not yet decided): [`docs/pilot-region/`](./docs/pilot-region/).
 
 Detection models are trained and evaluated on the public datasets in [`/layers`](./layers); the field recordings from the demo are logged as **team-collected data** (see Layer 1, section 1.5).
 
-> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışmanlar: Meryem Erbilek — CNG, Muhammad Sohail — EEE). Demo fiziksel olarak yapılacak: direklere monte edilen kamera + Wi-Fi sensör düğümleri, 3D yazıcıyla basılmış bir dron maketini hem görüntüden hem Wi-Fi sinyalinden edge AI ile tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
+> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışmanlar: Meryem Erbilek — CNG, Muhammad Sohail — EEE). Demo fiziksel olarak yapılacak: tek bir IP kamera ve dizüstü bilgisayar, ESP32 verici taşıyan bir maket drone'u hem görüntüden hem Wi-Fi sinyalinden tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
 
 ---
 
