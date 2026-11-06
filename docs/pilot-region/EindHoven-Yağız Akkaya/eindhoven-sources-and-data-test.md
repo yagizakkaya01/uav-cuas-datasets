@@ -21,7 +21,12 @@
 4. **Omroep Brabant**, "Onderzoek naar drones boven vliegbases Volkel en Eindhoven 'loopt dood'", 26 Jan 2026. *Read.* https://www.omroepbrabant.nl/nieuws/6002583/Onderzoek-naar-drones-boven-vliegbases-Volkel-en-Eindhoven-'loopt-dood'
 5. **NOS**, report on the IISS study, 4 Jul 2026. *Read.* https://nos.nl/l/2621556
 6. **Militär Aktuell**, "Drones over Dutch airfields: armed forces opened fire", 23 Nov 2025. *Read.* https://militaeraktuell.at/en/drones-over-dutch-airfields-armed-forces-opened-fire/
-7. Further, not read: AeroTime, "Dutch Air Force fires at unknown drones over Volkel Air Base" (https://www.aerotime.aero/articles/dutch-air-force-unknown-drones-volkel-air-base); Overt Defense, "Volkel and Eindhoven Targeted in Latest European Drone Incursions" (https://www.overtdefense.com/2025/11/27/volkel-and-eindhoven-targeted-in-latest-european-drone-incursions/); NL Times on the IISS report (https://nltimes.nl/2026/07/04/uk-think-tank-links-drone-flights-dutch-air-bases-russian-shadow-fleet).
+7. **Reuters** (via The Star), "Drone sightings disrupt traffic at Eindhoven airport", 23 Nov 2025. *Read.* https://www.thestar.com.my/news/world/2025/11/23/eindhoven-airport-closed-after-drone-sightings-defence-minister-says
+8. **Associated Press** (via WTOP), "Dutch military opens fire at drones over Volkel Air Base", 22 Nov 2025. *Read.* https://wtop.com/world/2025/11/dutch-military-opens-fire-at-drones-over-volkel-air-base
+9. **DutchNews.nl**, "Drones spotted over Dutch high security military airbase Volkel", 22 Nov 2025. *Read.* https://www.dutchnews.nl/2025/11/drones-spotted-over-dutch-high-security-military-airbase-volkel/
+10. **AeroTime**, "Dutch Air Force fails to intercept unknown drones over Volkel Air Base", 24 Nov 2025. *Read.* Note: dates the Volkel sighting to the night of 17–18 Nov, which conflicts with all other sources (21 Nov). https://www.aerotime.aero/articles/dutch-air-force-unknown-drones-volkel-air-base
+11. **NL Times**, "UK think tank links drone flights above Dutch air bases to Russian shadow fleet", 4 Jul 2026. *Read.* https://nltimes.nl/2026/07/04/uk-think-tank-links-drone-flights-dutch-air-bases-russian-shadow-fleet
+12. Further, not read: Overt Defense, "Volkel and Eindhoven Targeted in Latest European Drone Incursions" (https://www.overtdefense.com/2025/11/27/volkel-and-eindhoven-targeted-in-latest-european-drone-incursions/).
 
 ## 3. Official document
 
