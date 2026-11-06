@@ -93,6 +93,7 @@ uav-cuas-datasets/
     │   └── ESC-491-Proposal-2026-10-01.docx
     ├── pilot-region/                          ← pilot region proposals (Eindhoven, Gatwick, Helsinki)
     ├── hardware/                              ← accepted procurement list & demo setup
+    ├── team-plan.md                           ← task distribution & semester plan (first plan, 15 Oct 2026)
     ├── legend.md
     ├── verified-access-log.md
     └── excluded-sources.md
