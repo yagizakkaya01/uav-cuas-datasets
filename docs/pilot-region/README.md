@@ -10,7 +10,7 @@ The pilot region is used **only by the decision engine** (risk grid, line of sig
 
 | | **Eindhoven Airport / Air Base (NL)** | **London Gatwick Airport (UK)** | Helsinki (FI) — superseded |
 |---|---|---|---|
-| Proposed by | CNG 3 (18–19 Oct 2026) | CNG 1 (22 Oct 2026) | CNG 1 (22 Oct 2026) |
+| Proposed by | Yağız Akkaya, CNG 3 (18–19 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) |
 | Document | [eindhoven-proposal.md](./eindhoven-proposal.md) · [talking points](./eindhoven-talking-points.md) | [gatwick-proposal.pdf](./gatwick-proposal.pdf) | [helsinki-proposal.pdf](./helsinki-proposal.pdf) |
 | AOI (WGS84 bbox) | `5.355, 51.440, 5.420, 51.470` | not yet defined | not defined (city-wide) |
 | Facility type | Joint civil–military airfield (fits NATO theme) | Civil airport | City |
@@ -30,6 +30,6 @@ The pilot region is used **only by the decision engine** (risk grid, line of sig
 
 ## Recommendation so far
 
-CNG 3's review (22 Oct): keep **Eindhoven** as the pilot region because of the military angle, 0.5 m LiDAR and 3DBAG; use the **Gatwick 2018 incident** in the introduction/motivation and list Gatwick as a strong second candidate. If the team picks Gatwick, building heights must be derived by CNG 1 from the DSM. **The team has not voted yet.**
+Yağız Akkaya's review (22 Oct): keep **Eindhoven** as the pilot region because of the military angle, 0.5 m LiDAR and 3DBAG; use the **Gatwick 2018 incident** in the introduction/motivation and list Gatwick as a strong second candidate. If the team picks Gatwick, building heights must be derived by CNG 1 (Yaren Duyan) from the DSM. **The team has not voted yet.**
 
 > 🇹🇷 Şu ana kadarki öneri: Eindhoven pilot bölge olsun, Gatwick 2018 olayı raporun motivasyon bölümünde kullanılsın ve Gatwick güçlü ikinci aday olarak alternatifler tablosunda yer alsın. Ekip kararı henüz verilmedi.
