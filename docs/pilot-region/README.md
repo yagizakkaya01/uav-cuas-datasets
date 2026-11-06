@@ -1,8 +1,6 @@
-# Pilot Region Proposals / Pilot Bölge Önerileri
+# Pilot Region Proposals
 
 > **Status (6 Nov 2026): not yet decided.** Two candidates are on the table: **Eindhoven Airport (NL)** and **London Gatwick Airport (UK)**. Helsinki was proposed earlier and superseded by Gatwick.
->
-> 🇹🇷 **Durum:** Pilot bölge kararı henüz verilmedi. Masada iki aday var: **Eindhoven Havalimanı** ve **Gatwick Havalimanı**. Helsinki ilk öneriydi, yerini Gatwick'e bıraktı.
 
 The pilot region is used **only by the decision engine** (risk grid, line of sight, routing, map UI). The physical demo runs on campus (see [`../hardware/`](../hardware/)) and its measurements are never presented as if they were taken at the pilot region.
 
@@ -13,8 +11,8 @@ Each proposal sits in a folder named after the region and its author: `EindHoven
 
 | | **Eindhoven Airport / Air Base (NL)** | **London Gatwick Airport (UK)** | Helsinki (FI) — superseded |
 |---|---|---|---|
-| Proposed by | Yağız Akkaya, CNG 3 (18–19 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) |
-| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) · [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) · [Excel](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/Eindhoven-Yagiz-Akkaya.xlsx) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) |
+| Proposed by | Yağız Akkaya (18–19 Oct 2026) | Yaren Duyan (22 Oct 2026) | Yaren Duyan (22 Oct 2026) |
+| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) · [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) · [Excel](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/Eindhoven-Yagiz-Akkaya.xlsx) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) (Turkish) · [English summary](./Gatwick-Yaren%20Duyan/summary-en.md) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) (Turkish) · [English summary](./Gatwick-Yaren%20Duyan/summary-en.md) |
 | AOI (WGS84 bbox) | `5.355, 51.440, 5.420, 51.470` | not yet defined | not defined (city-wide) |
 | Facility type | Joint civil–military airfield (fits NATO theme) | Civil airport | City |
 | Real drone incident | 22 Nov 2025: traffic suspended, C-UAS activated | Dec 2018: the best-known drone airport closure | none cited |
@@ -33,6 +31,4 @@ Each proposal sits in a folder named after the region and its author: `EindHoven
 
 ## Recommendation so far
 
-Yağız Akkaya's review (22 Oct): keep **Eindhoven** as the pilot region because of the military angle, 0.5 m LiDAR and 3DBAG; use the **Gatwick 2018 incident** in the introduction/motivation and list Gatwick as a strong second candidate. If the team picks Gatwick, building heights must be derived by CNG 1 (Yaren Duyan) from the DSM. **The team has not voted yet.**
-
-> 🇹🇷 Şu ana kadarki öneri: Eindhoven pilot bölge olsun, Gatwick 2018 olayı raporun motivasyon bölümünde kullanılsın ve Gatwick güçlü ikinci aday olarak alternatifler tablosunda yer alsın. Ekip kararı henüz verilmedi.
+Yağız Akkaya's review (22 Oct): keep **Eindhoven** as the pilot region because of the military angle, 0.5 m LiDAR and 3DBAG; use the **Gatwick 2018 incident** in the introduction/motivation and list Gatwick as a strong second candidate. If the team picks Gatwick, building heights must be derived by Yaren Duyan (risk engine) from the DSM. **The team has not voted yet.**

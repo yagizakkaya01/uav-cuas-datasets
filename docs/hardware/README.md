@@ -1,8 +1,6 @@
-# Hardware & Physical Demo / Donanım ve Fiziksel Demo
+# Hardware & Physical Demo
 
 > **Accepted procurement list (Nov 2026).** This is the list sent to the supervisors (Meryem Erbilek, Muhammad Sohail) for the ESC 491 hardware request and accepted by them. Total **₺10,088**.
->
-> 🇹🇷 Hocalara gönderilip kabul edilen satın alma listesi. Toplam **₺10.088**.
 
 ## Demo setup at a glance
 
@@ -70,5 +68,3 @@ The demo is deliberately narrowed (single camera, fixed known flight height for 
 | 2 Nov 2026 | Merged with Dr. Sohail's single-node list (Pi 4 + Pi Camera); Jetson dropped, processing on laptop. |
 | 2 Nov 2026 | Dr. Sohail's camera options: Pi Cam 3 (~8–10 m), Pi HQ + 16 mm, or Pi-less IP camera. IP camera chosen. Dr. Erbilek: no budget figure, keep it minimal → single camera, single node. |
 | 2 Nov 2026 | Mock drone + ESP32 transmitter chosen over a real Tello-class drone. List accepted ("budget looks fine"). |
-
-> 🇹🇷 **Not:** Önerideki (proposal) "Jetson/Pi düğümleri, direkler, 3D baskı maket ve yerel LLM" ifadeleri bu kararlarla güncelliğini yitirdi: demo tek IP kamera + dizüstü + ESP32'li maket drone ile yapılacak, LLM demo için API üzerinden kullanılacak.

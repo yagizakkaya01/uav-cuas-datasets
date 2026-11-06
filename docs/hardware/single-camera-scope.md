@@ -1,57 +1,33 @@
-> **Not (6 Kasım 2026):** Bu belge kapsamı daraltan varsayımların ve mimarinin kaynağıdır. Hocalara gönderilip kabul edilen nihai kalem ve fiyat listesi [`README.md`](./README.md) dosyasındadır; fiyat veya kalem farkı varsa o geçerlidir.
+# Minimum Hardware Scope: One IP Camera, One Node
 
-# Asgari Donanım Listesi: Tek IP Kamera, Tek Düğüm
+*ESC 491/492 · 2 November 2026*
 
-*ESC 491/492 · 2 Kasım 2026 · Taslak: ekip onayı bekliyor*
+> **Note:** This document is the source of the scope-narrowing assumptions and the architecture. The final item and price list sent to and accepted by the supervisors is in [`README.md`](./README.md); where items or prices differ, that list applies.
 
-Meryem hoca bütçe bilgisi olmadığını ve listenin olabildiğince basit, ucuz tutulması gerektiğini söyledi. Bu yüzden Sohail hocanın üç kamera seçeneğinden Raspberry Pi'siz IP kamera seçeneği, tek kamera ve tek düğümle alındı. Kapsam aşağıdaki varsayımlarla daraltıldı. Ayrıntılı karşılaştırma: `birlesik-donanim-listesi.md`.
+Dr. Meryem Erbilek said there is no budget figure and the list should be kept as simple and cheap as possible. So, of Dr. Muhammad Sohail's three camera options, the Raspberry Pi-free IP camera was chosen, with a single camera and a single node. The scope was narrowed with the assumptions below.
 
-## Mimari
+## Architecture
 
 ```
-[IP kamera] ──Cat6 ~30 m──► [PoE enjektörü] ──► Dizüstü (tespit, risk motoru, C2, LLM API)
+[IP camera] ──Cat6 ~30 m──► [PoE injector] ──► Laptop (detection, risk engine, C2, LLM API)
                                                   ▲
-                         [ESP32 alıcı] ──USB──────┘   (dizüstünün yanında, alan kenarında)
+                         [ESP32 receiver] ──USB───┘   (next to the laptop, at the edge of the area)
 ```
 
-- Kamera gücü ve görüntüsü tek kablodan gelir. Görüntü doğrudan dizüstüne akar. Pi ve switch gerekmez.
-- ESP32 alıcı dizüstünün yanında durur ve USB'den hem güç alır hem veri gönderir. Görevi drone'un varlığını ve kimliğini doğrulamak, konum bulmak değil. Bu yüzden alanın kenarında durması yeterli.
+- The camera gets power and sends video over a single cable. Video goes directly to the laptop. No Raspberry Pi and no switch are needed.
+- The ESP32 receiver sits next to the laptop and both gets power and sends data over USB. Its job is to confirm the drone's presence and identity, not to locate it, so placing it at the edge of the area is enough.
 
-## Talep tablosu
+## Assumptions that narrow the project (for the report and the request form)
 
-| # | Kalem | Adet | Yaklaşık fiyat | Kullanım |
-|---|---|---|---|---|
-| 1 | Dış mekan PoE IP kamera, 4 MP, motorlu varifokal lens (2,8–12 mm), RTSP/ONVIF. Örn. **Hikvision DS-2CD1643G2-LIZSU** (model kodunu teyit edin) | 1 | ~₺5.000 | Görsel tespit |
-| 2 | PoE enjektörü (802.3af, gigabit) | 1 | ~₺500–800 (tahmin) | Kameraya güç; dizüstüne veri |
-| 3 | Dış mekan Cat6 kablo, ~30 m, uçları takılı | 1 | ~₺750 | Kamera → enjektör |
-| 4 | ESP32 geliştirme kartı (alıcı) | 1 | ~₺400 | Wi-Fi dinleme: MAC ve sinyal gücü |
-| 5 | ESP32 için USB veri kablosu | 1 | ~₺200 | ESP32 → dizüstü |
-| 6 | Tripod / sehpa (1,5–2 m) | 1 | ~₺1.500 | Kamera sabitleme |
-| 7 | Montaj aksesuarı (vida, kablo bağı, rakor) | 1 set | ~₺200–400 | Kurulum |
-| 8 | Uzatma kablosu + çoklu priz | 1 | ~₺400–600 (tahmin) | Enjektör ve dizüstü gücü |
-| 9 | ESP32 geliştirme kartı (verici, drone üzerinde) | 1 | ~₺400 | *Maket drone kararı kesinleşirse.* Sohail hocanın önerisi |
-| 10 | 10.000 mAh powerbank | 1 | ~₺500 | *Madde 9 ile birlikte.* Sohail hoca: yerelden alınabilir, en kötü ihtimalle ödünç alınır, satın almak şart değil |
+1. **One camera, one node.** The system is demonstrated with a single sensor node. The multi-node architecture is described in the report as a scalable design but is not built within the graduation project (Dr. Sohail's reasoning: all nodes do the same job).
+   - **The camera is fixed and sees a defined area.** "Motorized lens" only means the focal length is adjusted by a motor between 2.8 and 12 mm; the camera does not rotate (it is not PTZ). Scaling assumption (Dr. Sohail): if one camera covers ~60°, 360° coverage needs 6 cameras. This is stated in the report, but 6 cameras are not purchased.
+2. **Position from one camera with a known flight height.** No triangulation. The drone is assumed to fly at a fixed, known height (e.g. 3 m). Its position on the map is estimated by projecting its image position to the ground using this height.
+3. **The flight zone is limited to the camera's field of view.** The drone flies at most ~15–20 m from the camera, within the angle the lens is set to. This limit is enforced in software with a geofence.
+4. **One target, daytime, clear weather.** One drone at a time. Night, rain and fog are out of scope.
+5. **The RF side only confirms.** One ESP32 confirms the drone's presence and identity (known MAC); it does not give position. Other transmissions such as campus Wi-Fi and phones are filtered out by MAC (Dr. Sohail's interference note).
+6. **Processing is central.** Detection, the risk engine and the interface run on the laptop. The language model is used through an API for the demo.
+7. **The success criterion is defined in advance.** For example, a target such as "detection up to X m from the camera within Y seconds" is agreed in writing with the supervisors. The demo is evaluated against this target. Field test videos are kept as backup evidence.
 
-**Toplam: ~₺9.850–10.550.** Madde 9 ve 10 düşerse ~₺8.950–9.650. Fiyatlar Sohail hocanın listesinden; "tahmin" yazanlar tedarikçiden teyit edilmeli.
+## Dr. Sohail's guidance (2 November)
 
-**Ekipten:** dizüstü (Ethernet girişi yoksa USB-Ethernet adaptörü), drone, şerit metre. **Formda ayrıca:** alan kullanım izni, dış mekanda drone uçurma izni, priz erişimi.
-
-## Projeyi daraltan varsayımlar (rapora ve forma yazılabilir)
-
-1. **Tek kamera, tek düğüm.** Sistem tek bir sensör düğümüyle gösterilir. Çok düğümlü mimari raporda ölçeklenebilir tasarım olarak anlatılır ama bitirme kapsamında kurulmaz (Sohail hocanın da gerekçesi: tüm düğümler aynı işi yapıyor).
-   - **Sabit kamera, belirli bir alanı görür.** "Motorlu lens" yalnızca odak uzaklığının motorla 2,8–12 mm arasında ayarlanması demek; kamera dönmez (PTZ değil). Ölçekleme varsayımı (Sohail hoca): bir kamera ~60° görüyorsa 360° kapsama için 6 kamera gerekir. Bu raporda belirtilir ama 6 kamera alınmaz.
-2. **Konum tek kameradan, bilinen uçuş yüksekliğiyle.** Üçgenleme yapılmaz. Drone'un sabit ve bilinen bir yükseklikte (ör. 3 m) uçtuğu varsayılır. Görüntüdeki konumu bu yükseklikle yere izdüşürülerek haritadaki konumu kestirilir.
-3. **Uçuş bölgesi kamera görüş alanıyla sınırlı.** Drone kameradan en fazla ~15–20 m uzakta, lensin ayarlandığı açı içinde uçar. Bu sınır yazılımda geofence ile uygulanır.
-4. **Tek hedef, gündüz, açık hava.** Aynı anda tek drone. Gece, yağmur ve sis kapsam dışı.
-5. **RF tarafı yalnızca doğrulama yapar.** Tek ESP32 drone'un varlığını ve kimliğini (bilinen MAC) doğrular, konum vermez. Kampüs Wi-Fi'ı ve telefonlar gibi diğer yayınlar MAC filtresiyle ayıklanır (Sohail hocanın parazit notu).
-6. **İşlem merkezde.** Tespit, risk motoru ve arayüz dizüstünde çalışır. Dil modeli demo için API üzerinden kullanılır.
-7. **Başarı ölçütü baştan tanımlı.** Örneğin "kameradan X m'ye kadar Y saniyede tespit" gibi bir hedef hocalarla birlikte yazılı belirlenir. Demo bu hedefe göre değerlendirilir. Saha test videoları yedek kanıt olarak saklanır.
-
-## Sohail hocanın yönlendirmesi (2 Kasım)
-
-Bitirme projesinde tam çalışan ürün beklenmiyor, fikir sunuluyor. Tek kamerayla çalışırsa 3 kamerayla da çalışır (üç paralel işlem). Basit tutmak daha iyi. Üniversitenin her şeyi almasını beklemeyin; ana kalemleri alırsa iyi sayılır. **Ana kalemler önceliği:** 1 (kamera), 2 (PoE enjektörü), 3 (kablo), 4–5 (ESP32 alıcı). Tripod, aksesuar, uzatma ve powerbank gerekirse ekipten veya ödünç karşılanır.
-
-## Açık konular
-
-- Maket drone + ESP32 verici mi, Tello sınıfı gerçek drone mu? (Madde 9–10'u belirler.)
-- Ekip bu daraltmayı onaylıyor mu?
+A fully working product is not expected in a graduation project; the idea is what is presented. If it works with one camera, it works with three (three parallel processes). Keeping it simple is better. Do not expect the university to buy everything; it is good if it buys the main items. **Main item priority:** camera, PoE injector, cable, ESP32 receiver. Tripod, accessories, extension cord and power bank can come from the team or be borrowed if needed.

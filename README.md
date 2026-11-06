@@ -117,11 +117,11 @@ uav-cuas-datasets/
 
 | Member | Focus | Main work |
 |---|---|---|
-| EEE student | Sensor nodes & RF sensing | Mast-mounted node hardware, power and data links, Wi-Fi/RF control-link detection, detection-range model; joint design of the physical demo and project-wide integration |
-| CNG student 1 | Geospatial risk engine | PostGIS terrain + OSM model, grid risk propagation, terrain masking, A\*/Dijkstra safe routes |
-| CNG student 2 | Visual detection & tracking | UAV detection on the IP camera stream, multi-target and swarm tracking, OpenSky baseline anomalies |
-| CNG student 3 | Threat knowledge base | RAG over unclassified doctrine, LLM (via API for the demo), mandatory source citation |
-| CNG student 4 | Fusion, C2 engine & interface | Composite threat score, recommendations, web C2 map with MIL-STD-2525 symbols |
+| Adil Mert İş (EEE) | Sensor node & RF sensing | IP camera node hardware, power and data links, Wi-Fi/RF control-link detection, detection-range model; joint design of the physical demo and project-wide integration |
+| Yaren Duyan (CNG) | Geospatial risk engine | PostGIS terrain + OSM model, grid risk propagation, terrain masking, A\*/Dijkstra safe routes |
+| Aydan Doğan (CNG) | Visual detection & tracking | UAV detection on the IP camera stream, multi-target and swarm tracking, OpenSky baseline anomalies |
+| Yağız Akkaya (CNG) | Threat knowledge base | RAG over unclassified doctrine, LLM (via API for the demo), mandatory source citation |
+| Mert Gökalp (CNG) | Fusion, C2 engine & interface | Composite threat score, recommendations, web C2 map with MIL-STD-2525 symbols |
 
 ### Physical Demonstration
 
