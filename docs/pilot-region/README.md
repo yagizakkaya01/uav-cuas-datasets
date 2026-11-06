@@ -14,7 +14,7 @@ Each proposal sits in a folder named after the region and its author: `EindHoven
 | | **Eindhoven Airport / Air Base (NL)** | **London Gatwick Airport (UK)** | Helsinki (FI) — superseded |
 |---|---|---|---|
 | Proposed by | Yağız Akkaya, CNG 3 (18–19 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) | Yaren Duyan, CNG 1 (22 Oct 2026) |
-| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) |
+| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) · [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) · [Excel](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/Eindhoven-Yagiz-Akkaya.xlsx) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) |
 | AOI (WGS84 bbox) | `5.355, 51.440, 5.420, 51.470` | not yet defined | not defined (city-wide) |
 | Facility type | Joint civil–military airfield (fits NATO theme) | Civil airport | City |
 | Real drone incident | 22 Nov 2025: traffic suspended, C-UAS activated | Dec 2018: the best-known drone airport closure | none cited |
@@ -23,7 +23,7 @@ Each proposal sits in a folder named after the region and its author: `EindHoven
 | Drone restriction zones | PDOK / LVNL OGC API | NATS UAS zones (AIXM 5.1) | not covered |
 | Air-traffic baseline | OpenSky (Trino for history) | OpenSky (Trino needed for 2018; REST covers only last 30 days) | not covered |
 | CRS | EPSG:28992 | EPSG:27700 | EPSG:3067 / GK25 |
-| Download test done | No (Overture building count only: 4,171 buildings) | No | No |
+| Download test done | Partly (6 Nov): 3DBAG API returned 6,946 buildings, AHN catalogue and OpenSky live query worked; PDOK zone query failed. See [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) | No | No |
 
 ## Points both proposals agree on
 
