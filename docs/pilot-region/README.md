@@ -1,6 +1,6 @@
 # Pilot Region Proposals
 
-> **Status (7 Nov 2026): not yet decided.** Three candidates are on the table: **Eindhoven Airport (NL)**, **London Gatwick Airport (UK)** and **Aalborg Airport / Air Base (DK)**. Helsinki was proposed earlier and superseded by Gatwick.
+> **Status (7 Nov 2026): not yet decided.** Four candidates are on the table: **Eindhoven Airport (NL)**, **London Gatwick Airport (UK)**, **Aalborg Airport / Air Base (DK)** and **Akrotiri / Chania, Crete (GR)**. Helsinki was proposed earlier and superseded by Gatwick.
 
 The pilot region is used **only by the decision engine** (risk grid, line of sight, routing, map UI). The physical demo runs on campus (see [`../hardware/`](../hardware/)) and its measurements are never presented as if they were taken at the pilot region.
 
@@ -8,22 +8,22 @@ The pilot region is used **only by the decision engine** (risk grid, line of sig
 
 A side-by-side assessment is in [comparison.md](./comparison.md) ([Excel](./Pilot-Region-Comparison.xlsx)).
 
-Each proposal sits in a folder named after the region and its author: `EindHoven-Yağız Akkaya/`, `Gatwick-Yaren Duyan/` (Helsinki, the earlier proposal, is in the same folder), `Aalborg-Aydan Doğan/`.
+Each proposal sits in a folder named after the region and its author: `EindHoven-Yağız Akkaya/`, `Gatwick-Yaren Duyan/` (Helsinki, the earlier proposal, is in the same folder), `Aalborg-Aydan Doğan/`, `Akrotiri-Mert Gökalp/`.
 
-| | **Eindhoven Airport / Air Base (NL)** | **London Gatwick Airport (UK)** | **Aalborg Airport / Air Base (DK)** | Helsinki (FI) — superseded |
-|---|---|---|---|---|
-| Proposed by | Yağız Akkaya (18–19 Oct 2026) | Yaren Duyan (22 Oct, updated 7 Nov 2026) | Aydan Doğan (7 Nov 2026) | Yaren Duyan (22 Oct 2026) |
-| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) · [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) · [Excel](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/Eindhoven-Yagiz-Akkaya.xlsx) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) (Turkish) · [English summary](./Gatwick-Yaren%20Duyan/summary-en.md) · [Excel with data test (7 Nov)](./Gatwick-Yaren%20Duyan/Gatwick-Yaren-Duyan.xlsx) | [Excel](./Aalborg-Aydan%20Do%C4%9Fan/Aalborg-Aydan-Dogan.xlsx) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) (Turkish) · [English summary](./Gatwick-Yaren%20Duyan/summary-en.md) |
-| AOI (WGS84 bbox, W,S,E,N) | `5.355, 51.440, 5.420, 51.470` | `-0.23, 51.13, -0.12, 51.17` (data-screening extent) | `9.82, 57.08, 9.89, 57.11` | not defined (city-wide) |
-| Facility type | Joint civil–military airfield (fits NATO theme) | Civil airport | Joint civil–military airfield (fits NATO theme) | City |
-| Real drone incident | 22 Nov 2025: traffic suspended, C-UAS activated | Dec 2018: the best-known drone airport closure | 24–25 Sep 2025: ~3 h closure, several drones with lights on; second closure 26 Sep 2025 (to verify) | none cited |
-| Terrain | AHN 0.5 m DSM/DTM (CC0) | Environment Agency 1 m DSM/DTM (OGL) | DHM 0.4 m terrain + surface model (free registration) | NLS 2 m DEM |
-| Building heights | 3DBAG: measured height for every building | none national; must be derived from DSM − DTM | none verified; OSM outlines, heights from DHM surface model | Helsinki 3D city model |
-| Drone restriction zones | PDOK / LVNL OGC API | NATS UAS zones (KML/AIXM, 29 Oct 2026 cycle) | Droneluftrum (map/app; open API not confirmed) | not covered |
-| Air-traffic baseline | OpenSky (Trino for history) | OpenSky (Trino needed for 2018; REST covers only last 30 days) | OpenSky | not covered |
-| Link to visual detection | — | — | Night incident with lit drones → IR/night training data; Halmstad dataset recorded at Nordic airports; camera range calculation | — |
-| CRS | EPSG:28992 | EPSG:27700 | EPSG:25832 (ETRS89 / UTM 32N) | EPSG:3067 / GK25 |
-| Download test done | Partly (6 Nov): 3DBAG API returned 6,946 buildings, AHN catalogue and OpenSky live query worked; PDOK zone query failed. See [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) | Partly (7 Nov): EA DTM/DSM WCS capabilities and survey index returned data, NATS UAS ZIP downloaded and contains Gatwick, OSM sample and OpenSky live query (14 aircraft) worked; no raster tile downloaded yet. See the Data Test sheet | No | No |
+| | **Eindhoven Airport / Air Base (NL)** | **London Gatwick Airport (UK)** | **Aalborg Airport / Air Base (DK)** | **Akrotiri / Chania, Crete (GR)** | Helsinki (FI) — superseded |
+|---|---|---|---|---|---|
+| Proposed by | Yağız Akkaya (18–19 Oct 2026) | Yaren Duyan (22 Oct, updated 7 Nov 2026) | Aydan Doğan (7 Nov 2026) | Mert Gökalp (7 Nov 2026) | Yaren Duyan (22 Oct 2026) |
+| Document | [eindhoven-proposal.md](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-proposal.md) · [talking points](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-talking-points.md) · [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) · [Excel](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/Eindhoven-Yagiz-Akkaya.xlsx) | [gatwick-proposal.pdf](./Gatwick-Yaren%20Duyan/gatwick-proposal.pdf) (Turkish) · [English summary](./Gatwick-Yaren%20Duyan/summary-en.md) · [Excel with data test (7 Nov)](./Gatwick-Yaren%20Duyan/Gatwick-Yaren-Duyan.xlsx) | [Excel](./Aalborg-Aydan%20Do%C4%9Fan/Aalborg-Aydan-Dogan.xlsx) | [Excel](./Akrotiri-Mert%20G%C3%B6kalp/Akrotiri-Mert-Gokalp.xlsx) | [helsinki-proposal.pdf](./Gatwick-Yaren%20Duyan/helsinki-proposal.pdf) (Turkish) · [English summary](./Gatwick-Yaren%20Duyan/summary-en.md) |
+| AOI (WGS84 bbox, W,S,E,N) | `5.355, 51.440, 5.420, 51.470` | `-0.23, 51.13, -0.12, 51.17` (data-screening extent) | `9.82, 57.08, 9.89, 57.11` | `24.10, 35.51, 24.19, 35.59` | not defined (city-wide) |
+| Facility type | Joint civil–military airfield (fits NATO theme) | Civil airport | Joint civil–military airfield (fits NATO theme) | Chania Airport (joint civil–military), NSA Souda Bay, NAMFI (NATO firing range) | City |
+| Real drone incident | 22 Nov 2025: traffic suspended, C-UAS activated | Dec 2018: the best-known drone airport closure | 24–25 Sep 2025: ~3 h closure, several drones with lights on; second closure 26 Sep 2025 (to verify) | none found (closest: Mar 2026 Souda emergency alert, counter-drone live firing at NAMFI) | none cited |
+| Terrain | AHN 0.5 m DSM/DTM (CC0) | Environment Agency 1 m DSM/DTM (OGL) | DHM 0.4 m terrain + surface model (free registration) | Copernicus GLO-30 (30 m DSM); hilly, 0–517 m | NLS 2 m DEM |
+| Building heights | 3DBAG: measured height for every building | none national; must be derived from DSM − DTM | none verified; OSM outlines, heights from DHM surface model | none; OSM has no height tags, estimated by building type | Helsinki 3D city model |
+| Drone restriction zones | PDOK / LVNL OGC API | NATS UAS zones (KML/AIXM, 29 Oct 2026 cycle) | Droneluftrum (map/app; open API not confirmed) | HCAA / DAGR web map (no download) | not covered |
+| Air-traffic baseline | OpenSky (Trino for history) | OpenSky (Trino needed for 2018; REST covers only last 30 days) | OpenSky | OpenSky | not covered |
+| Link to visual detection | — | — | Night incident with lit drones → IR/night training data; Halmstad dataset recorded at Nordic airports; camera range calculation | — | — |
+| CRS | EPSG:28992 | EPSG:27700 | EPSG:25832 (ETRS89 / UTM 32N) | EPSG:32635 (UTM 35N) | EPSG:3067 / GK25 |
+| Download test done | Partly (6 Nov): 3DBAG API returned 6,946 buildings, AHN catalogue and OpenSky live query worked; PDOK zone query failed. See [sources & data test](./EindHoven-Ya%C4%9F%C4%B1z%20Akkaya/eindhoven-sources-and-data-test.md) | Partly (7 Nov): EA DTM/DSM WCS capabilities and survey index returned data, NATS UAS ZIP downloaded and contains Gatwick, OSM sample and OpenSky live query (14 aircraft) worked; no raster tile downloaded yet. See the Data Test sheet | No | Partly (7 Nov): Copernicus DEM and OSM downloaded and processed into a GeoPackage, sample line-of-sight check ran; OpenSky not tested | No |
 
 ## Points all proposals agree on
 
@@ -33,4 +33,4 @@ Each proposal sits in a folder named after the region and its author: `EindHoven
 
 ## Recommendation so far
 
-Yağız Akkaya's review (22 Oct): keep **Eindhoven** as the pilot region because of the military angle, 0.5 m LiDAR and 3DBAG; use the **Gatwick 2018 incident** in the introduction/motivation and list Gatwick as a strong second candidate. Aalborg (added 7 Nov) has the same civil–military profile as Eindhoven and the strongest link to visual detection, but its data access is not tested yet. If the team picks Gatwick, building heights must be derived by Yaren Duyan (risk engine) from the DSM. **The team has not voted yet.**
+Yağız Akkaya's review (22 Oct): keep **Eindhoven** as the pilot region because of the military angle, 0.5 m LiDAR and 3DBAG; use the **Gatwick 2018 incident** in the introduction/motivation and list Gatwick as a strong second candidate. Aalborg (added 7 Nov) has the same civil–military profile as Eindhoven and the strongest link to visual detection, but its data access is not tested yet. Akrotiri (added 7 Nov) offers hilly terrain that suits line-of-sight analysis and three NATO-relevant sites, but has no documented drone incident and only 30 m terrain data. If the team picks Gatwick, building heights must be derived by Yaren Duyan (risk engine) from the DSM. **The team has not voted yet.**
