@@ -8,7 +8,7 @@
 ![License](https://img.shields.io/badge/license-CC0%201.0-blue)
 ![Layers](https://img.shields.io/badge/architecture%20layers-5-informational)
 ![Sources](https://img.shields.io/badge/verified%20sources-35%2B-success)
-![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--06-lightgrey)
+![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--07-lightgrey)
 
 <p align="center">
   <img src="./assets/demo-threat-map.gif" alt="Concept animation: sensor detection, risk propagation and route replanning on a grid threat map" width="860">
@@ -91,8 +91,9 @@ uav-cuas-datasets/
 └── docs/
     ├── proposal/
     │   └── ESC-491-Proposal-2026-10-01.docx
-    ├── pilot-region/                          ← pilot region proposals (Eindhoven, Gatwick, Helsinki)
+    ├── pilot-region/                          ← pilot region proposals (Eindhoven, Gatwick, Aalborg, Akrotiri) & comparison
     ├── hardware/                              ← accepted procurement list & demo setup
+    ├── diagrams/                              ← UML diagrams (use case, deployment, activity)
     ├── team-plan.md                           ← task distribution & semester plan (first plan, 15 Oct 2026)
     ├── legend.md
     ├── verified-access-log.md
@@ -137,6 +138,78 @@ The multi-node design in the proposal is kept as the scaling path in the report;
 Detection models are trained and evaluated on the public datasets in [`/layers`](./layers); the field recordings from the demo are logged as **team-collected data** (see Layer 1, section 1.5).
 
 > 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışmanlar: Meryem Erbilek — CNG, Muhammad Sohail — EEE). Demo fiziksel olarak yapılacak: tek bir IP kamera ve dizüstü bilgisayar, ESP32 verici taşıyan bir maket drone'u hem görüntüden hem Wi-Fi sinyalinden tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
+
+---
+
+## Project at a Glance
+
+The most important tables from the project documents, in one place. Each table links to the full document.
+
+### Pilot region candidates
+
+Four candidates, compared on 7 Nov 2026. **The team has not decided yet.** Full table, sources and data tests: [`docs/pilot-region/comparison.md`](./docs/pilot-region/comparison.md).
+
+| Criterion | Eindhoven (NL) | Gatwick (UK) | Aalborg (DK) | Akrotiri / Chania, Crete (GR) |
+|---|---|---|---|---|
+| Proposed by | Yağız Akkaya | Yaren Duyan | Aydan Doğan | Mert Gökalp |
+| Facility / NATO theme | Joint civil–military airfield | Civil airport only | Joint civil–military airfield | Chania Airport, NSA Souda Bay, NAMFI range |
+| Drone incident | 22 Nov 2025 closure, C-UAS activated | Dec 2018, ~30–33 h closure | 24–25 Sep 2025, ~3 h closure | None found |
+| Terrain | AHN 0.5 m DSM/DTM | EA 1 m DSM/DTM | DHM 0.4 m (download needs a free token) | Copernicus 30 m, hilly (0–517 m) |
+| Building heights | 3DBAG, measured for every building | Derive from DSM − DTM | None; derive from DHM | None; estimated by building type |
+| Drone restriction zones | PDOK / LVNL API (polygons not yet retrieved) | NATS UAS zones, downloaded | Map only, no reusable data | Web map only |
+| Data access test | Partly (6 Nov) | Partly (7 Nov) | Partly (7 Nov) | Partly (7 Nov), GeoPackage + sample line of sight |
+| Main strength | Building data and incident record | Restriction-zone data and peer-reviewed literature | Link to visual detection (night incident, Halmstad dataset) | Hilly terrain for line-of-sight analysis |
+
+### Hardware request (accepted by the supervisors)
+
+10 items, total **₺10,088**. Full list with links, assumptions and follow-ups: [`docs/hardware/`](./docs/hardware/).
+
+| # | Component | Qty | Total |
+|---:|---|---:|---:|
+| 1 | Hikvision DS-2CD1643G2-LIZSU PoE IP camera (4 MP, 2.8–12 mm motorized lens) | 1 | ₺5,200 |
+| 2 | ESP32 development board (receiver + mock-drone transmitter) | 2 | ₺840 |
+| 3 | USB data cable for ESP32 | 1 | ₺48 |
+| 4 | 10,000 mAh power bank (mock drone) | 1 | ₺679 |
+| 5 | Cat6 outdoor Ethernet cable, ~30 m | 1 | ₺750 |
+| 6 | Cat6 patch cable, 1–2 m | 1 | ₺170 |
+| 7 | PoE injector (IEEE 802.3af, gigabit) | 1 | ₺780 |
+| 8 | 12 V 1 A power adapter (backup camera power) | 1 | ₺250 |
+| 9 | Tripod or fixed mounting bracket | 1 | ₺1,099.90 |
+| 10 | Mounting and wiring accessories | 1 set | ₺271 |
+| | **Total** | | **₺10,088** |
+
+The laptop (RTX 4070), mock drone and 3D printer are provided by the team.
+
+### Task distribution
+
+From the first semester plan (15 Oct 2026). Full plan with the 14-week schedule: [`docs/team-plan.md`](./docs/team-plan.md).
+
+| Person | Primary (owned layer) | Secondary task |
+|---|---|---|
+| Adil Mert İş (EEE) | Sensor node hardware + Wi-Fi/RF control-link detection (Layer 1, sensor part) | Detection range / link budget model and RCS justification (Layer 4); field test lead |
+| Yaren Duyan | Terrain + OSM model, grid risk propagation, line of sight, A\*/Dijkstra routing (Layers 1 and 3) | Risk model validation with FAA/ACLED records; map layers for the C2 interface |
+| Aydan Doğan | Camera-based detection and swarm tracking (Layer 1, vision part) | Recording and labelling the team's own field dataset |
+| Yağız Akkaya | Doctrine knowledge base, RAG + LLM, mandatory citations (Layer 2) | Test scenarios and evaluation metrics; report editor |
+| Mert Gökalp | Fusion, threat score, recommendation engine, C2 web interface (Layers 4 and 5) | System architecture, interface contracts, mock data simulator; integration lead |
+
+| Week | Deliverable | Owner |
+|---|---|---|
+| 3 | Interface contracts (JSON schemas) and hardware order | Mert Gökalp, Adil Mert İş |
+| 6 | Every layer runs on its own with mock data | Everyone |
+| 8 | Interim report / progress presentation | Yağız Akkaya (editor), everyone their own chapter |
+| 9 | End-to-end demo with recorded data (desk) | Mert Gökalp |
+| 12 | Live detection with a single node in the field, shown on the map | Adil Mert İş, Aydan Doğan |
+| 14 | Final report, presentation, demo v1 | Everyone |
+
+### System diagrams
+
+UML diagrams of the demo system. All diagrams with previews: [`docs/diagrams/`](./docs/diagrams/).
+
+| Diagram | Author | File |
+|---|---|---|
+| Use case | Aydan Doğan | [use-case-diagram.png](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/use-case-diagram.png) |
+| Deployment | Aydan Doğan | [deployment-diagram.jpeg](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/deployment-diagram.jpeg) |
+| Activity (detection to decision) | Aydan Doğan | [activity-diagram.jpeg](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.jpeg) |
 
 ---
 
