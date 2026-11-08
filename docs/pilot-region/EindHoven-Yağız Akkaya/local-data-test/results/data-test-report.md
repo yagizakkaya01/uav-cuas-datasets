@@ -35,8 +35,6 @@ Also checked by hand (not scripted): the LVNL eAIP returned 403; GoDrone (LVNL's
 
 ![Low-altitude ADS-B traffic near EHEH per 15 minutes, incident evening vs. reference evening](eindhoven-adsb-incident-night.png)
 
-*Chart drawn with the `plot()` function of `08_adsb_history.py` from the 15-minute counts logged in `access-log.json`.*
-
 **What the data shows:** on 22 November there are **no aircraft below 5,000 ft within 15 km of EHEH from 17:30 to 21:30 UTC**; traffic resumes from 21:30 UTC, including a Dutch Air Force Gulfstream (callsign NAF11, 22:03–22:32 UTC). On the reference evening a week earlier, every 15-minute slot in the same window has 1–4 aircraft.
 
 **How to read it:** the gap covers the reported closure (about 19:30–21:40 UTC) but starts about two hours earlier, which the public timeline does not explain. adsb.lol is a volunteer receiver network, so low-altitude coverage can have holes. The gap is therefore **consistent with** the closure, not proof of it.
@@ -73,4 +71,4 @@ Only these aggregate checks are published; no sensor-placement or blind-spot ana
 
 ![Overview map: AHN hillshade, 3DBAG building heights, OSM runway (red) and taxiways (orange), two live OpenSky aircraft (cyan)](eindhoven-data-map.png)
 
-*Map from the first run. The re-run on the laptop also draws the fallback runway buffer (magenta, dashed).*
+*Magenta dashed line = fallback zone: 3 km buffer around the runway centreline (modelling assumption, not an official zone).*

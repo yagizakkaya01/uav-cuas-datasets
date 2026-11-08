@@ -24,7 +24,6 @@ FALLBACK_BUFFER_M = 3000  # assumption, stated in the report
 PDOK_WFS = "https://service.pdok.nl/lvnl/drone-no-flyzones/wfs/v1_0"
 OPENAIP_NL = "https://storage.googleapis.com/29f98e10-a489-4c82-ae5e-489dbcd4912f/nl_asp.geojson"
 OURAIRPORTS_RUNWAYS = "https://davidmegginson.github.io/ourairports-data/runways.csv"
-PDOK_DEFENCE = "https://api.pdok.nl/defensie/luchtvaartobstakels-terugmeldingen/ogc/v1"
 
 
 def pdok_wfs():
@@ -34,25 +33,6 @@ def pdok_wfs():
         log("PDOK no-fly zones (old WFS)", ok, f"HTTP {r.status_code}" + ("" if ok else " (retired with the OGC API)"))
     except Exception as e:  # noqa: BLE001
         log("PDOK no-fly zones (old WFS)", False, str(e))
-
-
-def pdok_defence_obstacles():
-    """Defence aviation-obstacle reports (PDOK OGC API): the only related PDOK dataset left."""
-    try:
-        r = get(f"{PDOK_DEFENCE}/collections", params={"f": "json"}, retries=1)
-        r.raise_for_status()
-        feats = []
-        for c in [c["id"] for c in r.json().get("collections", [])]:
-            q = get(f"{PDOK_DEFENCE}/collections/{c}/items",
-                    params={"bbox": ",".join(map(str, CONTEXT_WGS84)), "f": "json", "limit": 1000}, retries=1)
-            q.raise_for_status()
-            feats += q.json().get("features", [])
-        (OUT / "pdok_defensie_obstacles_context.geojson").write_text(
-            json.dumps({"type": "FeatureCollection", "features": feats}), encoding="utf-8")
-        log("PDOK Defensie aviation obstacle reports", True,
-            f"API reachable; {len(feats)} obstacle report(s) in the EHEH context box")
-    except Exception as e:  # noqa: BLE001
-        log("PDOK Defensie aviation obstacle reports", False, str(e))
 
 
 def openaip():
@@ -119,6 +99,22 @@ def runway_fallback():
     log("OurAirports runways (EHEH)", True,
         f"{len(rows)} runway(s): {desc}; fallback zone = {FALLBACK_BUFFER_M} m buffer around the centreline (assumption)",
         runways=rows)
+
+
+def pdok_defence_obstacles():
+    """PDOK 'luchtvaartobstakels-terugmeldingen' (Defensie): reported aviation obstacles in the context box."""
+    url = "https://api.pdok.nl/defensie/luchtvaartobstakels-terugmeldingen/ogc/v1/collections/aeroterugmeldingen/items"
+    try:
+        r = get(url, params={"f": "json", "limit": 1000, "bbox": ",".join(map(str, CONTEXT_WGS84))})
+        r.raise_for_status()
+        feats = r.json().get("features", [])
+    except Exception as e:  # noqa: BLE001
+        log("PDOK Defensie aviation obstacle reports", False, str(e))
+        return
+    (OUT / "pdok_defensie_obstacles_context.geojson").write_text(
+        json.dumps({"type": "FeatureCollection", "features": feats}), encoding="utf-8")
+    log("PDOK Defensie aviation obstacle reports", True,
+        f"API reachable; {len(feats)} obstacle report(s) in the EHEH context box", n_context=len(feats))
 
 
 def main():
