@@ -13,6 +13,8 @@
    - OpenSky live traffic
 4. **Peer-reviewed backing for the method and data.** Multi-sensor detection and the limits on mitigation at airports (Lykou et al., *Sensors* 2020); 3DBAG accuracy, with error under 31 cm for 95 % of buildings (Peters et al., *PE&RS* 2022); OpenSky as the traffic baseline (Schäfer et al., *IPSN* 2014).
 
+![All layers downloaded on 8 Nov: AHN hillshade, 3DBAG building heights, OSM runway and taxiways, live aircraft](./local-data-test/results/eindhoven-data-map.png)
+
 ## Honest weaknesses
 
 | Weakness | Impact | Plan |

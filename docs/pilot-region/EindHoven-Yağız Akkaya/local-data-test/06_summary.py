@@ -97,7 +97,7 @@ def main():
     ax.set_xlim(x0, x1)
     ax.set_ylim(y0, y1)
     ax.set_title("Eindhoven (EHEH) pilot region: AHN hillshade, 3DBAG buildings, OSM runway/taxiways,\n"
-                 "LVNL no-fly zone edges (magenta), live OpenSky aircraft (cyan)", fontsize=10)
+                 "no-fly zone edges if available (magenta), live OpenSky aircraft (cyan)", fontsize=10)
     ax.set_xlabel("RD New x (m)")
     ax.set_ylabel("RD New y (m)")
     fig.tight_layout()

@@ -37,3 +37,5 @@ OpenSky historical flight lists need a free account. Create an API client on ope
 ## Scope
 
 Only open data and data-access checks are produced. No sensor-placement, blind-spot or vulnerability analysis of the air base is published, because the repository is public. Results are in [`results/data-test-report.md`](./results/data-test-report.md).
+
+![Overview map](./results/eindhoven-data-map.png)
