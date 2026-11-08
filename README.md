@@ -153,11 +153,11 @@ Four candidates, compared on 7 Nov 2026. **The team has not decided yet.** Full 
 |---|---|---|---|---|
 | Proposed by | Yağız Akkaya | Yaren Duyan | Aydan Doğan | Mert Gökalp |
 | Facility / NATO theme | Joint civil–military airfield | Civil airport only | Joint civil–military airfield | Chania Airport, NSA Souda Bay, NAMFI range |
-| Drone incident | 22 Nov 2025 closure, C-UAS activated | Dec 2018, ~30–33 h closure | 24–25 Sep 2025, ~3 h closure | None found |
+| Drone incident | 22 Nov 2025 closure, C-UAS activated | Dec 2018, ~30–33 h closure | 24–25 Sep 2025, ~3 h closure | None found (only exercise target drones at NAMFI) |
 | Terrain | AHN 0.5 m DSM/DTM | EA 1 m DSM/DTM | DHM 0.4 m (download needs a free token) | Copernicus 30 m, hilly (0–517 m) |
 | Building heights | 3DBAG, measured for every building | Derive from DSM − DTM | None; derive from DHM | None; estimated by building type |
 | Drone restriction zones | PDOK / LVNL API (polygons not yet retrieved) | NATS UAS zones, downloaded | Map only, no reusable data | Web map only |
-| Data access test | Partly (6 Nov) | Partly (7 Nov) | Partly (7 Nov) | Partly (7 Nov), GeoPackage + sample line of sight |
+| Data access test | Partly (6 Nov) | Partly (7 Nov) | Partly (7 Nov) | Partly (8 Nov), GeoPackage + sample line of sight |
 | Main strength | Building data and incident record | Restriction-zone data and peer-reviewed literature | Link to visual detection (night incident, Halmstad dataset) | Hilly terrain for line-of-sight analysis |
 
 ### Hardware request (accepted by the supervisors)
