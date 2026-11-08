@@ -66,5 +66,6 @@ All sources were downloaded directly on the team laptop with the scripts in [`lo
 | 3DBAG | ✅ | 3,472 buildings, 3,464 with roof + ground height (the 6 Nov figure of 6,946 most likely double-counted building parts) |
 | OpenStreetMap | ✅ | 8,295 features incl. 3 runway ways, 113 taxiways, 25 hangars |
 | OpenSky live | ✅ | 2 aircraft in the airport box |
-| PDOK drone no-fly zones | ❌ | Dataset retired by PDOK on 30 June 2026 at LVNL's request; a new source is needed |
-| OpenSky history (22 Nov 2025) | ❌ | 403 without an account; free account needed |
+| PDOK drone no-fly zones | ❌ | Retired by PDOK on 30 June 2026; old WFS and openAIP also failed; 3 km runway buffer used as an assumption |
+| OpenSky history (22 Nov 2025) | ❌ → ✅ | 403 without an account; replaced by the adsb.lol open archive (no low-altitude traffic 17:30–21:30 UTC on 22 Nov) |
+| ESA WorldCover, Copernicus DEM, KNMI | ✅ | 32 % tree cover; 30 m DEM vs AHN RMSE 3.3 m; incident-evening weather |

@@ -18,6 +18,9 @@ A small, reproducible Python project that downloads every open dataset the decis
 | `03_nofly.py` | LVNL drone no-fly zones, PDOK OGC API, PDM 1.0 | `nofly/<collection>.geojson` |
 | `04_osm.py` | OpenStreetMap via Overpass, ODbL | `osm/osm.geojson` (aeroway, buildings, roads, land use) |
 | `05_opensky.py` | OpenSky Network | `opensky/live_states.json`, arrivals/departures for 22 Nov 2025 and 15 Nov 2025 |
+| `07_airspace.py` | old PDOK WFS, PDOK Defensie obstacles, openAIP, OurAirports | `airspace/*`, `nofly/runway_buffer_fallback.geojson` (assumption) |
+| `08_adsb_history.py` | adsb.lol open ADS-B archive (ODbL), 22 and 15 Nov 2025 | `adsb/*_eheh.json`, `results/eindhoven-adsb-incident-night.png` |
+| `09_extra_layers.py` | ESA WorldCover 10 m, Copernicus DEM GLO-30, KNMI hourly weather | `extra/*` |
 | `06_summary.py` | all of the above | `results/eindhoven-data-map.png`, `results/data-test-report.md` |
 
 Every script appends a row to `results/access-log.json` (source, success, detail, time).

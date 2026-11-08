@@ -10,17 +10,24 @@
    - AHN 0.5 m surface and terrain model (9036 × 6676 px, CC0)
    - 3DBAG: 3,472 buildings with LiDAR-measured heights (CC BY 4.0), which no other candidate has
    - OpenStreetMap airport layout: runways, 113 taxiways, 25 hangars, terminal, tower
-   - OpenSky live traffic
+   - OpenSky live traffic, and the adsb.lol archive for the incident night
+   - ESA WorldCover (32 % tree cover) and KNMI weather for the incident evening
 4. **Peer-reviewed backing for the method and data.** Multi-sensor detection and the limits on mitigation at airports (Lykou et al., *Sensors* 2020); 3DBAG accuracy, with error under 31 cm for 95 % of buildings (Peters et al., *PE&RS* 2022); OpenSky as the traffic baseline (Schäfer et al., *IPSN* 2014).
 
 ![All layers downloaded on 8 Nov: AHN hillshade, 3DBAG building heights, OSM runway and taxiways, live aircraft](./local-data-test/results/eindhoven-data-map.png)
+
+**Incident-night check (new):** in the adsb.lol open ADS-B archive there are no aircraft below 5,000 ft within 15 km of EHEH from 17:30 to 21:30 UTC on 22 Nov 2025, against 1–4 per 15 minutes on the same evening a week earlier. This is consistent with the reported closure (it starts two hours earlier than the public timeline, and volunteer coverage can have gaps).
+
+![Incident-night ADS-B traffic](./local-data-test/results/eindhoven-adsb-incident-night.png)
+
+**Why 0.5 m data matters:** a 30 m global DEM matches AHN on average but differs locally by 3.3 m RMSE (over 7.6 m in 5 % of cells), the size of a building or tree line.
 
 ## Honest weaknesses
 
 | Weakness | Impact | Plan |
 |---|---|---|
-| PDOK/LVNL drone no-fly-zone API retired on 30 June 2026 | The restricted-zone layer has no open API any more | Use the current official ED-269 zone file if one can be found; otherwise digitise the EHEH control zone from the public map, or model it as a runway buffer and state the assumption |
-| OpenSky history needs an account | The traffic gap on the incident night is not yet shown | Create a free OpenSky API client and rerun one script |
+| PDOK/LVNL drone no-fly-zone API retired on 30 June 2026; openAIP now paid; no other open, licensed source found | The restricted-zone layer must be modelled | A 3 km buffer around runway 03/21 (OurAirports thresholds) is already built and labelled as an assumption |
+| OpenSky history needs an account | Solved with the adsb.lol open archive | — |
 | No peer-reviewed paper on the incident itself | Incident evidence relies on parliament, news and IISS | Same for every candidate except Gatwick; Gatwick is cited for motivation |
 | Real military co-located site | Vulnerability outputs must stay out of the public repo | Only open data and aggregate checks are published |
 
@@ -32,9 +39,9 @@
 | Drone incident | ✅ 2025 | ✅ 2018 | ✅ 2025 | ❌ |
 | Building heights | ✅ measured (3DBAG) | derive from DSM | derive from DSM | estimated |
 | Terrain resolution | 0.5 m | 1 m | 0.4 m (token needed) | 30 m |
-| Restriction zones | ⚠️ API retired | ✅ NATS file | ⚠️ map only | ⚠️ map only |
-| Data downloaded end to end | ✅ 4 of 6 layers | partly | partly | ✅ processed |
+| Restriction zones | ⚠️ API retired; runway buffer | ✅ NATS file | ⚠️ map only | ⚠️ map only |
+| Data downloaded end to end | ✅ 11 of 15 sources | partly | partly | ✅ processed |
 
 ## Proposal for the meeting
 
-Choose **Eindhoven** as the pilot region, use **Gatwick 2018** in the introduction as motivation, and keep **Aalborg** as the backup, since it has the same civil–military profile. The first two follow-up tasks are a replacement source for the no-fly-zone layer and an OpenSky account for the incident-night traffic check.
+Choose **Eindhoven** as the pilot region, use **Gatwick 2018** in the introduction as motivation, and keep **Aalborg** as the backup, since it has the same civil–military profile. Follow-up: confirm with the team that the runway buffer is acceptable as the restricted-zone layer.

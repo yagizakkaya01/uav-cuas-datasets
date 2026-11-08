@@ -22,8 +22,8 @@ We propose **Eindhoven Airport / Eindhoven Air Base (the Netherlands)** as the p
 |---|---|---|
 | Surface and terrain model | AHN: 0.5 m DSM and DTM, CC0 | ✅ Downloaded: 0.5 m DSM + DTM for the whole AOI |
 | Building heights for line of sight and masking | 3DBAG: every building in LoD 1.2 / 1.3 / 2.2 with LiDAR-measured roof and ground heights, CC BY 4.0 | ✅ Downloaded: 3,472 buildings, 3,464 with heights |
-| Protected / restricted zones | LVNL drone no-fly zones, PDOK OGC API, PDM 1.0 | ❌ Dataset retired by PDOK on 30 Jun 2026; new source needed |
-| Normal air-traffic baseline | OpenSky Network | ✅ Live works; history needs a free account (403) |
+| Protected / restricted zones | LVNL drone no-fly zones, PDOK OGC API, PDM 1.0 | ❌ Retired by PDOK on 30 Jun 2026, no open source left; 3 km runway buffer used as an assumption |
+| Normal air-traffic baseline | OpenSky Network | ✅ Live works; incident night covered by the adsb.lol archive |
 | Roads and facilities | OpenStreetMap / Overture | ✅ OSM downloaded: 8,295 features, 3 runway ways, 113 taxiways, 25 hangars |
 
 ## 2. Scenario idea for the decision engine

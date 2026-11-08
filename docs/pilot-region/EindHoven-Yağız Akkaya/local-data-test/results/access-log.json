@@ -1,8 +1,193 @@
 [
-  {"source": "3DBAG API", "ok": true, "detail": "3472 buildings, 3472 with LoD0 footprint, 3464 with roof+ground height; height above ground mean 6.5 m, max 74.3 m", "tested_utc": "2026-11-08 13:43", "buildings": 3472, "with_footprint": 3472, "with_height": 3464, "pages": 70},
-  {"source": "PDOK drone no-fly zones", "ok": false, "detail": "collections failed: 404 Client Error: Not Found for url: https://api.pdok.nl/lvnl/drone-no-flyzones/ogc/v1/collections?f=json", "tested_utc": "2026-11-08 13:43"},
-  {"source": "OpenStreetMap (Overpass)", "ok": true, "detail": "8295 features: 4015 buildings (10 with height/levels), 1870 road segments, aeroway {'threshold': 2, 'parking_position': 39, 'holding_position': 11, 'navigationaid': 1086, 'windsock': 1, 'runway': 3, 'taxiway': 113, 'apron': 4, 'hangar': 25, 'tower': 1, 'terminal': 1, 'helipad': 1}", "tested_utc": "2026-11-08 13:43", "buildings": 4015, "buildings_with_height": 10, "roads": 1870, "aeroway": {"threshold": 2, "parking_position": 39, "holding_position": 11, "navigationaid": 1086, "windsock": 1, "runway": 3, "taxiway": 113, "apron": 4, "hangar": 25, "tower": 1, "terminal": 1, "helipad": 1}},
-  {"source": "AHN WCS (PDOK)", "ok": true, "detail": "DSM+DTM 0.5 m mosaics 9036x6676 px; DTM 14.34-38.26 m NAP, DSM max 94.18 m; valid DTM 88.5%", "tested_utc": "2026-11-08 13:45", "stats": {"dsm": {"coverage": "dsm_05m", "tiles": 20, "shape": [6676, 9036], "valid_pct": 97.5, "min_m": 14.34, "max_m": 94.18, "mean_m": 22.1}, "dtm": {"coverage": "dtm_05m", "tiles": 20, "shape": [6676, 9036], "valid_pct": 88.5, "min_m": 14.34, "max_m": 38.26, "mean_m": 20.18}}},
-  {"source": "OpenSky live states", "ok": true, "detail": "2 aircraft in airport box (anonymous): ['RYR4022', 'WZZ82UE']", "tested_utc": "2026-11-08 13:45"},
-  {"source": "OpenSky history (EHEH, 22 Nov 2025)", "ok": false, "detail": "anonymous: {'incident_2025-11-22/arrival': 'HTTP 403', 'incident_2025-11-22/departure': 'HTTP 403', 'reference_2025-11-15/arrival': 'HTTP 403', 'reference_2025-11-15/departure': 'HTTP 403'}", "tested_utc": "2026-11-08 13:45", "flights": {"incident_2025-11-22/arrival": "HTTP 403", "incident_2025-11-22/departure": "HTTP 403", "reference_2025-11-15/arrival": "HTTP 403", "reference_2025-11-15/departure": "HTTP 403"}}
+  {
+    "source": "3DBAG API",
+    "ok": true,
+    "detail": "3472 buildings, 3472 with LoD0 footprint, 3464 with roof+ground height; height above ground mean 6.5 m, max 74.3 m",
+    "tested_utc": "2026-11-08 13:43",
+    "buildings": 3472,
+    "with_footprint": 3472,
+    "with_height": 3464,
+    "pages": 70
+  },
+  {
+    "source": "PDOK drone no-fly zones",
+    "ok": false,
+    "detail": "collections failed: 404 Client Error: Not Found for url: https://api.pdok.nl/lvnl/drone-no-flyzones/ogc/v1/collections?f=json",
+    "tested_utc": "2026-11-08 13:43"
+  },
+  {
+    "source": "OpenStreetMap (Overpass)",
+    "ok": true,
+    "detail": "8295 features: 4015 buildings (10 with height/levels), 1870 road segments, aeroway {'threshold': 2, 'parking_position': 39, 'holding_position': 11, 'navigationaid': 1086, 'windsock': 1, 'runway': 3, 'taxiway': 113, 'apron': 4, 'hangar': 25, 'tower': 1, 'terminal': 1, 'helipad': 1}",
+    "tested_utc": "2026-11-08 13:43",
+    "buildings": 4015,
+    "buildings_with_height": 10,
+    "roads": 1870,
+    "aeroway": {
+      "threshold": 2,
+      "parking_position": 39,
+      "holding_position": 11,
+      "navigationaid": 1086,
+      "windsock": 1,
+      "runway": 3,
+      "taxiway": 113,
+      "apron": 4,
+      "hangar": 25,
+      "tower": 1,
+      "terminal": 1,
+      "helipad": 1
+    }
+  },
+  {
+    "source": "AHN WCS (PDOK)",
+    "ok": true,
+    "detail": "DSM+DTM 0.5 m mosaics 9036x6676 px; DTM 14.34-38.26 m NAP, DSM max 94.18 m; valid DTM 88.5%",
+    "tested_utc": "2026-11-08 13:45",
+    "stats": {
+      "dsm": {
+        "coverage": "dsm_05m",
+        "tiles": 20,
+        "shape": [
+          6676,
+          9036
+        ],
+        "valid_pct": 97.5,
+        "min_m": 14.34,
+        "max_m": 94.18,
+        "mean_m": 22.1
+      },
+      "dtm": {
+        "coverage": "dtm_05m",
+        "tiles": 20,
+        "shape": [
+          6676,
+          9036
+        ],
+        "valid_pct": 88.5,
+        "min_m": 14.34,
+        "max_m": 38.26,
+        "mean_m": 20.18
+      }
+    }
+  },
+  {
+    "source": "OpenSky live states",
+    "ok": true,
+    "detail": "2 aircraft in airport box (anonymous): ['RYR4022', 'WZZ82UE']",
+    "tested_utc": "2026-11-08 13:45"
+  },
+  {
+    "source": "OpenSky history (EHEH, 22 Nov 2025)",
+    "ok": false,
+    "detail": "anonymous: {'incident_2025-11-22/arrival': 'HTTP 403', 'incident_2025-11-22/departure': 'HTTP 403', 'reference_2025-11-15/arrival': 'HTTP 403', 'reference_2025-11-15/departure': 'HTTP 403'}",
+    "tested_utc": "2026-11-08 13:45",
+    "flights": {
+      "incident_2025-11-22/arrival": "HTTP 403",
+      "incident_2025-11-22/departure": "HTTP 403",
+      "reference_2025-11-15/arrival": "HTTP 403",
+      "reference_2025-11-15/departure": "HTTP 403"
+    }
+  },
+  {
+    "source": "PDOK no-fly zones (old WFS)",
+    "ok": false,
+    "detail": "HTTP 404 (retired with the OGC API)",
+    "tested_utc": "2026-11-08 14:20"
+  },
+  {
+    "source": "PDOK Defensie aviation obstacle reports",
+    "ok": true,
+    "detail": "API reachable; 0 obstacle report(s) in the EHEH context box",
+    "tested_utc": "2026-11-08 14:20"
+  },
+  {
+    "source": "openAIP airspace export (NL)",
+    "ok": false,
+    "detail": "HTTP 400: UserProjectMissing - bucket is a requester-pays bucket (anonymous download closed); the openAIP API needs a key",
+    "tested_utc": "2026-11-08 14:20"
+  },
+  {
+    "source": "OurAirports runways (EHEH)",
+    "ok": true,
+    "detail": "1 runway(s): 03/21 9843 ft ASP; fallback zone = 3000 m buffer around the centreline (assumption)",
+    "tested_utc": "2026-11-08 14:20"
+  },
+  {
+    "source": "adsb.lol history 2025.11.22",
+    "ok": true,
+    "detail": "3.1 GB, 66048 traces scanned; 9 aircraft below 5000 ft within 15 km of EHEH, 17-24 UTC",
+    "tested_utc": "2026-11-08 16:15",
+    "per_15min_utc": {
+      "17:00": 1,
+      "17:15": 1,
+      "21:30": 4,
+      "21:45": 2,
+      "22:00": 3,
+      "22:15": 3,
+      "22:30": 4,
+      "22:45": 3,
+      "23:00": 2,
+      "23:15": 1,
+      "23:30": 1,
+      "23:45": 1
+    }
+  },
+  {
+    "source": "adsb.lol history 2025.11.15",
+    "ok": true,
+    "detail": "3.0 GB, 62531 traces scanned; 13 aircraft below 5000 ft within 15 km of EHEH, 17-24 UTC",
+    "tested_utc": "2026-11-08 16:20",
+    "per_15min_utc": {
+      "17:00": 1,
+      "17:15": 2,
+      "17:30": 1,
+      "18:00": 1,
+      "18:15": 2,
+      "18:30": 1,
+      "18:45": 1,
+      "19:00": 3,
+      "19:15": 2,
+      "19:30": 2,
+      "19:45": 1,
+      "20:00": 3,
+      "20:15": 2,
+      "20:30": 2,
+      "20:45": 2,
+      "21:00": 2,
+      "21:15": 4,
+      "21:30": 2,
+      "22:15": 1
+    }
+  },
+  {
+    "source": "ESA WorldCover 10 m",
+    "ok": true,
+    "detail": "780x360 px in AOI; land cover %: grassland 33.2, tree cover 32.1, built-up 24.4, cropland 8.9, water 1.2, bare/sparse 0.2",
+    "tested_utc": "2026-11-08 16:20",
+    "shares": {
+      "grassland": 33.2,
+      "tree cover": 32.1,
+      "built-up": 24.4,
+      "cropland": 8.9,
+      "water": 1.2,
+      "bare/sparse": 0.2,
+      "shrubland": 0.0,
+      "wetland": 0.0
+    }
+  },
+  {
+    "source": "Copernicus DEM GLO-30",
+    "ok": true,
+    "detail": "156x108 px in AOI; surface 10.3-46.3 m (EGM2008); vs AHN DSM averaged to the same cells: mean diff -0.17 m, RMSE 3.27 m, 95% |diff| 7.56 m (datum offset NAP/EGM2008 not removed)",
+    "tested_utc": "2026-11-08 16:20",
+    "mean_diff_m": -0.17,
+    "rmse_m": 3.27,
+    "p95_abs_m": 7.56
+  },
+  {
+    "source": "KNMI hourly weather (Eindhoven 370)",
+    "ok": true,
+    "detail": "22 Nov 2025, 18-23 UT: wind 180 deg 5.0 m/s (4.0 m/s at 22-23), T 0.6 to -0.3 C, visibility code 83, cloud 8/8",
+    "tested_utc": "2026-11-08 16:20"
+  }
 ]

@@ -61,7 +61,7 @@ def worldcover():
         log("ESA WorldCover 10 m", False, str(e))
         return
     vals, counts = np.unique(a, return_counts=True)
-    share = {WC_CLASSES.get(int(v), str(v)): round(100 * c / a.size, 1) for v, c in zip(vals, counts)}
+    share = {WC_CLASSES.get(int(v), str(v)): round(float(100 * c / a.size), 1) for v, c in zip(vals, counts)}
     share = dict(sorted(share.items(), key=lambda kv: -kv[1]))
     (OUT / "worldcover_shares.json").write_text(json.dumps(share, indent=1), encoding="utf-8")
     log("ESA WorldCover 10 m", True, f"{a.shape[1]}x{a.shape[0]} px in AOI; land cover %: {share}", shares=share)
