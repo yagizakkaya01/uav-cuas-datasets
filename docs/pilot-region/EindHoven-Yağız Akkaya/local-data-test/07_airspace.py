@@ -39,7 +39,8 @@ def openaip():
     from shapely.geometry import box, shape
     try:
         r = get(OPENAIP_NL, retries=2)
-        r.raise_for_status()
+        if r.status_code != 200:
+            raise RuntimeError(f"HTTP {r.status_code}: {r.text[:200]}")
         fc = r.json()
     except Exception as e:  # noqa: BLE001
         log("openAIP airspace export (NL)", False, str(e))

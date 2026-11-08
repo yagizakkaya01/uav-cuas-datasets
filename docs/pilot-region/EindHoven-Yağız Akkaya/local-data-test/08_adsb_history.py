@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 from common import SESSION, get, log
 from config import DATA, RESULTS
 
-REPO = "adsblol/globe_history"
+REPO = "adsblol/globe_history_{year}"   # archive is split per year (old repo redirects to _2026)
 DAYS = {"incident": "2025.11.22", "reference": "2025.11.15"}
 EHEH = (51.4501, 5.3745)          # aerodrome reference point (approx.)
 RADIUS_KM, ALT_FT = 15.0, 5000
@@ -42,7 +42,7 @@ def km(lat1, lon1, lat2, lon2):
 
 def find_release(day):
     for tag in (f"v{day}-planes-readsb-prod-0", f"v{day}-planes-readsb-prod-1", f"v{day}"):
-        r = get(f"https://api.github.com/repos/{REPO}/releases/tags/{tag}", retries=1)
+        r = get(f"https://api.github.com/repos/{REPO.format(year=day[:4])}/releases/tags/{tag}", retries=1)
         if r.status_code == 200 and r.json().get("assets"):
             return r.json()
     return None
