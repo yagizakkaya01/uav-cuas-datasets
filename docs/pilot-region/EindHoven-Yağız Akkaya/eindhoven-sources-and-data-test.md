@@ -54,4 +54,18 @@ The project's cloud environment blocks Dutch servers, so these tests were run th
 | **PDOK drone no-fly zones** (`api.pdok.nl/lvnl/drone-no-flyzones/ogc/v1`) | ⚠️ | Landing page and schema work. Owner LVNL, licence PDM 1.0. Layers: `luchtvaartgebieden` (fields `localtype`, `source_txt`, polygon) and `landingsite`. `collections` and `items` queries failed through the remote tool, so the polygons were not retrieved. |
 | **Overture buildings** (S3) | ✅ | Tested earlier: 4,171 buildings in the AOI, 543 with height values. |
 
-**Remaining work:** once `api.pdok.nl`, `service.pdok.nl`, `api.3dbag.nl` and `opensky-network.org` are allowed in the cloud environment, test an AHN tile download, the PDOK polygons and OpenSky history for 22 Nov 2025 directly, and log verified rows in `docs/verified-access-log.md`.
+**Update 8 November 2026:** the full local download test has been run on the team laptop; see section 6. ~~Remaining work: once `api.pdok.nl`, `service.pdok.nl`, `api.3dbag.nl` and `opensky-network.org` are allowed in the cloud environment, test an AHN tile download, the PDOK polygons and OpenSky history for 22 Nov 2025 directly, and log verified rows in `docs/verified-access-log.md`.~~
+
+## 6. Local download test (8 November 2026)
+
+All sources were downloaded directly on the team laptop with the scripts in [`local-data-test/`](./local-data-test/). Full results: [`local-data-test/results/data-test-report.md`](./local-data-test/results/data-test-report.md).
+
+| Source | Result | Summary |
+|---|:---:|---|
+| AHN 0.5 m DSM + DTM | ✅ | 40 tiles, 9036 × 6676 px mosaics; terrain 14.3–38.3 m NAP |
+| 3DBAG | ✅ | 3,472 buildings, 3,464 with roof + ground height (the 6 Nov figure of 6,946 most likely double-counted building parts) |
+| OpenStreetMap | ✅ | 8,295 features incl. 3 runway ways, 113 taxiways, 25 hangars |
+| OpenSky live | ✅ | 2 aircraft in the airport box |
+| PDOK drone no-fly zones | ❌ | Retired by PDOK on 30 June 2026; old WFS and openAIP also failed; 3 km runway buffer used as an assumption |
+| OpenSky history (22 Nov 2025) | ❌ → ✅ | 403 without an account; replaced by the adsb.lol open archive (no low-altitude traffic 17:30–21:30 UTC on 22 Nov) |
+| ESA WorldCover, Copernicus DEM, KNMI | ✅ | 32 % tree cover; 30 m DEM vs AHN RMSE 3.3 m; incident-evening weather |
