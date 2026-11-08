@@ -42,9 +42,12 @@ def mosaic(paths, out):
     from rasterio.merge import merge
 
     srcs = [rasterio.open(p) for p in paths]
-    arr, transform = merge(srcs)
+    # PDOK tiles use float32-max as nodata; rasterio>=1.5 cannot carry it through merge
+    # and returns an all-zero mosaic, so use an explicit nodata value instead.
+    arr, transform = merge(srcs, nodata=-9999.0)
     meta = srcs[0].meta.copy()
-    meta.update(height=arr.shape[1], width=arr.shape[2], transform=transform, compress="deflate")
+    meta.update(height=arr.shape[1], width=arr.shape[2], transform=transform, compress="deflate",
+                nodata=-9999.0)
     with rasterio.open(out, "w", **meta) as dst:
         dst.write(arr)
     for s in srcs:

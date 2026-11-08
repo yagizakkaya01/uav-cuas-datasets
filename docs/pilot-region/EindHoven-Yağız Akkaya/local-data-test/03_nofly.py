@@ -1,5 +1,8 @@
 """LVNL drone no-fly zones (PDOK OGC API Features, licence PDM 1.0).
 
+NOTE: PDOK retired this dataset on 30 June 2026 at LVNL's request; the API now
+returns 404. The script is kept so the failure is reproducible.
+
 Lists the collections, then downloads every feature intersecting the context box.
 Output: data/nofly/<collection>.geojson (WGS84)
 """

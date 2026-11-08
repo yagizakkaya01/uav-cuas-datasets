@@ -10,7 +10,7 @@ Output: data/opensky/*.json
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 from common import get, log, SESSION
 from config import AIRPORT_ICAO, DATA, INCIDENT_UTC, REFERENCE_UTC
@@ -22,7 +22,8 @@ OUT.mkdir(exist_ok=True)
 
 
 def ts(s):
-    return int(datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").timestamp() - datetime(1970, 1, 1).timestamp())
+    # timezone-aware: naive datetime(1970,1,1).timestamp() raises OSError (Errno 22) on Windows
+    return int(datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp())
 
 
 def auth_headers():

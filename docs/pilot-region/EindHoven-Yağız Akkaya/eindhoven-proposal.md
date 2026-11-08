@@ -1,4 +1,4 @@
-> **Status (6 November 2026):** The pilot region has not been decided yet. This document is the full rationale for the Eindhoven proposal; for the other candidates see [`README.md`](../README.md). Sources and data tests for Eindhoven are in [`eindhoven-sources-and-data-test.md`](./eindhoven-sources-and-data-test.md).
+> **Status (6 November 2026):** The pilot region has not been decided yet. This document is the full rationale for the Eindhoven proposal; for the other candidates see [`README.md`](../README.md). Sources and data tests for Eindhoven are in [`eindhoven-sources-and-data-test.md`](./eindhoven-sources-and-data-test.md); the full local download test (8 Nov) is in [`local-data-test/`](./local-data-test/) and the peer-reviewed literature in [`eindhoven-literature-review.md`](./eindhoven-literature-review.md).
 
 # Pilot Region Proposal: Eindhoven Airport / Eindhoven Air Base
 
@@ -18,13 +18,13 @@ We propose **Eindhoven Airport / Eindhoven Air Base (the Netherlands)** as the p
 2. **A real counter-UAS incident.** On 22 November 2025 all civil and military traffic at Eindhoven was halted for about two hours (about 20:30–22:40) after multiple drone sightings, and Ministry of Defence counter-drone systems were activated. The evening before, guards at nearby Volkel Air Base saw up to ten drones and the military fired at them from the ground. The full timeline and sources are in [`eindhoven-sources-and-data-test.md`](./eindhoven-sources-and-data-test.md).
 3. **Open, high-resolution data for every layer the engine needs:**
 
-| Decision-engine need | Source | Status (6 Nov 2026) |
+| Decision-engine need | Source | Status (8 Nov 2026, local download test) |
 |---|---|---|
-| Surface and terrain model | AHN: 0.5 m DSM and DTM, CC0 | Catalogue verified |
-| Building heights for line of sight and masking | 3DBAG: every building in LoD 1.2 / 1.3 / 2.2 with LiDAR-measured roof and ground heights, CC BY 4.0 | API tested: 6,946 buildings in the AOI |
-| Protected / restricted zones | LVNL drone no-fly zones, PDOK OGC API, PDM 1.0 | Landing page and schema verified; polygons not yet retrieved |
-| Normal air-traffic baseline | OpenSky Network | Live query tested; historical data needs Trino |
-| Roads and facilities | OpenStreetMap / Overture | 4,171 buildings, 543 with height, 25 hangars |
+| Surface and terrain model | AHN: 0.5 m DSM and DTM, CC0 | ✅ Downloaded: 0.5 m DSM + DTM for the whole AOI |
+| Building heights for line of sight and masking | 3DBAG: every building in LoD 1.2 / 1.3 / 2.2 with LiDAR-measured roof and ground heights, CC BY 4.0 | ✅ Downloaded: 3,472 buildings, 3,464 with heights |
+| Protected / restricted zones | LVNL drone no-fly zones, PDOK OGC API, PDM 1.0 | ❌ Dataset retired by PDOK on 30 Jun 2026; new source needed |
+| Normal air-traffic baseline | OpenSky Network | ✅ Live works; history needs a free account (403) |
+| Roads and facilities | OpenStreetMap / Overture | ✅ OSM downloaded: 8,295 features, 3 runway ways, 113 taxiways, 25 hangars |
 
 ## 2. Scenario idea for the decision engine
 
