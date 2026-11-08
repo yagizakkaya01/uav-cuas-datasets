@@ -3,7 +3,8 @@ import importlib
 import sys
 import traceback
 
-STEPS = ["01_ahn", "02_3dbag", "03_nofly", "04_osm", "05_opensky", "06_summary"]
+STEPS = ["01_ahn", "02_3dbag", "03_nofly", "04_osm", "05_opensky", "07_airspace", "08_adsb_history",
+         "09_extra_layers", "06_summary"]
 
 if __name__ == "__main__":
     only = sys.argv[1:] or STEPS

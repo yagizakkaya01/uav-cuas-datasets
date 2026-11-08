@@ -116,6 +116,12 @@ def main():
                          f"(buildings, trees): **{extras['ndsm_above_2_5m_pct']} %**; 99th percentile object "
                          f"height {extras['ndsm_p99_m']} m. This is the obstruction layer for line-of-sight.")
     lines += ["", "![Overview map](eindhoven-data-map.png)", ""]
+    if (DATA / "nofly" / "runway_buffer_fallback.geojson").exists():
+        lines += ["*Magenta dashed line = FALLBACK zone: a buffer around the runway centreline "
+                  "(modelling assumption, not an official zone).*", ""]
+    if (RESULTS / "eindhoven-adsb-incident-night.png").exists():
+        lines += ["![ADS-B traffic on the incident evening vs. a reference evening]"
+                  "(eindhoven-adsb-incident-night.png)", ""]
     (RESULTS / "data-test-report.md").write_text("\n".join(lines), encoding="utf-8")
     print("wrote results/eindhoven-data-map.png and results/data-test-report.md")
     return 0
