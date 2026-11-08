@@ -18,6 +18,25 @@ from config import AOI_WGS84, DATA
 
 OUT = DATA / "extra"
 OUT.mkdir(exist_ok=True)
+
+
+def _ascii_ca_bundle():
+    """GDAL cannot open certifi's CA bundle when the venv path has non-ASCII characters
+    (e.g. 'İHA ... Haritası'); copy it to an ASCII temp path for /vsicurl/ reads."""
+    import os
+    import shutil
+    import tempfile
+
+    import certifi
+    if certifi.where().isascii():
+        return
+    dst = os.path.join(tempfile.gettempdir(), "uav-cuas-cacert.pem")
+    if dst.isascii():
+        shutil.copy(certifi.where(), dst)
+        os.environ["GDAL_CURL_CA_BUNDLE"] = os.environ["PROJ_CURL_CA_BUNDLE"] = dst
+
+
+_ascii_ca_bundle()
 WORLDCOVER = ("/vsicurl/https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/"
               "ESA_WorldCover_10m_2021_v200_N51E003_Map.tif")
 COPDEM = ("/vsicurl/https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E005_00_DEM/"
@@ -89,7 +108,7 @@ def knmi():
     brief = []
     for x in rows:
         h = int(x.get("hour", 0))
-        if 19 <= h <= 23:   # KNMI hour = hour ending, UT
+        if str(x.get("date", "")).startswith("2025-11-22") and 19 <= h <= 23:   # API returns whole days; hour = hour ending, UT
             brief.append(f"{h-1:02d}-{h:02d} UT: wind {x.get('DD')} deg {(x.get('FF') or 0)/10:.1f} m/s, "
                          f"T {(x.get('T') or 0)/10:.1f} C, visibility code {x.get('VV')}, cloud {x.get('N')}/8")
     log("KNMI hourly weather (Eindhoven 370)", bool(rows), f"{len(rows)} hours; " + " | ".join(brief), hours=rows)
