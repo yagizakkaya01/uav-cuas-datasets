@@ -47,6 +47,9 @@ The original multi-node design stays in the report as the way the system would s
 5. Fuse camera and RF evidence into a single threat score that shows how it was calculated, and present tracks, alerts and recommendations on a web map with MIL-STD-2525 symbols, logging every operator decision.
 6. Test the complete pipeline end to end, first on recorded data and then live in the demo area, against success criteria fixed in advance with the supervisors.
 
+
+## References
+
 [1] Army Recognition, "NATO approves $40 billion counter-drone initiative to defeat low-cost UAV threats," 2026. [Online]. Available: https://www.armyrecognition.com/news/aerospace-news/2026/nato-approves-40-billion-counter-drone-initiative-to-defeat-low-cost-uav-threats
 
 [2] Federal Aviation Administration, "UAS Sightings Report." [Online]. Available: https://www.faa.gov/uas/resources/public_records/uas_sightings_report
