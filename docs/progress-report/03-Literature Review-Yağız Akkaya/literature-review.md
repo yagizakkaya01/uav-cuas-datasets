@@ -112,24 +112,13 @@ A decision support system must base its recommendations on accepted procedures, 
 | IISS [2], ECFR [16] and BISI [15] | Think-tank and policy studies | European incident pattern, sensor limits near airports, the case for sensor fusion |
 | MIL-STD-2525 and STANAG APP-6 [52], rendered with milsymbol [53] | Symbology standard and open library | Standard friend, hostile and unknown symbols on the C2 map |
 
-The way this corpus is used follows from two design rules. First, documents are embedded in paragraph- or section-level chunks with the source and page number attached to every chunk, because retrieval quality drops on whole-document embeddings and because every answer must be able to cite its page. Second, the language model never decides the action. A rule table maps the threat level and context to a recommended action, and the retrieved doctrine is used only to explain the rule that fired, with page citations. Table 3.7 shows the rule table defined in the project's computational model.
-
-**Table 3.7.** Recommendation rules of the decision layer.
-
-| Threat level | Recommended action |
-|---|---|
-| Low | Monitor and keep tracking |
-| Medium | Alert the operator and point the camera to the predicted sector |
-| High, inside the approach corridor | Recommend suspending runway operations and notify air traffic control |
-| Critical | Recommend a full stop of traffic and escalation to the authorities |
-
-Mitigation such as jamming is never recommended automatically, because civil RF jamming is illegal in many countries and can interfere with landing systems [1]. The rules are therefore limited to monitoring, alerting and recommending, in line with the detect–identify–defeat cycle of the doctrine [44], where the defeat step remains a human decision.
+The corpus is prepared so that every recommendation can cite its source: documents are stored in paragraph- or section-level chunks with the source and page number attached to each chunk. The language model does not decide the action; it only explains the recommendation with the retrieved doctrine passages. Mitigation such as jamming is not recommended automatically, because civil RF jamming is illegal in many countries and can interfere with landing systems [1].
 
 ### 3.2.3 Active systems in the Turkish defence industry
 
-Counter-drone capability is also an active industrial field in Türkiye. Before contacting companies for project feedback, the team surveyed the publicly announced C-UAS products of Turkish defence companies. Table 3.8 summarises them. The information comes from public news reports and trade press, so it describes what the companies have announced, not tested performance.
+Counter-drone capability is also an active industrial field in Türkiye. Before contacting companies for project feedback, the team surveyed the publicly announced C-UAS products of Turkish defence companies. Table 3.7 summarises them. The information comes from public news reports and trade press, so it describes what the companies have announced, not tested performance.
 
-**Table 3.8.** Publicly announced counter-drone systems of Turkish defence companies.
+**Table 3.7.** Publicly announced counter-drone systems of Turkish defence companies.
 
 | Company | System | Type, as publicly reported | Relation to the project | Sources |
 |---|---|---|---|---|
@@ -147,9 +136,9 @@ The Turkish products concentrate on sensing and on response (jamming, intercepto
 
 ### 3.2.4 Comparison with the project
 
-Table 3.9 compares representative studies from Tables 3.4, 3.6 and 3.8 with the project on the same criteria. A dash means that the feature is not part of that work or is not described in its public sources.
+Table 3.8 compares representative studies from Tables 3.4, 3.6 and 3.7 with the project on the same criteria. A dash means that the feature is not part of that work or is not described in its public sources.
 
-**Table 3.9.** Comparison of representative previous work with the project.
+**Table 3.8.** Comparison of representative previous work with the project.
 
 | Work | Multi-sensor fusion | Grid risk map with line of sight | Safe route | Recommendation with cited doctrine | Standard symbology | Validated on real hardware |
 |---|---|---|---|---|---|---|
