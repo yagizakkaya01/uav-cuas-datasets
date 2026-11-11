@@ -11,7 +11,7 @@ one report in the order below.
 | # | Section (guideline weight) | Owner | Branch |
 |---|---|---|---|
 | 1 | Overview / Executive Summary (5%) | Mert Gökalp | `report/mert-gokalp` |
-| 2 | Introduction: problem statement, aim and objectives (15%) | Aydan Doğan | `report/aydan-dogan` |
+| 2 | Introduction: problem statement, aim and objectives (15%) | Mert Gökalp | `report/mert-gokalp` |
 | 3 | Literature Review (30%) | Yağız Akkaya | `report/yagiz-akkaya` |
 | 4 | Requirement Specifications (20%) | Adil Mert İş | `report/adil-mert-is` |
 | 5 | Research Method (10%) | Aydan Doğan | `report/aydan-dogan` |

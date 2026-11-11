@@ -1,6 +1,6 @@
 # Introduction
 
-**Owner:** Aydan Doğan · **Weight:** 15%
+**Owner:** Mert Gökalp · **Weight:** 15%
 
 ## Statement of the problem
 
