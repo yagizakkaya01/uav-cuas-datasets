@@ -8,7 +8,7 @@
 
 ### 3.1.1 The problem: small drones at airports and military bases
 
-Small unmanned aircraft systems (UAS) have repeatedly closed airports and alarmed military installations. A survey of airport incidents between 2016 and 2019 lists ten serious cases, including the Gatwick closure of December 2018 and the Frankfurt disruption of 2019 [1]. Since 2024 the problem has moved from isolated nuisance flights to a sustained pattern: an International Institute for Strategic Studies (IISS) study counts 144 incidents in 13 European countries between August 2024 and February 2026 [2]. Table 3.1 lists the documented cases collected in the team's surveys of the four candidate pilot regions: Eindhoven by Yağız Akkaya, Gatwick by Yaren Duyan, Aalborg by Aydan Doğan and Akrotiri (Crete) by Mert Gökalp. They are presented as general evidence of the problem, not as a choice of pilot region.
+Small unmanned aircraft systems (UAS) have repeatedly closed airports and alarmed military installations. A survey of airport incidents between 2016 and 2019 lists ten serious cases, including the Gatwick closure of December 2018 and the Frankfurt disruption of 2019 [1]. Since 2024 the problem has moved from isolated nuisance flights to a sustained pattern: an International Institute for Strategic Studies (IISS) study counts 144 incidents in 13 European countries between August 2024 and February 2026 [2]. Table 3.1 lists the documented cases collected in the team's surveys of the four candidate pilot regions: Eindhoven, Gatwick, Aalborg and Akrotiri (Crete). They are presented as general evidence of the problem, not as a choice of pilot region.
 
 **Table 3.1.** Documented drone incidents used as reference cases.
 
@@ -44,31 +44,31 @@ Every sensor in Table 3.2 except acoustics needs line of sight, so a threat map 
 
 **Table 3.3.** Geospatial data found in the team's candidate pilot-region surveys.
 
-| Region (survey) | Terrain and surface | Buildings | Drone restriction zones | Air traffic |
+| Region | Terrain and surface | Buildings | Drone restriction zones | Air traffic |
 |---|---|---|---|---|
-| Eindhoven, Netherlands (Yağız Akkaya) | AHN national LiDAR | 3DBAG heights for every building [29] | National API retired in June 2026; runway buffer used as an assumption | OpenSky live; open ADS-B archive covers the incident night |
-| Gatwick, UK (Yaren Duyan) | Environment Agency 1 m DTM and DSM, Open Government Licence | No complete 3D building model verified; surface heights from the DSM | NATS UAS restriction dataset downloaded | OpenSky live query returned aircraft |
-| Aalborg, Denmark (Aydan Doğan) | DHM national model, 0.4 m grid, free account required [30] | OSM footprints without heights | Official map only, no reusable dataset | OpenSky live |
-| Akrotiri, Crete (Mert Gökalp) | Copernicus GLO-30, 30 m [25], [27] | OSM: no height tags; GlobalBuildingAtlas to be tested [31] | Official map only (HCAA), no download | Airport statistics; OpenSky not yet tested |
+| Eindhoven, Netherlands | AHN national LiDAR | 3DBAG heights for every building [29] | National API retired in June 2026; runway buffer used as an assumption | OpenSky live; open ADS-B archive covers the incident night |
+| Gatwick, UK | Environment Agency 1 m DTM and DSM, Open Government Licence | No complete 3D building model verified; surface heights from the DSM | NATS UAS restriction dataset downloaded | OpenSky live query returned aircraft |
+| Aalborg, Denmark | DHM national model, 0.4 m grid, free account required [30] | OSM footprints without heights | Official map only, no reusable dataset | OpenSky live |
+| Akrotiri, Crete | Copernicus GLO-30, 30 m [25], [27] | OSM: no height tags; GlobalBuildingAtlas to be tested [31] | Official map only (HCAA), no download | Airport statistics; OpenSky not yet tested |
  Finally, the decision engine must know the normal air traffic around a site in order to judge a track near a runway. The OpenSky Network provides an ADS-B research database for this baseline, but it only sees aircraft that broadcast ADS-B, its low-altitude coverage has gaps, and drones are invisible to it [32]. Drone detection must therefore come from the project's own sensors.
 
 ## 3.2 Previous work
 
 ### 3.2.1 Academic studies
 
-Table 3.4 groups the studies catalogued by the team according to the layer of the system they support, so that each layer owner's background is visible: detection and sensing, the risk map and routing, tracking, fusion, threat assessment and the C2 interface, and the knowledge base. For each study the table states how it is used in the project.
+Table 3.4 groups the studies catalogued by the team according to the layer of the system they support: detection and sensing, the risk map and routing, tracking, fusion, threat assessment and the C2 interface, and the knowledge base. For each study the table states how it is used in the project.
 
-**Table 3.4.** Studies relevant to the project, grouped by system layer (layer owner in brackets).
+**Table 3.4.** Studies relevant to the project, grouped by system layer.
 
 | Ref. | Year | Topic | Method | Key finding | Relevance to the project |
 |---|---|---|---|---|---|
-| **Detection and sensing (camera: Aydan Doğan; RF: Adil Mert İş)** | | | | | |
+| **Detection and sensing (camera and RF)** | | | | | |
 | [1] | 2020 | Sensing | Survey of airport incidents and C-UAS sensors; three attack scenarios with protection plans | No single sensor gives adequate situational awareness; mitigation at airports is legally constrained | Basis for sensor fusion and for recommending rather than executing countermeasures |
 | [20] | 2017 | Sensing (imaging) | Sandia field tests of visible and infrared imagers against small UAS | About 7 pixels on target for detection and 15 for assessment | Used to compute the detection range of the project's camera |
 | [17], [22] | 2019–2021 | Sensing (radar) | Compact-range RCS measurements of commercial drones at 15 and 25 GHz | RCS mostly −12 to −17 dBsm | Quantitative argument against radar-only detection |
 | [21] | 2021 | Detection dataset (camera) | Infrared, visible and audio recordings at three Nordic airports with airplane, helicopter and bird classes; DRI pixel criteria | Fewer than 5 pixels allow detection only, more than 15 identification | Night and infrared training data and pixel thresholds for the project camera |
 | Table 3.5 | 2019–2024 | Detection datasets | Open visible, infrared, multi-modal and RF datasets | See Table 3.5 | Training and testing data for the YOLO detector and the RF chain |
-| **Risk map, line of sight and routing (Yaren Duyan)** | | | | | |
+| **Risk map, line of sight and routing** | | | | | |
 | [5] | 2022 | Risk assessment | Airport vulnerability index combined with event trees; case study at Milan Malpensa | Quantitative, systematic assessment of drone-intrusion impact on an airport | Closest precedent for the risk engine; airport-level, not per grid cell |
 | [4] | 2020 | Risk assessment (economic) | Simulation of a drone-related shutdown at Frankfurt | Counter-drone investment is justified in certain closure scenarios; airlines bear most losses | Supports the motivation of the project |
 | [33] | 2024 | Risk assessment (regulatory) | JARUS Specific Operations Risk Assessment, edition 2.5 | Standardised ground and air risk classes for drone operations | Consistency check for the project's risk levels |
@@ -77,14 +77,14 @@ Table 3.4 groups the studies catalogued by the team according to the layer of th
 | [34] | 1968 | Path planning | A* heuristic search for minimum-cost paths | Optimal paths with an admissible heuristic | Core algorithm of the safe-route module |
 | [35] | 2005 | Path planning | D* Lite incremental replanning in unknown terrain | Fast replanning when costs change | Replanning when the risk map changes |
 | [36] | 2025 | Path planning | Benchmark of 12 global optimisers on UAV path-planning instances | Threats modelled as cylinders with distance-based penalties in the cost function | Template for the threat-cost term of the grid cost surface |
-| **Tracking, fusion, threat assessment and C2 interface (Mert Gökalp)** | | | | | |
+| **Tracking, fusion, threat assessment and C2 interface** | | | | | |
 | [23] | 2022 | Sensing (simulation) | Review of C-UAS sensors with radar-equation, CFAR and false-alarm models in an agent-based simulator | Sensor performance can be compared in simulation before field tests | Precedent for the project's Monte Carlo evaluation of the detection chain |
 | [37] | 1988 | Tracking | Interacting Multiple Model (IMM) filter for systems with switching dynamics | Standard method for tracking targets that change manoeuvre mode | Optional extension of the project's constant-velocity Kalman tracker |
 | [38] | 2023 | Threat assessment | Deep mixture-of-experts network on non-cooperative radar tracks | About 98% accuracy in drone intent classification; 15–30 s position bounds | Learned alternative to the project's trajectory prediction; noted as future work |
 | [39] | 2025 | Threat assessment and fusion | Three-stage hierarchical fuzzy decision-making for C-UAS sensor selection (MATLAB) | Fuzzy logic can combine sensor evidence into a threat decision; validated only in simulation | Main alternative to the project's transparent weighted threat score |
 | [32] | 2014 | Air-traffic data | Volunteer ADS-B sensor network and research database | Only ADS-B aircraft are visible; coverage gaps at low altitude | Normal-traffic baseline; shows why drones need dedicated sensors |
 | [40], [41] | – | C2 symbology | MIL-STD-2525 and APP-6 symbol sets rendered as SVG by the open-source milsymbol library | Standard friend, hostile and unknown symbols can be generated in the browser without licensing cost | Symbols on the project's C2 map |
-| **Knowledge base and decision support (Yağız Akkaya)** | | | | | |
+| **Knowledge base and decision support** | | | | | |
 | [42] | 2023 | Doctrine | U.S. Army counter-UAS techniques | UAS group classification, layered defence, detect–identify–defeat cycle | Main document of the retrieval-augmented knowledge base; further sources in Table 3.6 |
 
 Learning-based detection depends on open datasets. Table 3.5 lists the drone detection datasets that the project has catalogued and checked for access. The visible-light and infrared datasets support the YOLO detector, and the RF datasets support the design of the RF detection chain.
