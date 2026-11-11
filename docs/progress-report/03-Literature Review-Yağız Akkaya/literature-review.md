@@ -2,8 +2,6 @@
 
 **Owner:** Yağız Akkaya · **Weight:** 30%
 
-*Source note: every source in this section was already catalogued and checked by the team: in the project repository (`layers/`, `docs/pilot-region/`, `docs/computational-model/`) and, for the Turkish defence industry, in the team's industry survey of 19 October 2026. No new external source is introduced here.*
-
 ## 3.1 Theoretical background
 
 ### 3.1.1 The problem: small drones at airports and military bases
@@ -14,11 +12,11 @@ Small unmanned aircraft systems (UAS) have repeatedly closed airports and alarme
 
 | Date | Location | What happened | Operational impact | Sources |
 |---|---|---|---|---|
-| Dec 2018 | Gatwick Airport, UK | Drone sightings closed the airport; the incident was later reviewed by the Sussex Police and Crime Commissioner | Closure of about 30 h according to the official review and 33 h according to a later cost study; the case is used in the introductions of later cost and risk studies | [3], [4], [1], [5] |
-| 24–25 Sep 2025 | Aalborg Airport, Denmark (joint civil and military) | Several drones with lights on were seen at night from about 21:44 to 00:54; the airport is also used by the military | Closure of about 3 h; part of the September 2025 wave over Danish airports | [6], [7] |
+| Dec 2018 | Gatwick Airport, UK | Drone sightings closed the airport; the incident was later reviewed by the Sussex Police and Crime Commissioner | Closure of about 30–33 h | [3], [4], [1], [5] |
+| 24–25 Sep 2025 | Aalborg Airport, Denmark (joint civil and military) | Several drones with lights on were seen at night from about 21:44 to 00:54 | Closure of about 3 h; part of the September 2025 wave over Danish airports | [6], [7] |
 | 21 Nov 2025 | Volkel Air Base, Netherlands | Guards saw first 5, then 10 drones in darkness; the military fired from the ground; the drones flew off and were not found | Security response at a NATO air base | [8], [9] |
 | 22 Nov 2025 | Eindhoven Airport, Netherlands (joint civil and military) | Multiple drones sighted in the evening; Ministry of Defence counter-drone systems on standby | All civil and military flights halted for about two hours and diverted to other airports; no drone recovered | [10], [9] |
-| 2012 – Oct 2026 | NATO Missile Firing Installation (NAMFI) and Souda, Crete, Greece | NATO's live-fire range in Europe, where Patriot and IRIS-T SLM units train against target drones; in February 2026 the Souda base was sealed after threats against US installations | No hostile drone incursion over Chania Airport, Souda Air Base or NAMFI was found in public reports; the site shows the training side of counter-drone defence | [11], [12], [13], [14] |
+| 2012 – Oct 2026 | NATO Missile Firing Installation (NAMFI) and Souda, Crete, Greece | NATO's live-fire range in Europe, where Patriot and IRIS-T SLM units train against target drones; in February 2026 the Souda base was sealed after threats against US installations | No hostile drone incursion reported; the site is used for counter-drone training | [11], [12], [13], [14] |
 | Aug 2024 – Feb 2026 | 13 European countries | Systematic analysis of 144 incidents; the Volkel and Eindhoven drones were assessed as most likely launched from ships off the Dutch coast | Cumulative disruption of civil and military sites | [2], [15] |
 
 The incidents share one pattern. A drone is reported, nobody can confirm what it is or where it is going, and the site closes as a precaution. This is expensive: a cost study based on Frankfurt Airport found that investing in counter-drone systems can pay off, and that airlines carry most of the losses [4]. There is also little time to react. At drone speeds of 10–20 m/s, a 6–10 km protection zone gives only about 5–10 minutes of warning [1]. Stopping the drone is not simple either: jamming its radio link is illegal for civil use in many countries and can disturb the airport's own landing systems [1], [16]. The main need is therefore to detect and identify the drone quickly and to help the operator decide what to do, not to destroy it.
@@ -46,10 +44,10 @@ Cameras, radar and RF receivers all need a clear line of sight to the drone, so 
 
 | Region | Terrain and surface | Buildings | Drone restriction zones | Air traffic |
 |---|---|---|---|---|
-| Eindhoven, Netherlands | AHN national LiDAR | 3DBAG heights for every building [25] | National API retired in June 2026; runway buffer used as an assumption | OpenSky live; open ADS-B archive covers the incident night |
-| Gatwick, UK | Environment Agency 1 m DTM and DSM, Open Government Licence | No complete 3D building model verified; surface heights from the DSM | NATS UAS restriction dataset downloaded | OpenSky live query returned aircraft |
-| Aalborg, Denmark | DHM national model, 0.4 m grid, free account required | OSM footprints without heights | Official map only, no reusable dataset | OpenSky live |
-| Akrotiri, Crete | Copernicus GLO-30, 30 m [22] | OSM footprints without heights | Official map only (HCAA), no download | Airport statistics; OpenSky not yet tested |
+| Eindhoven, Netherlands | AHN national LiDAR | 3DBAG heights for every building [25] | 3 km runway buffer | OpenSky; open ADS-B archive |
+| Gatwick, UK | Environment Agency 1 m terrain and surface models | Surface heights from the 1 m surface model | NATS UAS restriction dataset | OpenSky |
+| Aalborg, Denmark | DHM national model, 0.4 m grid | OSM footprints | Official map | OpenSky |
+| Akrotiri, Crete | Copernicus GLO-30, 30 m [22] | OSM footprints | Official map (HCAA) | Airport statistics |
 The system also needs to know the normal air traffic around a site in order to judge how serious a drone near a runway is. The OpenSky Network provides open aircraft position data for this purpose, but it only shows aircraft that broadcast their position, and drones do not appear in it [26]. Drone detection must therefore come from the project's own sensors.
 
 ## 3.2 Previous work
@@ -65,26 +63,26 @@ Table 3.4 lists the key studies the team has reviewed and states how each one is
 | [1] | 2020 | Sensors at airports | Reviewed drone incidents at airports and the sensors used against small drones | No single sensor is enough; jamming is legally restricted at airports | Reason for combining camera and RF, and for recommending actions instead of jamming |
 | [17], [21] | 2019–2021 | Radar | Measured how strongly commercial drones reflect radar | Reflections are very weak (RCS mostly −12 to −17 dBsm) | Shows why radar alone is not enough |
 | [20] | 2021 | Camera detection | Recorded infrared and visible video of drones, airplanes, helicopters and birds at three Nordic airports | Gives pixel thresholds: below 5 pixels detection only, above 15 identification | Training data for night conditions and range estimate for the project camera |
-| [5] | 2022 | Risk assessment | Built a method to rate the risk of drone intrusions at an airport (case study: Milan Malpensa) | Risk can be rated in a systematic, quantitative way | Closest example for the risk map; it rates the whole airport, not each map cell |
+| [5] | 2022 | Risk assessment | Built a method to rate the risk of drone intrusions at an airport (case study: Milan Malpensa) | Risk can be rated in a systematic, quantitative way | Closest example for the risk map |
 | [4] | 2020 | Economic impact | Simulated the cost of a drone-related shutdown at Frankfurt | Counter-drone investment can be justified; airlines bear most losses | Supports the motivation of the project |
 | [25] | 2022 | Building data | Produced 3D models of all buildings in the Netherlands | Height error below 31 cm for 95% of buildings | Building heights for line-of-sight calculation where such data exist |
-| [27] | 2025 | Threat assessment | Combined sensor information with fuzzy logic to decide the threat level | Works in simulation; not tested on real hardware | Alternative to the project's simpler weighted threat score |
+| [27] | 2025 | Threat assessment | Combined sensor information with fuzzy logic to decide the threat level | Works in simulation | Alternative to the project's simpler weighted threat score |
 
-Training a detector needs example data. Table 3.5 lists the open drone datasets that the team has catalogued and checked for access. The camera datasets are used for the YOLO detector, and the RF datasets guide the design of the RF detection part.
+Training a detector needs example data. Table 3.5 lists the open drone datasets that the team has catalogued. The camera datasets are used for the YOLO detector, and the RF datasets guide the design of the RF detection part.
 
 **Table 3.5.** Open drone detection datasets catalogued by the project.
 
-| Dataset | Modality | Content | Access | Source |
-|---|---|---|---|---|
-| DUT Anti-UAV | Visible | 10,000 annotated images and 20 tracking videos | Open (MIT) | [28] |
-| Anti-UAV (300/410/600) | Visible and infrared | Tracking benchmark series | Gated platform access | [29] |
-| Halmstad multi-sensor | Infrared, visible, audio | 650 videos (365 IR, 285 visible), 90 audio clips, more than 203,000 annotated frames | Open | [20] |
-| UAVSwarm | Visible | 72 sequences with multi-object tracking labels | Open (CC BY 4.0) | [30] |
-| MMAUD | Stereo RGB, LiDAR, mmWave radar, microphone array | Multi-modal recordings with 3D trajectory labels | Open (CC BY-NC-SA 4.0) | [31] |
-| Drone-vs-Bird | Visible | Challenge data with drones and birds | Request only, signed agreement | [32] |
-| TIB-Net | Visible | 2,850 images for tiny-target detection | Open | [33] |
-| DroneRF | RF | Signal segments of 3 drone models, more than 40 GB | Open | [34] |
-| DroneDetect | RF | Software-defined-radio recordings of 7 UAS models | Open, free login | [35] |
+| Dataset | Modality | Content | Source |
+| --- | --- | --- | --- |
+| DUT Anti-UAV | Visible | 10,000 annotated images and 20 tracking videos | [28] |
+| Anti-UAV (300/410/600) | Visible and infrared | Tracking benchmark series | [29] |
+| Halmstad multi-sensor | Infrared, visible, audio | 650 videos (365 IR, 285 visible), 90 audio clips, more than 203,000 annotated frames | [20] |
+| UAVSwarm | Visible | 72 sequences with multi-object tracking labels | [30] |
+| MMAUD | Stereo RGB, LiDAR, mmWave radar, microphone array | Multi-modal recordings with 3D trajectory labels | [31] |
+| Drone-vs-Bird | Visible | Challenge data with drones and birds | [32] |
+| TIB-Net | Visible | 2,850 images for tiny-target detection | [33] |
+| DroneRF | RF | Signal segments of 3 drone models, more than 40 GB | [34] |
+| DroneDetect | RF | Software-defined-radio recordings of 7 UAS models | [35] |
 
 ### 3.2.2 Doctrine, policy and standards
 
@@ -110,7 +108,7 @@ The documents are stored in short sections, each with its source and page number
 
 ### 3.2.3 Active systems in the Turkish defence industry
 
-Counter-drone capability is also an active industrial field in Türkiye. Before contacting companies for project feedback, the team surveyed the publicly announced C-UAS products of Turkish defence companies. Table 3.7 summarises them. The information comes from public news reports and trade press, so it describes what the companies have announced, not tested performance.
+Counter-drone capability is also an active industrial field in Türkiye. Before contacting companies for project feedback, the team surveyed the publicly announced C-UAS products of Turkish defence companies. Table 3.7 summarises them. The information comes from public news reports and trade press.
 
 **Table 3.7.** Publicly announced counter-drone systems of Turkish defence companies.
 
@@ -119,7 +117,7 @@ Counter-drone capability is also an active industrial field in Türkiye. Before 
 | ASELSAN | İHTAR | Counter-UAV system, first shown at IDEF 2019 | Main Turkish counter-UAV product for the threat the project addresses | [46], [47] |
 | ASELSAN | SEDA 100-cUAV | Acoustic drone detection sensor | Shows acoustic sensing as an extra layer beside radar and cameras | [47] |
 | ASELSAN | KANGAL-FPV and new C-UAS electronic warfare systems (SAHA 2026) | Electronic warfare systems against drones, added to the Steel Dome (Çelik Kubbe) air defence architecture | Mitigation layer that the project deliberately leaves out | [47], [48], [49] |
-| Meteksan Savunma | Retinar | Drone detection radar, deliveries reported in 2020 | Radar layer; relevant to the RCS argument | [50] |
+| Meteksan Savunma | Retinar | Drone detection radar | Radar layer; relevant to the RCS argument | [50] |
 | Meteksan Savunma | KAPAN | Drone countermeasure system | Detection and response product | [51] |
 | SDT Uzay ve Savunma | AVCI | Anti-drone system and tactical anti-drone rifle, RF and electronic systems | RF-based approach, closest to the project's RF receiver | [52], [53] |
 | STM | TUNGA-X | Interceptor anti-drone UAV, first shown at SAHA 2026 | Hard-kill response option; outside the project's scope | [54] |
@@ -136,13 +134,13 @@ Table 3.8 compares the project with the Turkish defence-industry systems of Tabl
 
 | Work | Detection | Response (mitigation) | Risk map or route for the operator | Recommendation with cited doctrine |
 |---|---|---|---|---|
-| ASELSAN İHTAR [46] | Integrated counter-UAV system (sensor details not in the sources reviewed) | Yes | Not described | Not described |
-| ASELSAN SEDA 100-cUAV [47] | Acoustic | No, sensor only | Not described | Not described |
+| ASELSAN İHTAR [46] | Integrated counter-UAV system | Yes | Not described | Not described |
+| ASELSAN SEDA 100-cUAV [47] | Acoustic | No | Not described | Not described |
 | Meteksan Retinar and KAPAN [50], [51] | Radar | Yes (KAPAN) | Not described | Not described |
 | SDT AVCI [52] | RF and electronic systems | Yes, anti-drone rifle | Not described | Not described |
 | STM TUNGA-X [54] | – | Yes, interceptor drone | Not described | Not described |
 | ROKETSAN ALKA [55] | – | Yes, laser | Not described | Not described |
-| HAVELSAN C2 software [56] | Uses external sensors | – | C2 picture; risk map not described | Decision support reported; doctrine citations not described |
+| HAVELSAN C2 software [56] | Uses external sensors | – | C2 picture | Decision support reported |
 | Lykou et al. [1] | Multi-sensor, recommended in a survey | Discussed, legally constrained | – | Analytical protection plans |
 | Pascarella et al. [5] | – | – | Airport-level risk index, no grid | – |
 | Arapoglou et al. [27] | Combines sensors with fuzzy logic, simulation only | – | – | Threat level only, no cited recommendation |
