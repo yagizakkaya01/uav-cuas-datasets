@@ -93,16 +93,17 @@ A decision support system should base its recommendations on accepted procedures
 | Source | Type | Content used by the project |
 |---|---|---|
 | ATP 3-01.81, *Counter-Unmanned Aircraft System (C-UAS)* (Aug. 2023) [35] | U.S. Army doctrine | UAS Groups 1–5 (Groups 1 and 2 are the small drones, with a low radar cross section); the layered-defence approach; the active-defence sequence detect, identify, decide and engage |
-| DoD Strategy for Countering Unmanned Systems (2024) [36] | U.S. strategy | The five "strategic ways": top-level principles for the knowledge base's answers |
-| CRS Report R48477 [37] | Congressional research report | Summary table of C-UAS programmes and a terminology glossary |
-| RAND reports on counter-UAS at military installations (2023–2026) [38] | Research reports | Analysis of installation defence against drones |
-| CNAS, "Countering the Swarm" [39] | Think-tank report | Drone swarm tactics; doctrinal basis for the swarm clustering module |
-| RUSI publications on drone warfare in Ukraine [40] | Think-tank analysis | Tactical development of drone and counter-drone use |
-| ISW, *Russian Offensive Campaign Assessment* [41] | Daily analysis | Current evolution of drone tactics |
-| NATO "Drone Edge" and Project Flytrap releases [42] | Official press releases | Current NATO counter-drone context |
+| DoD Strategy for Countering Unmanned Systems, fact sheet (2024) [36] | U.S. strategy | The five "strategic ways" (understand, disrupt, defend, deliver, develop): top-level principles for the knowledge base's answers |
+| CRS Report R48477, *DoD Counter Unmanned Aircraft Systems* (2025) [37] | Congressional research report | Background on U.S. C-UAS programmes and their funding |
+| RAND commentary on defending military bases against drones (2025) [38] | Think-tank commentary | Lessons from a tabletop exercise on base defence against drones |
+| CNAS, *Countering the Swarm* (2025) [39] | Think-tank report | Drone swarm threat; argues for layered defences that combine several sensors and effectors |
+| RUSI, *Protecting the Force from Uncrewed Aerial Systems* (2024) [40] | Think-tank paper | No single sensor or effector is enough; C-UAS must be layered and combined |
+| ISW, *Russian Offensive Campaign Assessment* [41] | Daily analysis | Current evolution of drone and interceptor-drone tactics in Ukraine |
+| NATO, "NATO's Drone Edge" (2026) [42] | Official text | Current NATO counter-drone context and planned investment |
+| U.S. Army, Project Flytrap lessons learned (2025) [43] | Official news article | Field exercise result: no single system is enough, layered defence is needed |
 | NATO IAMD COE, *The Evolving Asymmetric Threat of Unmanned Aircraft Systems* [18] | NATO centre of excellence report | Drones look like birds on radar; RF sensors can detect the link to the controller |
-| IISS [2], ECFR [15] and BISI [43] | Think-tank and policy studies | European incident pattern, sensor limits near airports, the case for sensor fusion |
-| MIL-STD-2525 and STANAG APP-6 [44], rendered with milsymbol [45] | Symbology standard and open library | Standard friend, hostile and unknown symbols on the C2 map |
+| IISS [2], ECFR [15] and BISI [44] | Think-tank and policy studies | European incident pattern, sensor limits near airports, the case for sensor fusion |
+| MIL-STD-2525 and STANAG APP-6 [45], rendered with milsymbol [46] | Symbology standard and open library | Standard friend, hostile and unknown symbols on the C2 map |
 
 The documents are stored in short sections, each with its source and page number, so that every recommendation can show where it comes from. The language model does not choose the action; it only explains the recommendation using the retrieved text. Jamming is not recommended automatically, for the legal and safety reasons given in Section 3.1.1 [1].
 
@@ -114,17 +115,17 @@ Counter-drone capability is also an active industrial field in Türkiye. The tea
 
 | Company | System | Type, as publicly reported | Relation to the project | Sources |
 |---|---|---|---|---|
-| ASELSAN | İHTAR | Counter-UAV system with radar, electro-optical sensor, optional acoustic direction finder and a directional jammer; shown at IDEF 2019 | Multi-sensor detection in one system, the idea the project follows at small scale | [46], [47] |
-| ASELSAN | SEDA 100-cUAV | Acoustic drone detection system, integrated into İHTAR | Acoustic sensing as an extra detection layer | [47] |
-| ASELSAN | KANGAL-FPV (2024); Gökalp, Gökberk 10, Ejderha 210 and Miğfer (SAHA 2026) | Anti-drone jammer; interceptor drone, 10 kW laser, high-power microwave system and close-range turret, added to the Steel Dome (Çelik Kubbe) | Response layer that the project deliberately leaves out | [47], [48], [49] |
-| Meteksan Savunma | Retinar | Ku-band radar that detects mini and micro UAVs at up to 3 km | Radar layer of drone detection | [50] |
-| Meteksan Savunma, SDT and Tamgör | KAPAN | Counter-drone system: radar and thermal/daylight cameras, fusion software that shows targets on a single common picture, RF jammer and optional laser | Closest Turkish example of sensor fusion on one picture | [51] |
-| SDT Uzay ve Savunma | AVCI | Anti-drone system: radar, electro-optical and thermal cameras, direction-finding receiver for the pilot, jamming or hard-kill response | Combines radar, camera and RF sensing, as the project does with camera and RF | [52], [53] |
-| STM | TUNGA-X | Interceptor drone against kamikaze UAVs, first shown at SAHA 2026 | Response option outside the project's scope | [54] |
-| ROKETSAN | ALKA | Directed-energy system: drone detection radar, jamming and laser | Response option outside the project's scope | [55] |
-| HAVELSAN | Autonomous CBRN reconnaissance air system | UAV that maps chemical, biological, radiological and nuclear hazard zones and sends the results to decision-support systems | Industrial example of sensor data feeding decision support | [56] |
+| ASELSAN | İHTAR | Counter-UAV system with radar, electro-optical sensor, optional acoustic direction finder and a directional jammer; shown at IDEF 2019 | Multi-sensor detection in one system, the idea the project follows at small scale | [47], [48] |
+| ASELSAN | SEDA 100-cUAV | Acoustic drone detection system, integrated into İHTAR | Acoustic sensing as an extra detection layer | [48] |
+| ASELSAN | KANGAL-FPV (2024); Gökalp, Gökberk 10, Ejderha 210 and Miğfer (SAHA 2026) | Anti-drone jammer; interceptor drone, 10 kW laser, high-power microwave system and close-range turret, added to the Steel Dome (Çelik Kubbe) | Response layer that the project deliberately leaves out | [48], [49], [50] |
+| Meteksan Savunma | Retinar | Ku-band radar that detects mini and micro UAVs at up to 3 km | Radar layer of drone detection | [51] |
+| Meteksan Savunma, SDT and Tamgör | KAPAN | Counter-drone system: radar and thermal/daylight cameras, fusion software that shows targets on a single common picture, RF jammer and optional laser | Closest Turkish example of sensor fusion on one picture | [52] |
+| SDT Uzay ve Savunma | AVCI | Anti-drone system: radar, electro-optical and thermal cameras, direction-finding receiver for the pilot, jamming or hard-kill response | Combines radar, camera and RF sensing, as the project does with camera and RF | [53], [54] |
+| STM | TUNGA-X | Interceptor drone against kamikaze UAVs, first shown at SAHA 2026 | Response option outside the project's scope | [55] |
+| ROKETSAN | ALKA | Directed-energy system: drone detection radar, jamming and laser | Response option outside the project's scope | [56] |
+| HAVELSAN | Autonomous CBRN reconnaissance air system | UAV that maps chemical, biological, radiological and nuclear hazard zones and sends the results to decision-support systems | Industrial example of sensor data feeding decision support | [57] |
 
-The Turkish products concentrate on sensing and on response (jamming, interceptor drones, lasers and microwave systems). The public reports describe what each system detects or defeats, and KAPAN is reported to fuse its sensors on a single picture [51]. They do not describe how the operator is helped to decide, for example through a computed risk map or recommendations that cite doctrine. This is consistent with the gap identified in the academic literature.
+The Turkish products concentrate on sensing and on response (jamming, interceptor drones, lasers and microwave systems). The public reports describe what each system detects or defeats, and KAPAN is reported to fuse its sensors on a single picture [52]. They do not describe how the operator is helped to decide, for example through a computed risk map or recommendations that cite doctrine. This is consistent with the gap identified in the academic literature.
 
 ### 3.2.4 Comparison with the project
 
@@ -134,13 +135,13 @@ Table 3.8 compares the project with the Turkish defence-industry systems of Tabl
 
 | Work | Detection | Response (mitigation) | Risk map or route for the operator | Recommendation with cited doctrine |
 |---|---|---|---|---|
-| ASELSAN İHTAR [46] | Radar, electro-optical, acoustic | Yes, jammer | Not described | Not described |
-| ASELSAN SEDA 100-cUAV [47] | Acoustic | No | Not described | Not described |
-| Meteksan Retinar [50] | Radar | No | Not described | Not described |
-| KAPAN [51] | Radar and cameras, fused on one picture | Yes, jammer and laser | Not described | Not described |
-| SDT AVCI [53] | Radar, cameras, RF direction finding | Yes, jamming or hard-kill | Not described | Not described |
-| STM TUNGA-X [54] | Uses external radar | Yes, interceptor drone | Not described | Not described |
-| ROKETSAN ALKA [55] | Radar | Yes, jamming and laser | Not described | Not described |
+| ASELSAN İHTAR [47] | Radar, electro-optical, acoustic | Yes, jammer | Not described | Not described |
+| ASELSAN SEDA 100-cUAV [48] | Acoustic | No | Not described | Not described |
+| Meteksan Retinar [51] | Radar | No | Not described | Not described |
+| KAPAN [52] | Radar and cameras, fused on one picture | Yes, jammer and laser | Not described | Not described |
+| SDT AVCI [54] | Radar, cameras, RF direction finding | Yes, jamming or hard-kill | Not described | Not described |
+| STM TUNGA-X [55] | Uses external radar | Yes, interceptor drone | Not described | Not described |
+| ROKETSAN ALKA [56] | Radar | Yes, jamming and laser | Not described | Not described |
 | Lykou et al. [1] | Multi-sensor, recommended in a survey | Discussed, legally constrained | – | Analytical protection plans |
 | Pascarella et al. [5] | – | – | Airport-level risk index | – |
 | Arapoglou et al. [26] | Combines sensors with fuzzy logic, simulation only | – | – | Threat level only, no cited recommendation |
@@ -150,7 +151,7 @@ Table 3.8 compares the project with the Turkish defence-industry systems of Tabl
 
 The sources agree on the problem. Small drones repeatedly close airports and approach military bases [1], [2]. The closures are caused by uncertainty, not by collisions, and they are costly [4]. The sources also agree that no single sensor is enough [1], [15]: small drones are nearly invisible to radar [16], [17], cameras need a clear line of sight [19], and RF sensors miss drones that do not transmit [1]. The building blocks the project needs already exist separately: methods for rating airport risk [5] and threat level [26], accurate terrain and building data [24], [21], open datasets for training detectors [27], [19], [33], and public doctrine [35].
 
-The gap is that these parts are not combined. In the sources reviewed, risk is rated for a whole airport rather than shown on a map [5], and threat decisions are made without reference to doctrine [26]. Turkish defence products cover detection and response, but their public descriptions do not explain how the operator is helped to decide [46], [51], [53]. None of the works reviewed brings together low-cost detection with two sensors, a risk map that accounts for line of sight, and recommendations that cite public doctrine. The project aims to fill this gap with a low-cost system that detects and recommends but does not intervene. Its scope is limited: the demonstration is small and uses one camera and a mock drone, so it shows that the whole chain works together, not how well it would detect real drones in operation.
+The gap is that these parts are not combined. In the sources reviewed, risk is rated for a whole airport rather than shown on a map [5], and threat decisions are made without reference to doctrine [26]. Turkish defence products cover detection and response, but their public descriptions do not explain how the operator is helped to decide [47], [52], [54]. None of the works reviewed brings together low-cost detection with two sensors, a risk map that accounts for line of sight, and recommendations that cite public doctrine. The project aims to fill this gap with a low-cost system that detects and recommends but does not intervene. Its scope is limited: the demonstration is small and uses one camera and a mock drone, so it shows that the whole chain works together, not how well it would detect real drones in operation.
 
 ## References
 
@@ -194,9 +195,9 @@ The gap is that these parts are not combined. In the sources reviewed, risk is r
 
 [20] M. Ezuma, M. Funderburk, and I. Guvenc, "Compact-range RCS measurements and modeling of small drones at 15 GHz and 25 GHz," arXiv:1911.05926, 2019. [Online]. Available: https://arxiv.org/abs/1911.05926
 
-[21] European Space Agency / Airbus, "Copernicus DEM GLO-30," distributed via OpenTopography. [Online]. Available: https://opentopography.org
+[21] European Space Agency, "Copernicus DEM: Global and European digital elevation model (GLO-30)," Copernicus Data Space Ecosystem, doi: 10.5270/ESA-c5d3d65. [Online]. Available: https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM
 
-[22] Japan Aerospace Exploration Agency (JAXA), "ALOS World 3D-30m (AW3D30)," distributed via OpenTopography. [Online]. Available: https://portal.opentopography.org/dataCatalog
+[22] Japan Aerospace Exploration Agency (JAXA), "ALOS World 3D 30 meter DEM," V3.2, Jan. 2021, distributed by OpenTopography, doi: 10.5069/G94M92HB.
 
 [23] OpenStreetMap contributors, "OpenStreetMap," extracts via Geofabrik, ODbL. [Online]. Available: https://download.geofabrik.de
 
@@ -218,50 +219,52 @@ The gap is that these parts are not combined. In the sources reviewed, risk is r
 
 [32] "TIB-Net: Drone detection network with tiny iterative backbone," GitHub repository. [Online]. Available: https://github.com/kyn0v/TIB-Net
 
-[33] "DroneRF dataset: RF signals of drones (Parrot Bebop, Parrot AR, DJI Phantom 3)," Mendeley Data. [Online]. Available: https://data.mendeley.com
+[33] M. F. Al-Sa'd, M. S. Allahham, A. Mohamed, A. Al-Ali, T. Khattab, and A. Erbad, "DroneRF dataset: A dataset of drones for RF-based detection, classification, and identification," Mendeley Data, V1, 2019, doi: 10.17632/f4c2b4n755.1.
 
-[34] "DroneDetect dataset: RF recordings of UAS collected with BladeRF SDR," IEEE DataPort. [Online]. Available: https://ieee-dataport.org
+[34] C. J. Swinney and J. C. Woods, "DroneDetect dataset: A radio frequency dataset of unmanned aerial system (UAS) signals for machine learning detection and classification," IEEE DataPort, 2021, doi: 10.21227/5jjj-1m32.
 
 [35] Headquarters, Department of the Army, "Counter-unmanned aircraft system (C-UAS)," ATP 3-01.81, Washington, DC, USA, 11 Aug. 2023. [Online]. Available: https://armypubs.army.mil
 
-[36] U.S. Department of Defense, "DoD strategy for countering unmanned systems," fact sheet, 2024. [Online]. Available: https://www.defense.gov
+[36] U.S. Department of Defense, "Fact sheet: Department of Defense strategy for countering unmanned systems," Dec. 5, 2024. [Online]. Available: https://www.suasnews.com/wp-content/uploads/2024/12/FACT-SHEET-STRATEGY-FOR-COUNTERING-UNMANNED-SYSTEMS.pdf
 
-[37] Congressional Research Service, Report R48477 on counter-UAS programmes. [Online]. Available: https://www.everycrsreport.com
+[37] Congressional Research Service, "Department of Defense counter unmanned aircraft systems: Background and issues for Congress," Rep. R48477, Mar. 31, 2025. [Online]. Available: https://www.everycrsreport.com/reports/R48477.html
 
-[38] RAND Corporation, research reports on counter-UAS defence of military installations, 2023–2026. [Online]. Available: https://www.rand.org
+[38] P. Lushenko, R. McGuire, C. G. Pernin, and S. M. Zeigler, "Defending U.S. military bases against drones? A recent tabletop exercise explores how," RAND Corporation, commentary, Jun. 2, 2025. [Online]. Available: https://www.rand.org/pubs/commentary/2025/06/defending-us-military-bases-against-drones-a-recent.html
 
-[39] Center for a New American Security (CNAS), "Countering the swarm." [Online]. Available: https://www.cnas.org
+[39] S. Pettyjohn and M. Campbell, "Countering the swarm: Protecting the joint force in the drone age," Center for a New American Security (CNAS), Washington, DC, USA, Sep. 10, 2025. [Online]. Available: https://www.cnas.org/publications/reports/countering-the-swarm
 
-[40] Royal United Services Institute (RUSI), publications on drone warfare and counter-UAS tactics in Ukraine. [Online]. Available: https://www.rusi.org
+[40] J. Watling and J. Bronk, "Protecting the force from uncrewed aerial systems," Royal United Services Institute (RUSI), London, U.K., Occasional Paper, Oct. 15, 2024. [Online]. Available: https://rusi.org/explore-our-research/publications/occasional-papers/protecting-force-uncrewed-aerial-systems
 
-[41] Institute for the Study of War (ISW), "Russian offensive campaign assessment," daily reports. [Online]. Available: https://www.understandingwar.org
+[41] Institute for the Study of War (ISW), "Russian offensive campaign assessment," daily report series (e.g. Nov. 2, 2026). [Online]. Available: https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-2-2026
 
-[42] NATO, "Drone Edge" and "Project Flytrap" news releases, NATO Newsroom. [Online]. Available: https://www.nato.int
+[42] NATO, "NATO's drone edge," official text, Jul. 7, 2026. [Online]. Available: https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/2026/07/07/natos-drone-edge
 
-[43] M. Asllani, "Probing the gaps: The drone intelligence threat in Europe," Bloomsbury Intelligence and Security Institute (BISI), 18 Nov. 2025. [Online]. Available: https://bisi.org.uk/reports/probing-the-gaps-the-drone-intelligence-threat-in-europe
+[43] S. Collins, "V Corps leaders share lessons learned on counter-UAS training from Project Flytrap," U.S. Army News Service, Jul. 30, 2025. [Online]. Available: https://www.army.mil/article/287453
 
-[44] U.S. Department of Defense, "Joint military symbology," MIL-STD-2525 (C/D/E); NATO, "NATO joint military symbology," STANAG APP-6 (B/D/E).
+[44] M. Asllani, "Probing the gaps: The drone intelligence threat in Europe," Bloomsbury Intelligence and Security Institute (BISI), 18 Nov. 2025. [Online]. Available: https://bisi.org.uk/reports/probing-the-gaps-the-drone-intelligence-threat-in-europe
 
-[45] spatialillusions, "milsymbol: Military symbols in JavaScript," GitHub repository, MIT License. [Online]. Available: https://github.com/spatialillusions/milsymbol
+[45] U.S. Department of Defense, "Joint military symbology," MIL-STD-2525 (C/D/E); NATO, "NATO joint military symbology," STANAG APP-6 (B/D/E).
 
-[46] Janes, "IDEF 2019: Aselsan's iHTAR counter-UAV system breaks cover," 2019. [Online]. Available: https://janes.com/osint-insights/defence-news/idef-2019-aselsans-ihtar-counter-uav-system-breaks-cover
+[46] spatialillusions, "milsymbol: Military symbols in JavaScript," GitHub repository, MIT License. [Online]. Available: https://github.com/spatialillusions/milsymbol
 
-[47] CNN Türk, "Drone avcısı sistemleri, SAHA EXPO'da tanıtıldı" (drone hunter systems introduced at SAHA EXPO), 23 Oct. 2024. [Online]. Available: https://www.cnnturk.com/yerel-haberler/ankara/drone-avcisi-sistemleri-saha-expoda-tanitildi-2171622
+[47] Janes, "IDEF 2019: Aselsan's iHTAR counter-UAV system breaks cover," 2019. [Online]. Available: https://janes.com/osint-insights/defence-news/idef-2019-aselsans-ihtar-counter-uav-system-breaks-cover
 
-[48] Anadolu Agency, "Turkish defense company Aselsan debuts new counter-drone, electronic warfare systems at SAHA 2026," 6 May 2026. [Online]. Available: https://www.aa.com.tr/en/science-technology/turkish-defense-company-aselsan-debuts-new-counter-drone-electronic-warfare-systems-at-saha-2026/3929185
+[48] CNN Türk, "Drone avcısı sistemleri, SAHA EXPO'da tanıtıldı" (drone hunter systems introduced at SAHA EXPO), 23 Oct. 2024. [Online]. Available: https://www.cnnturk.com/yerel-haberler/ankara/drone-avcisi-sistemleri-saha-expoda-tanitildi-2171622
 
-[49] EDR Magazine, "Saha Expo 2026 – Aselsan add new elements to its Steel Dome widening its C-UAS capabilities," 2026. [Online]. Available: https://www.edrmagazine.eu/saha-expo-2026-aselsan-add-new-elements-to-its-steel-dome-widening-its-c-uas-capabilities
+[49] Anadolu Agency, "Turkish defense company Aselsan debuts new counter-drone, electronic warfare systems at SAHA 2026," 6 May 2026. [Online]. Available: https://www.aa.com.tr/en/science-technology/turkish-defense-company-aselsan-debuts-new-counter-drone-electronic-warfare-systems-at-saha-2026/3929185
 
-[50] Armada International, "Meteksan completed delivery drone detection radars," 29 Jul. 2020. [Online]. Available: https://www.armadainternational.com/2020/07/meteksan-completed-delivery-drone-detection-radars/
+[50] EDR Magazine, "Saha Expo 2026 – Aselsan add new elements to its Steel Dome widening its C-UAS capabilities," 2026. [Online]. Available: https://www.edrmagazine.eu/saha-expo-2026-aselsan-add-new-elements-to-its-steel-dome-widening-its-c-uas-capabilities
 
-[51] Anadolu Ajansı, "Drone tehdidini 'Kapan' durduracak" ('Kapan' will stop the drone threat), 3 Jul. 2018. [Online]. Available: https://www.aa.com.tr/tr/bilim-teknoloji/drone-tehdidini-kapan-durduracak/1193364
+[51] Armada International, "Meteksan completed delivery drone detection radars," 29 Jul. 2020. [Online]. Available: https://www.armadainternational.com/2020/07/meteksan-completed-delivery-drone-detection-radars/
 
-[52] haber.aero, "Drone'ları 'Avcı' avlayacak" ('Avcı' will hunt drones), 1 May 2019. [Online]. Available: https://haber.aero/aero-gundem/drone-tehdidini-avci-durduracak
+[52] Anadolu Ajansı, "Drone tehdidini 'Kapan' durduracak" ('Kapan' will stop the drone threat), 3 Jul. 2018. [Online]. Available: https://www.aa.com.tr/tr/bilim-teknoloji/drone-tehdidini-kapan-durduracak/1193364
 
-[53] Defence Turkey, "AVCI – Anti-drone system," 15 Aug. 2021. [Online]. Available: https://www.defenceturkey.com/tr/icerik/avci-anti-drone-system-4717
+[53] haber.aero, "Drone'ları 'Avcı' avlayacak" ('Avcı' will hunt drones), 1 May 2019. [Online]. Available: https://haber.aero/aero-gundem/drone-tehdidini-avci-durduracak
 
-[54] Milliyet, "İHA tehditlerine karşı maliyeti etkin çözüm! TUNGA-X ilk kez SAHA EXPO 2026'da görücüye çıktı" (cost-effective solution against UAV threats: TUNGA-X shown for the first time at SAHA EXPO 2026), 6 May 2026. [Online]. Available: https://www.milliyet.com.tr/milliyet-tv/iha-tehditlerine-karsi-maliyeti-etkin-cozum-tunga-x-ilk-kez-saha-expo-2026da-gorucuye-cikti-video-7583403
+[54] Defence Turkey, "AVCI – Anti-drone system," 15 Aug. 2021. [Online]. Available: https://www.defenceturkey.com/tr/icerik/avci-anti-drone-system-4717
 
-[55] Milliyet, "Roketsan'dan, kamikaze dron tehdidine karşı lazer silahı" (Roketsan laser weapon against the kamikaze drone threat), 23 Sep. 2024. [Online]. Available: https://www.milliyet.com.tr/ekonomi/roketsandan-kamikaze-dron-tehdidine-karsi-lazer-silahi-7194840
+[55] Milliyet, "İHA tehditlerine karşı maliyeti etkin çözüm! TUNGA-X ilk kez SAHA EXPO 2026'da görücüye çıktı" (cost-effective solution against UAV threats: TUNGA-X shown for the first time at SAHA EXPO 2026), 6 May 2026. [Online]. Available: https://www.milliyet.com.tr/milliyet-tv/iha-tehditlerine-karsi-maliyeti-etkin-cozum-tunga-x-ilk-kez-saha-expo-2026da-gorucuye-cikti-video-7583403
 
-[56] haber.aero, "Görünmeyen tehditler HAVELSAN'ın teknolojisi ile tespit edilecek" (invisible threats to be detected with HAVELSAN technology), 17 Jan. 2021. [Online]. Available: https://haber.aero/savunma/gorunmeyen-tehditler-havelsanin-teknolojisi-ile-tespit-edilecek
+[56] Milliyet, "Roketsan'dan, kamikaze dron tehdidine karşı lazer silahı" (Roketsan laser weapon against the kamikaze drone threat), 23 Sep. 2024. [Online]. Available: https://www.milliyet.com.tr/ekonomi/roketsandan-kamikaze-dron-tehdidine-karsi-lazer-silahi-7194840
+
+[57] haber.aero, "Görünmeyen tehditler HAVELSAN'ın teknolojisi ile tespit edilecek" (invisible threats to be detected with HAVELSAN technology), 17 Jan. 2021. [Online]. Available: https://haber.aero/savunma/gorunmeyen-tehditler-havelsanin-teknolojisi-ile-tespit-edilecek
