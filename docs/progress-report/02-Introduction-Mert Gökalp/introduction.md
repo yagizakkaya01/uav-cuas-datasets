@@ -10,7 +10,7 @@ Small commercial drones are cheap, easy to buy and hard to see. Over the past de
 
 ### Why
 
-The problem is no longer hypothetical. In December 2018 drone sightings closed London Gatwick for more than a day [15]. On 22 November 2025, civil and military flights at Eindhoven were halted for about two hours after drones were reported near the airfield, and an IISS study counted 144 drone incidents across 13 European countries between August 2024 and February 2026 [16]. In the United States, the FAA has collected more than 20,000 sighting reports since 2014 [2], and in 2026 NATO approved a multi-year, multi-billion-dollar counter-drone initiative [1].
+The problem is no longer hypothetical. In December 2018 drone sightings closed London Gatwick for more than a day [15]. On 22 November 2025, civil and military flights at Eindhoven were halted for about two hours after drones were reported near the airfield [18], and an IISS study counted 144 drone incidents across 13 European countries between August 2024 and February 2026 [16]. In the United States, the FAA has collected more than 20,000 sighting reports since 2014 [2], and in 2026 NATO approved a multi-year, multi-billion-dollar counter-drone initiative [1].
 
 Detecting these aircraft is hard. Small drones have radar cross-sections well below 0 dBsm, so radar alone often misses them [3], and studies of airport protection recommend combining several types of sensors rather than relying on one [17]. Detection, however, is only half of the job. Once a track appears, an operator still has to judge, usually within seconds, which assets are exposed, whether the terrain hides the drone's approach, and which procedure applies. Most counter-UAS products put their effort into the sensors and effectors: radar, RF, electro-optical and acoustic detection, and jamming or interception. As far as we can tell from public documentation, their command-and-control software fuses tracks and assigns effectors, but it does not explain why a track is dangerous in terms of the terrain, the protected assets and doctrine. Türkiye's national UAV traffic platform İHATTYS manages registered, cooperative drones [4]; a drone that does not announce itself is outside its scope by definition. This is the gap we want to address: an explainable layer between "a drone has been detected" and "this is what to do". The project does not build radar sensing or any means of neutralising a drone; it uses a camera and an RF receiver for detection and concentrates on assessment and decision support. Terrain effects such as line of sight are computed on the terrain model of the pilot region, onto which the detections from the flat campus demo area are mapped.
 
@@ -18,7 +18,8 @@ Detecting these aircraft is hard. Small drones have radar cross-sections well be
 
 The system has five parts, each owned by one team member:
 
-- A sensor node detects the drone in an IP camera stream with a deep-learning detector and confirms its identity through its Wi-Fi control link.
+- A camera node detects the drone in an IP camera stream with a deep-learning detector.
+- An RF receiver confirms the drone's identity from its Wi-Fi signal.
 - A geospatial engine places the track on a terrain and building model of the site, spreads its risk over a grid while taking line of sight into account, and computes safe routes.
 - A knowledge base uses retrieval-augmented generation [5] to find relevant passages in unclassified counter-UAS doctrine such as ATP 3-01.81 [14].
 - A fusion and command-and-control layer combines the camera and RF evidence into a single threat score. It shows the result on a web map with MIL-STD-2525 symbols [6], together with a recommendation that cites the document and page it is based on.
