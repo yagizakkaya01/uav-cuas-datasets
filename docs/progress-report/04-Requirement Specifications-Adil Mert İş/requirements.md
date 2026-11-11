@@ -13,7 +13,7 @@ plan can refer to it. -->
 | ID | Requirement |
 | :--- | :--- |
 | FR-1 | The ESP32 receiver shall receive 2.4 GHz signals from the mock drone’s transmitter |
-| FR-2 | The IP camera shall send frames to the main computer |
+| FR-2 | The IP camera shall send video frames to the main computer |
 | FR-3 | The system shall use a YOLO model to detect the target drone |
 | FR-4 | The system shall estimate the drone’s position on a map and track its movement |
 | FR-5 | The system shall compute a threat score by combining visual detections and wi-fi signals |
