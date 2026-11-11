@@ -56,36 +56,25 @@ Every sensor in Table 3.2 except acoustics needs line of sight, so a threat map 
 
 ### 3.2.1 Academic studies
 
-Table 3.4 groups the studies catalogued by the team according to the layer of the system they support: detection and sensing, the risk map and routing, tracking, fusion, threat assessment and the C2 interface, and the knowledge base. For each study the table states how it is used in the project.
+Table 3.4 lists the key studies the team has reviewed, grouped by the layer of the system they support, and states how each one is used in the project. The doctrine behind the knowledge base is covered separately in Section 3.2.2.
 
-**Table 3.4.** Studies relevant to the project, grouped by system layer.
+**Table 3.4.** Key studies relevant to the project, grouped by system layer.
 
 | Ref. | Year | Topic | Method | Key finding | Relevance to the project |
 |---|---|---|---|---|---|
 | **Detection and sensing (camera and RF)** | | | | | |
 | [1] | 2020 | Sensing | Survey of airport incidents and C-UAS sensors; three attack scenarios with protection plans | No single sensor gives adequate situational awareness; mitigation at airports is legally constrained | Basis for sensor fusion and for recommending rather than executing countermeasures |
-| [20] | 2017 | Sensing (imaging) | Sandia field tests of visible and infrared imagers against small UAS | About 7 pixels on target for detection and 15 for assessment | Used to compute the detection range of the project's camera |
 | [17], [22] | 2019–2021 | Sensing (radar) | Compact-range RCS measurements of commercial drones at 15 and 25 GHz | RCS mostly −12 to −17 dBsm | Quantitative argument against radar-only detection |
 | [21] | 2021 | Detection dataset (camera) | Infrared, visible and audio recordings at three Nordic airports with airplane, helicopter and bird classes; DRI pixel criteria | Fewer than 5 pixels allow detection only, more than 15 identification | Night and infrared training data and pixel thresholds for the project camera |
 | Table 3.5 | 2019–2024 | Detection datasets | Open visible, infrared, multi-modal and RF datasets | See Table 3.5 | Training and testing data for the YOLO detector and the RF chain |
 | **Risk map, line of sight and routing** | | | | | |
 | [5] | 2022 | Risk assessment | Airport vulnerability index combined with event trees; case study at Milan Malpensa | Quantitative, systematic assessment of drone-intrusion impact on an airport | Closest precedent for the risk engine; airport-level, not per grid cell |
 | [4] | 2020 | Risk assessment (economic) | Simulation of a drone-related shutdown at Frankfurt | Counter-drone investment is justified in certain closure scenarios; airlines bear most losses | Supports the motivation of the project |
-| [33] | 2024 | Risk assessment (regulatory) | JARUS Specific Operations Risk Assessment, edition 2.5 | Standardised ground and air risk classes for drone operations | Consistency check for the project's risk levels |
-| [24] | 2007 | Line of sight | I/O-efficient visibility computation on terrains | Radial sweep in O(n log n) | Line-of-sight algorithm for sensor coverage on the grid |
 | [29] | 2022 | Geospatial data | Automated LoD1/LoD2 reconstruction of all Dutch buildings from BAG and AHN LiDAR | RMSE below 31 cm for 95% of buildings | Building heights for line of sight where 3DBAG is available |
-| [34] | 1968 | Path planning | A* heuristic search for minimum-cost paths | Optimal paths with an admissible heuristic | Core algorithm of the safe-route module |
-| [35] | 2005 | Path planning | D* Lite incremental replanning in unknown terrain | Fast replanning when costs change | Replanning when the risk map changes |
-| [36] | 2025 | Path planning | Benchmark of 12 global optimisers on UAV path-planning instances | Threats modelled as cylinders with distance-based penalties in the cost function | Template for the threat-cost term of the grid cost surface |
-| **Tracking, fusion, threat assessment and C2 interface** | | | | | |
-| [23] | 2022 | Sensing (simulation) | Review of C-UAS sensors with radar-equation, CFAR and false-alarm models in an agent-based simulator | Sensor performance can be compared in simulation before field tests | Precedent for the project's Monte Carlo evaluation of the detection chain |
-| [37] | 1988 | Tracking | Interacting Multiple Model (IMM) filter for systems with switching dynamics | Standard method for tracking targets that change manoeuvre mode | Optional extension of the project's constant-velocity Kalman tracker |
-| [38] | 2023 | Threat assessment | Deep mixture-of-experts network on non-cooperative radar tracks | About 98% accuracy in drone intent classification; 15–30 s position bounds | Learned alternative to the project's trajectory prediction; noted as future work |
-| [39] | 2025 | Threat assessment and fusion | Three-stage hierarchical fuzzy decision-making for C-UAS sensor selection (MATLAB) | Fuzzy logic can combine sensor evidence into a threat decision; validated only in simulation | Main alternative to the project's transparent weighted threat score |
-| [32] | 2014 | Air-traffic data | Volunteer ADS-B sensor network and research database | Only ADS-B aircraft are visible; coverage gaps at low altitude | Normal-traffic baseline; shows why drones need dedicated sensors |
-| [40], [41] | – | C2 symbology | MIL-STD-2525 and APP-6 symbol sets rendered as SVG by the open-source milsymbol library | Standard friend, hostile and unknown symbols can be generated in the browser without licensing cost | Symbols on the project's C2 map |
-| **Knowledge base and decision support** | | | | | |
-| [42] | 2023 | Doctrine | U.S. Army counter-UAS techniques | UAS group classification, layered defence, detect–identify–defeat cycle | Main document of the retrieval-augmented knowledge base; further sources in Table 3.6 |
+| [33] | 2025 | Path planning | Benchmark of 12 global optimisers on UAV path-planning instances | Threats modelled as cylinders with distance-based penalties in the cost function | Template for the threat-cost term of the grid cost surface |
+| **Tracking, fusion and threat assessment** | | | | | |
+| [34] | 2025 | Threat assessment and fusion | Three-stage hierarchical fuzzy decision-making for C-UAS sensor selection (MATLAB) | Fuzzy logic can combine sensor evidence into a threat decision; validated only in simulation | Main alternative to the project's transparent weighted threat score |
+| [35] | 2023 | Threat assessment | Deep mixture-of-experts network on non-cooperative radar tracks | About 98% accuracy in drone intent classification; 15–30 s position bounds | Learned alternative to the project's trajectory prediction; noted as future work |
 
 Learning-based detection depends on open datasets. Table 3.5 lists the drone detection datasets that the project has catalogued and checked for access. The visible-light and infrared datasets support the YOLO detector, and the RF datasets support the design of the RF detection chain.
 
@@ -93,39 +82,54 @@ Learning-based detection depends on open datasets. Table 3.5 lists the drone det
 
 | Dataset | Modality | Content | Access | Source |
 |---|---|---|---|---|
-| DUT Anti-UAV | Visible | 10,000 annotated images and 20 tracking videos | Open (MIT) | [43] |
-| Anti-UAV (300/410/600) | Visible and infrared | Tracking benchmark series | Gated platform access | [44] |
+| DUT Anti-UAV | Visible | 10,000 annotated images and 20 tracking videos | Open (MIT) | [36] |
+| Anti-UAV (300/410/600) | Visible and infrared | Tracking benchmark series | Gated platform access | [37] |
 | Halmstad multi-sensor | Infrared, visible, audio | 650 videos (365 IR, 285 visible), 90 audio clips, more than 203,000 annotated frames | Open | [21] |
-| UAVSwarm | Visible | 72 sequences with multi-object tracking labels | Open (CC BY 4.0) | [45] |
-| MMAUD | Stereo RGB, LiDAR, mmWave radar, microphone array | Multi-modal recordings with 3D trajectory labels | Open (CC BY-NC-SA 4.0) | [46] |
-| Drone-vs-Bird | Visible | Challenge data with drones and birds | Request only, signed agreement | [47] |
-| TIB-Net | Visible | 2,850 images for tiny-target detection | Open | [48] |
-| DroneRF | RF | Signal segments of 3 drone models, more than 40 GB | Open | [49] |
-| DroneDetect | RF | Software-defined-radio recordings of 7 UAS models | Open, free login | [50] |
+| UAVSwarm | Visible | 72 sequences with multi-object tracking labels | Open (CC BY 4.0) | [38] |
+| MMAUD | Stereo RGB, LiDAR, mmWave radar, microphone array | Multi-modal recordings with 3D trajectory labels | Open (CC BY-NC-SA 4.0) | [39] |
+| Drone-vs-Bird | Visible | Challenge data with drones and birds | Request only, signed agreement | [40] |
+| TIB-Net | Visible | 2,850 images for tiny-target detection | Open | [41] |
+| DroneRF | RF | Signal segments of 3 drone models, more than 40 GB | Open | [42] |
+| DroneDetect | RF | Software-defined-radio recordings of 7 UAS models | Open, free login | [43] |
 
 ### 3.2.2 Doctrine, policy and standards
 
-A decision support system must base its recommendations on accepted procedures, not on the reasoning of a language model alone. The project therefore draws on public doctrine, policy analysis and symbology standards, summarised in Table 3.6. These documents form the corpus of the retrieval-augmented knowledge base, so that every recommendation can cite its source.
+A decision support system must base its recommendations on accepted procedures, not on the reasoning of a language model alone. The project's knowledge base is therefore built only from unclassified, publicly readable doctrine and analysis [44], [45], [46]. Table 3.6 lists the corpus and what each document contributes.
 
-**Table 3.6.** Doctrine, policy and standards used by the project.
+**Table 3.6.** Doctrine, policy and standards in the project's knowledge base.
 
 | Source | Type | Content used by the project |
 |---|---|---|
-| ATP 3-01.81 [42] | U.S. Army C-UAS doctrine | UAS group classification, layered defence, and the detect–identify–defeat cycle |
-| DoD Strategy for Countering Unmanned Systems [51] | U.S. strategy | Top-level principles for C-UAS operations |
-| CRS Report R48477 [52] | Congressional research report | Summary of C-UAS programmes and terminology |
-| "Countering the Swarm" [53] | Think-tank report | Tactics of drone swarms; basis for the swarm clustering module |
-| IISS, *Russia's UAV Campaign Over Europe* [2] | Think-tank study | Incident pattern in Europe, 2024–2026 |
-| NATO IAMD COE, *The Evolving Asymmetric Threat of Unmanned Aircraft Systems* [19] | NATO centre of excellence report (Souda Air Base) | Drones have a bird-like radar signature; passive RF sensors detect the controller link |
-| ECFR, *Buzzkill* [16] | Policy brief | Sensor limits near airports and the case for sensor fusion |
-| BISI, *Probing the Gaps* [15] | Think-tank report | European drone intelligence threat context |
-| MIL-STD-2525 and STANAG APP-6 via milsymbol [40], [41] | Symbology standard and open library | Standard friend, hostile and unknown symbols on the C2 map |
+| ATP 3-01.81, *Counter-Unmanned Aircraft System Techniques* (Dec. 2023) [44] | U.S. Army doctrine | UAS group classification (Groups 1–3), the layered-defence concept and the detect–identify–defeat cycle |
+| DoD Strategy for Countering Unmanned Systems (2024) [45] | U.S. strategy | The five "strategic ways": top-level principles for the knowledge base's answers |
+| CRS Report R48477 [46] | Congressional research report | Summary table of C-UAS programmes and a terminology glossary |
+| RAND reports on counter-UAS at military installations (2023–2026) [47] | Research reports | Analysis of installation defence against drones |
+| CNAS, "Countering the Swarm" [48] | Think-tank report | Drone swarm tactics; doctrinal basis for the swarm clustering module |
+| RUSI publications on drone warfare in Ukraine [49] | Think-tank analysis | Tactical development of drone and counter-drone use |
+| ISW, *Russian Offensive Campaign Assessment* [50] | Daily analysis | Current evolution of drone tactics |
+| NATO "Drone Edge" and Project Flytrap releases [51] | Official press releases | Current NATO counter-drone context |
+| NATO IAMD COE, *The Evolving Asymmetric Threat of Unmanned Aircraft Systems* [19] | NATO centre of excellence report | Drones have a bird-like radar signature; passive RF sensors detect the controller link |
+| IISS [2], ECFR [16] and BISI [15] | Think-tank and policy studies | European incident pattern, sensor limits near airports, the case for sensor fusion |
+| MIL-STD-2525 and STANAG APP-6 [52], rendered with milsymbol [53] | Symbology standard and open library | Standard friend, hostile and unknown symbols on the C2 map |
+
+The way this corpus is used follows from two design rules. First, documents are embedded in paragraph- or section-level chunks with the source and page number attached to every chunk, because retrieval quality drops on whole-document embeddings and because every answer must be able to cite its page. Second, the language model never decides the action. A rule table maps the threat level and context to a recommended action, and the retrieved doctrine is used only to explain the rule that fired, with page citations. Table 3.7 shows the rule table defined in the project's computational model.
+
+**Table 3.7.** Recommendation rules of the decision layer.
+
+| Threat level | Recommended action |
+|---|---|
+| Low | Monitor and keep tracking |
+| Medium | Alert the operator and point the camera to the predicted sector |
+| High, inside the approach corridor | Recommend suspending runway operations and notify air traffic control |
+| Critical | Recommend a full stop of traffic and escalation to the authorities |
+
+Mitigation such as jamming is never recommended automatically, because civil RF jamming is illegal in many countries and can interfere with landing systems [1]. The rules are therefore limited to monitoring, alerting and recommending, in line with the detect–identify–defeat cycle of the doctrine [44], where the defeat step remains a human decision.
 
 ### 3.2.3 Active systems in the Turkish defence industry
 
-Counter-drone capability is also an active industrial field in Türkiye. Before contacting companies for project feedback, the team surveyed the publicly announced C-UAS products of Turkish defence companies. Table 3.7 summarises them. The information comes from public news reports and trade press, so it describes what the companies have announced, not tested performance.
+Counter-drone capability is also an active industrial field in Türkiye. Before contacting companies for project feedback, the team surveyed the publicly announced C-UAS products of Turkish defence companies. Table 3.8 summarises them. The information comes from public news reports and trade press, so it describes what the companies have announced, not tested performance.
 
-**Table 3.7.** Publicly announced counter-drone systems of Turkish defence companies.
+**Table 3.8.** Publicly announced counter-drone systems of Turkish defence companies.
 
 | Company | System | Type, as publicly reported | Relation to the project | Sources |
 |---|---|---|---|---|
@@ -143,27 +147,27 @@ The Turkish products concentrate on sensing and on response (jamming, intercepto
 
 ### 3.2.4 Comparison with the project
 
-Table 3.8 compares representative studies from Tables 3.4, 3.6 and 3.7 with the project on the same criteria. A dash means that the feature is not part of that work or is not described in its public sources.
+Table 3.9 compares representative studies from Tables 3.4, 3.6 and 3.8 with the project on the same criteria. A dash means that the feature is not part of that work or is not described in its public sources.
 
-**Table 3.8.** Comparison of representative previous work with the project.
+**Table 3.9.** Comparison of representative previous work with the project.
 
 | Work | Multi-sensor fusion | Grid risk map with line of sight | Safe route | Recommendation with cited doctrine | Standard symbology | Validated on real hardware |
 |---|---|---|---|---|---|---|
 | Lykou et al. [1] | Recommended (survey) | – | – | Analytical protection plans | – | No |
 | Besada et al. [23] | Simulated sensor mix | – | – | – | – | Simulation only |
-| Arapoglou et al. [39] | Fuzzy fusion | – | – | Fuzzy threat decision, no citations | – | Simulation only |
-| Fraser et al. [38] | Radar only | – | – | Intent class, no recommendation | – | Recorded radar data |
+| Arapoglou et al. [34] | Fuzzy fusion | – | – | Fuzzy threat decision, no citations | – | Simulation only |
+| Fraser et al. [35] | Radar only | – | – | Intent class, no recommendation | – | Recorded radar data |
 | Pascarella et al. [5] | – | Airport-level index, no grid | – | – | – | Case study |
-| Shehadeh and Kudela [36] | – | Cylindrical threat cost | Yes | – | – | Benchmark only |
-| ATP 3-01.81 [42] | Doctrinal guidance | – | – | Doctrine itself, not a system | – | – |
+| Shehadeh and Kudela [33] | – | Cylindrical threat cost | Yes | – | – | Benchmark only |
+| ATP 3-01.81 [44] | Doctrinal guidance | – | – | Doctrine itself, not a system | – | – |
 | Turkish C-UAS products (İHTAR, KAPAN, AVCI) [54], [59], [60] | Detection and response products (as reported) | – | – | – | – | Fielded products |
 | **This project** | Camera + RF, decision level | Yes, with terrain and building heights | A* / D* Lite | Rule-based recommendation explained with retrieved doctrine citations | MIL-STD-2525 | Campus demo with camera and ESP32 |
 
 ## 3.3 Summary and research gap
 
-The literature agrees on the nature of the problem. Small drones repeatedly close airports and approach military bases [1], [2]; the closures are driven by uncertainty rather than by collisions; and the economic cost is large enough to justify counter-drone investment [4]. It also agrees that no single sensor is sufficient [1], [16], because small drones have a very low RCS [17], [18], cameras need line of sight [20], and RF sensing misses autonomous drones [1]. Separate research streams provide the building blocks the project needs: sensor simulation [23], threat assessment by fuzzy logic or learning [39], [38], airport risk frameworks [5], threat-aware path planning [34], [36], accurate building and terrain data [29], [25], and open detection datasets [43], [21], [49].
+The literature agrees on the nature of the problem. Small drones repeatedly close airports and approach military bases [1], [2]; the closures are driven by uncertainty rather than by collisions; and the economic cost is large enough to justify counter-drone investment [4]. It also agrees that no single sensor is sufficient [1], [16], because small drones have a very low RCS [17], [18], cameras need line of sight [20], and RF sensing misses autonomous drones [1]. Separate research streams provide the building blocks the project needs: sensor simulation [23], threat assessment by fuzzy logic or learning [34], [35], airport risk frameworks [5], threat-aware path planning [65], [33], accurate building and terrain data [29], [25], and open detection datasets [36], [21], [42].
 
-The gap lies in their combination. In the sources reviewed, these elements appear as separate studies: risk is assessed at the level of a whole airport rather than per map cell [5], threat decisions are made without reference to doctrine [39], and path-planning studies model threats as fixed cylinders without live sensor input [36]. Fielded Turkish products cover sensing and response, but their public descriptions do not address operator decision support [54], [59], [60]. None of the works reviewed links low-cost multi-sensor detection to a line-of-sight-aware grid risk map, safe routing and operator recommendations that cite public doctrine, displayed with standard military symbology. The project addresses this gap with a low-cost, detect-and-recommend system built on open data and verified sources. Its claims are bounded accordingly: the demo is small in scale and uses a single camera and a mock drone, so it demonstrates the integrated decision chain rather than operational detection performance.
+The gap lies in their combination. In the sources reviewed, these elements appear as separate studies: risk is assessed at the level of a whole airport rather than per map cell [5], threat decisions are made without reference to doctrine [34], and path-planning studies model threats as fixed cylinders without live sensor input [33]. Fielded Turkish products cover sensing and response, but their public descriptions do not address operator decision support [54], [59], [60]. None of the works reviewed links low-cost multi-sensor detection to a line-of-sight-aware grid risk map, safe routing and operator recommendations that cite public doctrine, displayed with standard military symbology. The project addresses this gap with a low-cost, detect-and-recommend system built on open data and verified sources. Its claims are bounded accordingly: the demo is small in scale and uses a single camera and a mock drone, so it demonstrates the integrated decision chain rather than operational detection performance.
 
 ## References
 
@@ -231,47 +235,47 @@ The gap lies in their combination. In the sources reviewed, these elements appea
 
 [32] M. Schäfer, M. Strohmeier, V. Lenders, I. Martinovic, and M. Wilhelm, "Bringing up OpenSky: A large-scale ADS-B sensor network for research," in *Proc. 13th Int. Symp. Inf. Process. Sensor Netw. (IPSN)*, Berlin, Germany, 2014, pp. 83–94, doi: 10.1109/IPSN.2014.6846743.
 
-[33] Joint Authorities for Rulemaking on Unmanned Systems (JARUS), "Specific Operations Risk Assessment (SORA) main body," JAR-DEL-SRM-SORA-MB-2.5, Ed. 2.5, 13 May 2024.
+[33] M. A. Shehadeh and J. Kudela, "Benchmarking global optimization techniques for unmanned aerial vehicle path planning," arXiv:2501.14503, Jan. 2025. [Online]. Available: https://arxiv.org/abs/2501.14503
 
-[34] P. E. Hart, N. J. Nilsson, and B. Raphael, "A formal basis for the heuristic determination of minimum cost paths," *IEEE Trans. Syst. Sci. Cybern.*, vol. 4, no. 2, pp. 100–107, 1968.
+[34] F. Arapoglou, P. Zacharia, and M. Papoutsidakis, "Intelligent counter-UAV threat detection using hierarchical fuzzy decision-making and sensor fusion," *Sensors*, vol. 25, no. 19, Art. no. 6091, 2025, doi: 10.3390/s25196091.
 
-[35] S. Koenig and M. Likhachev, "Fast replanning for navigation in unknown terrain," *IEEE Trans. Robot.*, vol. 21, no. 3, pp. 354–363, 2005.
+[35] B. Fraser, A. Perrusquía, D. Panagiotakopoulos, and W. Guo, "A deep mixture of experts network for drone trajectory intent classification and prediction using non-cooperative radar data," in *Proc. IEEE Symp. Ser. Comput. Intell. (SSCI)*, 2023, doi: 10.1109/SSCI52147.2023.10371877.
 
-[36] M. A. Shehadeh and J. Kudela, "Benchmarking global optimization techniques for unmanned aerial vehicle path planning," arXiv:2501.14503, Jan. 2025. [Online]. Available: https://arxiv.org/abs/2501.14503
+[36] Dalian University of Technology, "DUT Anti-UAV dataset," GitHub repository, MIT License. [Online]. Available: https://github.com/wangdongdut/DUT-Anti-UAV
 
-[37] H. A. P. Blom and Y. Bar-Shalom, "The interacting multiple model algorithm for systems with Markovian switching coefficients," *IEEE Trans. Autom. Control*, vol. 33, no. 8, pp. 780–783, 1988, doi: 10.1109/9.1299.
+[37] "Anti-UAV benchmark (Anti-UAV300/410/600)," GitHub repository. [Online]. Available: https://github.com/ZhaoJ9014/Anti-UAV
 
-[38] B. Fraser, A. Perrusquía, D. Panagiotakopoulos, and W. Guo, "A deep mixture of experts network for drone trajectory intent classification and prediction using non-cooperative radar data," in *Proc. IEEE Symp. Ser. Comput. Intell. (SSCI)*, 2023, doi: 10.1109/SSCI52147.2023.10371877.
+[38] "UAVSwarm dataset," GitHub repository, CC BY 4.0. [Online]. Available: https://github.com/UAVSwarm/UAVSwarm-dataset
 
-[39] F. Arapoglou, P. Zacharia, and M. Papoutsidakis, "Intelligent counter-UAV threat detection using hierarchical fuzzy decision-making and sensor fusion," *Sensors*, vol. 25, no. 19, Art. no. 6091, 2025, doi: 10.3390/s25196091.
+[39] NTU ARIS Lab, "MMAUD: Multi-modal anti-UAV dataset," GitHub repository, CC BY-NC-SA 4.0. [Online]. Available: https://github.com/ntu-aris/MMAUD
 
-[40] U.S. Department of Defense, "Joint military symbology," MIL-STD-2525 (C/D/E); NATO, "NATO joint military symbology," STANAG APP-6 (B/D/E).
+[40] WOSDETC, "Drone-vs-Bird detection challenge," GitHub repository. [Online]. Available: https://github.com/wosdetc/challenge
 
-[41] spatialillusions, "milsymbol: Military symbols in JavaScript," GitHub repository, MIT License. [Online]. Available: https://github.com/spatialillusions/milsymbol
+[41] "TIB-Net: Drone detection network with tiny iterative backbone," GitHub repository. [Online]. Available: https://github.com/kyn0v/TIB-Net
 
-[42] Headquarters, Department of the Army, "Counter-unmanned aircraft system techniques," ATP 3-01.81, Washington, DC, USA, Dec. 2023. [Online]. Available: https://armypubs.army.mil
+[42] "DroneRF dataset: RF signals of drones (Parrot Bebop, Parrot AR, DJI Phantom 3)," Mendeley Data. [Online]. Available: https://data.mendeley.com
 
-[43] Dalian University of Technology, "DUT Anti-UAV dataset," GitHub repository, MIT License. [Online]. Available: https://github.com/wangdongdut/DUT-Anti-UAV
+[43] "DroneDetect dataset: RF recordings of UAS collected with BladeRF SDR," IEEE DataPort. [Online]. Available: https://ieee-dataport.org
 
-[44] "Anti-UAV benchmark (Anti-UAV300/410/600)," GitHub repository. [Online]. Available: https://github.com/ZhaoJ9014/Anti-UAV
+[44] Headquarters, Department of the Army, "Counter-unmanned aircraft system techniques," ATP 3-01.81, Washington, DC, USA, Dec. 2023. [Online]. Available: https://armypubs.army.mil
 
-[45] "UAVSwarm dataset," GitHub repository, CC BY 4.0. [Online]. Available: https://github.com/UAVSwarm/UAVSwarm-dataset
+[45] U.S. Department of Defense, "DoD strategy for countering unmanned systems," fact sheet, 2024. [Online]. Available: https://www.defense.gov
 
-[46] NTU ARIS Lab, "MMAUD: Multi-modal anti-UAV dataset," GitHub repository, CC BY-NC-SA 4.0. [Online]. Available: https://github.com/ntu-aris/MMAUD
+[46] Congressional Research Service, Report R48477 on counter-UAS programmes. [Online]. Available: https://www.everycrsreport.com
 
-[47] WOSDETC, "Drone-vs-Bird detection challenge," GitHub repository. [Online]. Available: https://github.com/wosdetc/challenge
+[47] RAND Corporation, research reports on counter-UAS defence of military installations, 2023–2026. [Online]. Available: https://www.rand.org
 
-[48] "TIB-Net: Drone detection network with tiny iterative backbone," GitHub repository. [Online]. Available: https://github.com/kyn0v/TIB-Net
+[48] Center for a New American Security (CNAS), "Countering the swarm." [Online]. Available: https://www.cnas.org
 
-[49] "DroneRF dataset: RF signals of drones (Parrot Bebop, Parrot AR, DJI Phantom 3)," Mendeley Data. [Online]. Available: https://data.mendeley.com
+[49] Royal United Services Institute (RUSI), publications on drone warfare and counter-UAS tactics in Ukraine. [Online]. Available: https://www.rusi.org
 
-[50] "DroneDetect dataset: RF recordings of UAS collected with BladeRF SDR," IEEE DataPort. [Online]. Available: https://ieee-dataport.org
+[50] Institute for the Study of War (ISW), "Russian offensive campaign assessment," daily reports. [Online]. Available: https://www.understandingwar.org
 
-[51] U.S. Department of Defense, "DoD strategy for countering unmanned systems," fact sheet, 2024. [Online]. Available: https://www.defense.gov
+[51] NATO, "Drone Edge" and "Project Flytrap" news releases, NATO Newsroom. [Online]. Available: https://www.nato.int
 
-[52] Congressional Research Service, Report R48477 on counter-UAS programmes. [Online]. Available: https://www.everycrsreport.com
+[52] U.S. Department of Defense, "Joint military symbology," MIL-STD-2525 (C/D/E); NATO, "NATO joint military symbology," STANAG APP-6 (B/D/E).
 
-[53] Center for a New American Security (CNAS), "Countering the swarm." [Online]. Available: https://www.cnas.org
+[53] spatialillusions, "milsymbol: Military symbols in JavaScript," GitHub repository, MIT License. [Online]. Available: https://github.com/spatialillusions/milsymbol
 
 [54] Janes, "IDEF 2019: ASELSAN's İHTAR counter-UAV system breaks cover," 2019. [Online]. Available: https://janes.com/osint-insights/defence-news/idef-2019-aselsans-ihtar-counter-uav-system-breaks-cover
 
@@ -294,3 +298,5 @@ The gap lies in their combination. In the sources reviewed, these elements appea
 [63] Milliyet, "Roketsan'dan kamikaze dron tehdidine karşı lazer silahı" (Roketsan laser weapon against the kamikaze drone threat). [Online]. Available: https://www.milliyet.com.tr/ekonomi/roketsandan-kamikaze-dron-tehdidine-karsi-lazer-silahi-7194840
 
 [64] haber.aero, "Görünmeyen tehditler HAVELSAN'ın teknolojisi ile tespit edilecek" (invisible threats to be detected with HAVELSAN technology). [Online]. Available: https://haber.aero/savunma/gorunmeyen-tehditler-havelsanin-teknolojisi-ile-tespit-edilecek
+
+[65] P. E. Hart, N. J. Nilsson, and B. Raphael, "A formal basis for the heuristic determination of minimum cost paths," *IEEE Trans. Syst. Sci. Cybern.*, vol. 4, no. 2, pp. 100–107, 1968.
