@@ -136,21 +136,23 @@ The Turkish products concentrate on sensing and on response (jamming, intercepto
 
 ### 3.2.4 Comparison with the project
 
-Table 3.8 compares representative studies from Tables 3.4, 3.6 and 3.7 with the project on the same criteria. A dash means that the feature is not part of that work or is not described in its public sources.
+Table 3.8 compares the project with the Turkish defence-industry systems of Table 3.7 and with three key academic studies, on the same criteria. "Not described" means that the feature does not appear in the public sources reviewed, not that the product lacks it.
 
-**Table 3.8.** Comparison of representative previous work with the project.
+**Table 3.8.** Comparison of Turkish defence-industry systems and key studies with the project.
 
-| Work | Multi-sensor fusion | Grid risk map with line of sight | Safe route | Recommendation with cited doctrine | Standard symbology | Validated on real hardware |
-|---|---|---|---|---|---|---|
-| Lykou et al. [1] | Recommended (survey) | – | – | Analytical protection plans | – | No |
-| Besada et al. [23] | Simulated sensor mix | – | – | – | – | Simulation only |
-| Arapoglou et al. [34] | Fuzzy fusion | – | – | Fuzzy threat decision, no citations | – | Simulation only |
-| Fraser et al. [35] | Radar only | – | – | Intent class, no recommendation | – | Recorded radar data |
-| Pascarella et al. [5] | – | Airport-level index, no grid | – | – | – | Case study |
-| Shehadeh and Kudela [33] | – | Cylindrical threat cost | Yes | – | – | Benchmark only |
-| ATP 3-01.81 [44] | Doctrinal guidance | – | – | Doctrine itself, not a system | – | – |
-| Turkish C-UAS products (İHTAR, KAPAN, AVCI) [54], [59], [60] | Detection and response products (as reported) | – | – | – | – | Fielded products |
-| **This project** | Camera + RF, decision level | Yes, with terrain and building heights | A* / D* Lite | Rule-based recommendation explained with retrieved doctrine citations | MIL-STD-2525 | Campus demo with camera and ESP32 |
+| Work | Detection | Response (mitigation) | Risk map or route for the operator | Recommendation with cited doctrine |
+|---|---|---|---|---|
+| ASELSAN İHTAR [54] | Integrated counter-UAV system (sensor details not in the sources reviewed) | Yes | Not described | Not described |
+| ASELSAN SEDA 100-cUAV [55] | Acoustic | No, sensor only | Not described | Not described |
+| Meteksan Retinar and KAPAN [58], [59] | Radar | Yes (KAPAN) | Not described | Not described |
+| SDT AVCI [60] | RF and electronic systems | Yes, anti-drone rifle | Not described | Not described |
+| STM TUNGA-X [62] | – | Yes, interceptor drone | Not described | Not described |
+| ROKETSAN ALKA [63] | – | Yes, laser | Not described | Not described |
+| HAVELSAN C2 software [64] | Uses external sensors | – | C2 picture; risk map not described | Decision support reported; doctrine citations not described |
+| Lykou et al. [1] | Multi-sensor, recommended in a survey | Discussed, legally constrained | – | Analytical protection plans |
+| Pascarella et al. [5] | – | – | Airport-level risk index, no grid | – |
+| Arapoglou et al. [34] | Fuzzy sensor fusion, simulation only | – | – | Fuzzy threat decision, no citations |
+| **This project** | Camera + RF, fused at decision level | None by design | Grid risk map with line of sight and safe route | Yes, retrieved from public doctrine |
 
 ## 3.3 Summary and research gap
 
