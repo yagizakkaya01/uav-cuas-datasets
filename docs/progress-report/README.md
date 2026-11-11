@@ -15,7 +15,7 @@ one report in the order below.
 | 3 | Literature Review (30%) | Yağız Akkaya | `report/yagiz-akkaya` |
 | 4 | Requirement Specifications (20%) | Adil Mert İş | `report/adil-mert-is` |
 | 5 | Research Method (10%) | Aydan Doğan | `report/aydan-dogan` |
-| 6 | System Design (10%) | Mert Gökalp | `report/mert-gokalp` |
+| 6 | System Design (10%) | Aydan Doğan | `report/aydan-dogan` |
 | 7 | Conclusion (10%) | Mert Gökalp | `report/mert-gokalp` |
 
 The cover page (project title and group members) is added when the parts

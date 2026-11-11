@@ -1,6 +1,6 @@
 # System Design
 
-**Owner:** Mert Gökalp · **Weight:** 10%
+**Owner:** Aydan Doğan · **Weight:** 10%
 
 > Guideline: Conceptual design, preliminary design.
 
