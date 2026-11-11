@@ -48,7 +48,7 @@ Cameras, radar and RF receivers all need a clear line of sight to the drone, so 
 | Gatwick, UK | Environment Agency 1 m terrain and surface models | Surface heights from the 1 m surface model | NATS UAS restriction dataset | OpenSky |
 | Aalborg, Denmark | DHM national model, 0.4 m grid | OSM footprints | Official map | OpenSky |
 | Akrotiri, Crete | Copernicus GLO-30, 30 m [21] | OSM footprints | Official map (HCAA) | Airport statistics |
-The system also needs to know the normal air traffic around a site in order to judge how serious a drone near a runway is. The OpenSky Network provides open aircraft position data for this purpose, but it only shows aircraft that broadcast their position, and drones do not appear in it [25]. Drone detection must therefore come from the project's own sensors.
+The system also needs to know the normal air traffic around a site in order to judge how serious a drone near a runway is. The OpenSky Network provides open aircraft position data for this purpose, but it only shows aircraft that broadcast their position [25], so small drones do not appear in it. Drone detection must therefore come from the project's own sensors.
 
 ## 3.2 Previous work
 
@@ -203,7 +203,7 @@ The gap is that these parts are not combined. In the sources reviewed, risk is r
 
 [24] R. Peters, B. Dukai, S. Vitalis, J. van Liempt, and J. Stoter, "Automated 3D reconstruction of LoD2 and LoD1 models for all 10 million buildings of the Netherlands," *Photogramm. Eng. Remote Sens.*, vol. 88, no. 3, pp. 165–170, 2022, doi: 10.14358/PERS.21-00032R2. [Online]. Available: https://arxiv.org/abs/2201.01191
 
-[25] M. Schäfer, M. Strohmeier, V. Lenders, I. Martinovic, and M. Wilhelm, "Bringing up OpenSky: A large-scale ADS-B sensor network for research," in *Proc. 13th Int. Symp. Inf. Process. Sensor Netw. (IPSN)*, Berlin, Germany, 2014, pp. 83–94, doi: 10.1109/IPSN.2014.6846743.
+[25] M. Schäfer, M. Strohmeier, V. Lenders, I. Martinovic, and M. Wilhelm, "Bringing up OpenSky: A large-scale ADS-B sensor network for research," in *Proc. 13th Int. Symp. Inf. Process. Sensor Netw. (IPSN)*, Berlin, Germany, Apr. 2014, pp. 83–94, doi: 10.1109/IPSN.2014.6846743.
 
 [26] F. Arapoglou, P. Zacharia, and M. Papoutsidakis, "Intelligent counter-UAV threat detection using hierarchical fuzzy decision-making and sensor fusion," *Sensors*, vol. 25, no. 19, Art. no. 6091, 2025, doi: 10.3390/s25196091.
 
