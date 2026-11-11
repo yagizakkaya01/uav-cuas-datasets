@@ -92,7 +92,7 @@ A decision support system should base its recommendations on accepted procedures
 
 | Source | Type | Content used by the project |
 |---|---|---|
-| ATP 3-01.81, *Counter-Unmanned Aircraft System Techniques* (Dec. 2023) [35] | U.S. Army doctrine | UAS group classification (Groups 1–3), the layered-defence concept and the detect–identify–defeat cycle |
+| ATP 3-01.81, *Counter-Unmanned Aircraft System (C-UAS)* (Aug. 2023) [35] | U.S. Army doctrine | UAS Groups 1–5 (Groups 1 and 2 are the small drones, with a low radar cross section); the layered-defence approach; the active-defence sequence detect, identify, decide and engage |
 | DoD Strategy for Countering Unmanned Systems (2024) [36] | U.S. strategy | The five "strategic ways": top-level principles for the knowledge base's answers |
 | CRS Report R48477 [37] | Congressional research report | Summary table of C-UAS programmes and a terminology glossary |
 | RAND reports on counter-UAS at military installations (2023–2026) [38] | Research reports | Analysis of installation defence against drones |
@@ -222,7 +222,7 @@ The gap is that these parts are not combined. In the sources reviewed, risk is r
 
 [34] "DroneDetect dataset: RF recordings of UAS collected with BladeRF SDR," IEEE DataPort. [Online]. Available: https://ieee-dataport.org
 
-[35] Headquarters, Department of the Army, "Counter-unmanned aircraft system techniques," ATP 3-01.81, Washington, DC, USA, Dec. 2023. [Online]. Available: https://armypubs.army.mil
+[35] Headquarters, Department of the Army, "Counter-unmanned aircraft system (C-UAS)," ATP 3-01.81, Washington, DC, USA, 11 Aug. 2023. [Online]. Available: https://armypubs.army.mil
 
 [36] U.S. Department of Defense, "DoD strategy for countering unmanned systems," fact sheet, 2024. [Online]. Available: https://www.defense.gov
 
