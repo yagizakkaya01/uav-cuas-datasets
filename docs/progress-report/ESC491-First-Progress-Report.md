@@ -152,7 +152,7 @@ Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwa
 | CNAS, *Countering the Swarm* (2025) [30] | The threat of drone swarms and the need for defence in several layers |
 | NATO IAMD COE report [22] | What radar and RF sensors cannot detect in small drones |
 
-**Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems and two key studies with the project.
+**Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems with the project.
 
 **Table 3.5.** Comparison with the project.
 
@@ -164,8 +164,6 @@ Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwa
 | SDT AVCI [34] | Radar, cameras, RF | Jamming or physical destruction | Not described | Not described |
 | STM TUNGA-X [35] | Uses a separate radar | Interceptor drone | Not described | Not described |
 | ROKETSAN ALKA [36] | Radar | Jamming, laser | Not described | Not described |
-| Pascarella et al. [26] | Not covered | Not covered | One risk score for the whole airport | Not covered |
-| Arapoglou et al. [27] | Combines sensors, tested only in simulation | Not covered | Not covered | Gives a threat level without a cited source |
 | **This project** | Camera + RF | None (the system only recommends) | Risk map with line of sight | Yes, from public doctrine |
 
 "Not described" means the feature does not appear in the public sources reviewed. The Turkish products concentrate on sensing and on response (jamming, interceptor drones, lasers). Their public descriptions do not explain how the operator is helped to decide.
