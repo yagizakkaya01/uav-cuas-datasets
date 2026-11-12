@@ -32,17 +32,16 @@ The report names a risk map that accounts for line of sight as a main feature. T
 
 ### 2.3 The RF role contradicts the threat definition
 
-The threat is a drone that does not announce itself, but the receiver confirms the drone by a MAC address known in advance. That is confirmation of a known device. The threat score in M4 also has no RF feature, so the fusion required by FR-5 does not exist in the model, and it is not stated whether an RF confirmation raises or lowers the score.
+The threat is a drone that does not announce itself, but the earlier design confirmed the drone by an address known in advance. That is confirmation of a known device. The threat score in M4 also has no RF feature, so the fusion required by FR-5 does not exist in the model, and it is not stated whether an RF confirmation raises or lowers the score.
 
-**Proposal (to be agreed with Adil Mert İş and the supervisors, since the accepted hardware assumptions mention MAC filtering).** Replace the known-MAC check with baseline-and-anomaly detection:
+**Decision (12 Nov 2026): MAC addresses are not used anywhere in the system**, neither to recognise the mock drone nor to filter other devices. The RF side uses baseline-and-anomaly detection on aggregate signal statistics:
 
-- Record the normal Wi-Fi environment of the demo area at the hours of the demo, on several days.
-- Watch access points (beacons), not all traffic. Campus access points are stable; phones are not, and they randomise their addresses.
-- Flag a new access point that behaves like a drone link: steady, dense traffic and a changing signal strength.
-- Fuse with the camera in time: a camera track together with a new emitter in the same seconds is strong evidence. This becomes the RF feature of the threat score.
-- Test with a distractor: a phone hotspot switched on next to the mock drone must not be confirmed as a drone.
+- Record the normal Wi-Fi background of the demo area (frames per second and signal-strength distribution, per channel) at the hours of the demo, on several days.
+- Report an anomaly when the statistics leave the baseline for a sustained time, for example a clear rise in strong-signal frames.
+- Fuse with the camera in time: a camera track together with an RF anomaly in the same seconds is strong evidence. This becomes the RF feature of the threat score.
+- Test with a distractor: a phone hotspot switched on near the receiver may raise the RF statistics, but without a camera track it must not produce a confirmation.
 
-Limits to state in the report: the ESP32 listens on one channel at a time (the mock drone's channel may be fixed as a stated assumption), and only 2.4 GHz Wi-Fi links are visible. A Remote ID style check ("the camera sees a drone but nothing identifies itself") is a possible ESC 492 extension; ESP32 support has not been checked.
+Limits to state in the report: without addresses the receiver cannot tell which device caused the change, so an RF anomaly alone never identifies a drone; it only supports a camera track. The ESP32 listens on one channel at a time (the mock drone's channel may be fixed as a stated assumption), and only 2.4 GHz Wi-Fi links are visible. The submitted progress report and the deployment diagram still mention a MAC filter and should be updated in the next version; the change also needs to be confirmed with Adil Mert İş and the supervisors, since the accepted hardware assumptions mentioned MAC filtering.
 
 ### 2.4 Ground position from a known height is poorly conditioned
 
@@ -119,7 +118,7 @@ The submitted report is not edited. These points should change in the next versi
 
 - **Section 3.3 (research gap).** "Not described" in press coverage of Turkish products does not show that a feature is absent. Academic threat-assessment literature and commercial C2 software are not reviewed. State the contribution in the decision layer: exposure that accounts for terrain, and recommendations traceable to published procedure. The sensors are a minimal input rig.
 - **Section 5.1.** Dataset roles (see section 5 above).
-- **Sections 2.1.3, 6.1, 6.2.** RF role, scaling rule, position method, event-driven flow; add the RF swimlane to the activity diagram.
+- **Sections 2.1.3, 6.1, 6.2 and the deployment diagram.** RF role (no MAC addresses), scaling rule, position method, event-driven flow; add the RF swimlane to the activity diagram.
 - **Table 3.4.** Add the airport-domain documents.
 - **Requirements.** NFR-6 metric; NFR-1 extended to an LLM API failure.
 

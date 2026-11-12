@@ -133,7 +133,7 @@ The system will be demonstrated **physically**, not only in simulation. Current 
 
 - **One fixed PoE IP camera** (4 MP, motorized 2.8–12 mm varifocal) on a tripod at the edge of a ~15 m × 17 m outdoor area next to Academic Hall 1
 - **All processing on a laptop**: visual detection, risk engine and C2 interface; the LLM is called through an API for the demo
-- A **mock drone** carrying an **ESP32 Wi-Fi transmitter**; a second ESP32 on the laptop confirms the drone through its Wi-Fi signal (known MAC), while the camera provides its position
+- A **mock drone** carrying an **ESP32 Wi-Fi transmitter**; a second ESP32 on the laptop confirms the drone by detecting a change from the normal Wi-Fi background of the area, while the camera provides its position. MAC addresses are not used anywhere in the system (decision of 12 Nov 2026)
 - Detections are mapped on the **pilot-region terrain model** and explained on the operator interface in real time
 
 The multi-node design in the proposal is kept as the scaling path in the report; the demo uses a single node. Details, procurement list and scope assumptions: [`docs/hardware/`](./docs/hardware/). Pilot region candidates (not yet decided): [`docs/pilot-region/`](./docs/pilot-region/).

@@ -38,7 +38,7 @@ This table answers the standard question "what are the components of the computa
 
 | Component | Content for this system |
 |---|---|
-| **Inputs** | Camera frames (2560 × 1440, 20 fps); ESP32 Wi-Fi/RF packets with RSSI and MAC; static geodata (AHN 0.5 m DSM/DTM, 3DBAG buildings, WorldCover trees, OSM runway/apron/hangars, runway-buffer restricted zone); ADS-B traffic baseline (OpenSky, adsb.lol); weather (KNMI wind, visibility); doctrine corpus for RAG |
+| **Inputs** | Camera frames (2560 × 1440, 20 fps); ESP32 Wi-Fi/RF packets with RSSI and timing (no MAC addresses are used); static geodata (AHN 0.5 m DSM/DTM, 3DBAG buildings, WorldCover trees, OSM runway/apron/hangars, runway-buffer restricted zone); ADS-B traffic baseline (OpenSky, adsb.lol); weather (KNMI wind, visibility); doctrine corpus for RAG |
 | **Outputs** | Track list (ID, position, velocity, uncertainty); threat score 0–1 and level (low / medium / high / critical); risk grid (10 m cells); recommended route or sector; recommended action with a cited doctrine reason; logs for evaluation |
 | **Parameters** (fixed per run, tuned) | Grid cell size (10 m); camera focal length, pixel pitch and pixels-on-target thresholds; RF path-loss exponent and receiver sensitivity; Kalman process and measurement noise; threat weights and thresholds; risk kernel growth rate; route cost weight λ; observer and target heights |
 | **Variables** (change during a run) | Drone state x = (x, y, z, vₓ, v_y, v_z); track covariance P; detection probability per cell; threat features (distance, time-to-reach, in-zone flag, in-corridor flag, altitude, speed, heading); risk value per cell; route; recommended action |
@@ -247,7 +247,11 @@ so predicted positions in uncovered cells weigh more (**assumption:** β to be t
 
 ### 9.3 RF evidence in the threat score
 
-Proposed replacement for the known-MAC check: the receiver records a baseline of the access points normally present in the demo area and reports an *emitter anomaly* when a new access point appears with steady, dense traffic and a changing signal strength. A feature f_rf ∈ [0, 1] is set when an anomaly coincides in time with a camera track, and enters T with its own weight. A phone hotspot is used as a distractor in testing. The ESP32 listens on one channel at a time, so the mock drone's channel may be fixed as a stated assumption. To be agreed with the RF owner and the supervisors.
+**Decision (12 Nov 2026): MAC addresses are not used anywhere in the system**, neither to recognise the mock drone nor to filter other devices.
+
+The receiver works on aggregate signal statistics only. It records a baseline of the normal Wi-Fi background of the demo area (frames per second and the distribution of signal strength, per channel, at the hours of the demo on several days) and reports an *emitter anomaly* when the measured statistics leave the baseline for a sustained time, for example a clear rise in strong-signal frames. A feature f_rf ∈ [0, 1] is set when an anomaly coincides in time with a camera track, and enters T with its own weight.
+
+Limits to state: without addresses the receiver cannot tell which device caused the change, so an RF anomaly alone never identifies a drone; it only supports a camera track. A phone hotspot next to the receiver is used as a distractor in testing: it may raise the RF statistics, but without a camera track it must not produce a confirmation. The ESP32 listens on one channel at a time, so the mock drone's channel may be fixed as a stated assumption.
 
 ### 9.4 One range method
 
