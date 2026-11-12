@@ -45,17 +45,17 @@ The report first states the problem and the project's aim and objectives. It the
 
 ### 2.1 Statement of the problem
 
-#### 2.1.1 What
+#### 2.1.1 Problem Definition
 
 Small commercial drones are cheap, easy to buy and hard to see. Over the past decade they have gone from a hobbyist curiosity to a real security problem for airports, military bases and other critical sites. When one appears near such a site, the people protecting it have to answer three questions quickly: is it really a drone, how dangerous is it, and what should we do about it? This project tries to answer all three. A deep-learning detector recognises the drone in a camera image, and its Wi-Fi signal confirms its identity. The system then places it on a real terrain model of the protected site, estimates how threatening it is, and recommends a response that the operator can check against published doctrine.
 
-#### 2.1.2 Why
+#### 2.1.2 Significance of the Problem
 
 The problem is no longer hypothetical. In December 2018 drone sightings closed London Gatwick for more than a day [1]. On 22 November 2025, civil and military flights at Eindhoven were halted for about two hours after drones were reported near the airfield [2], and an IISS study counted 144 drone incidents across 13 European countries between August 2024 and February 2026 [3]. In the United States, the FAA has collected more than 20,000 sighting reports since 2014 [4], and in 2026 NATO approved a multi-year, multi-billion-dollar counter-drone initiative [5].
 
 Detecting these aircraft is hard. Small drones have radar cross-sections well below 0 dBsm, so radar alone often misses them [6], and studies of airport protection recommend combining several types of sensors rather than relying on one [7]. Detection, however, is only half of the job. Once a track appears, an operator still has to judge, usually within seconds, which assets are exposed, whether the terrain hides the drone's approach, and which procedure applies. Most counter-UAS products put their effort into the sensors and effectors: radar, RF, electro-optical and acoustic detection, and jamming or interception. As far as we can tell from public documentation, their command-and-control software fuses tracks and assigns effectors, but it does not explain why a track is dangerous in terms of the terrain, the protected assets and doctrine. Türkiye's national UAV traffic platform İHATTYS manages registered, cooperative drones [8]; a drone that does not announce itself is outside its scope by definition. This is the gap we want to address: an explainable layer between "a drone has been detected" and "this is what to do". The project does not build radar sensing or any means of neutralising a drone; it uses a camera and a 2.4 GHz Wi-Fi receiver for detection and concentrates on assessment and decision support. Terrain effects such as line of sight are computed on the terrain model of the pilot region, onto which the detections from the flat campus demo area are mapped.
 
-#### 2.1.3 How
+#### 2.1.3 Proposed Solution Approach
 
 The system has five parts, each owned by one team member:
 
@@ -126,11 +126,11 @@ Measurements of commercial drones gave radar reflections far below those of norm
 
 **Table 3.3.** Key studies.
 
-| Ref. | Topic | Main finding | Use in the project |
-|---|---|---|---|
-| [7] | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
-| [6] | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
-| [16] | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
+| Ref. | Year | Topic | Main finding | Use in the project |
+|---|---|---|---|---|
+| [7] | 2020 | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
+| [6] | 2021 | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
+| [16] | 2021 | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
 
 Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwarm [15] and the Halmstad dataset [16] for cameras, and DroneRF [17] for RF signals.
 
@@ -138,17 +138,17 @@ Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwa
 
 **Table 3.4.** Main documents in the knowledge base.
 
-| Document | Content used by the project |
+| Document | Content to be used in the project |
 |---|---|
 | ATP 3-01.81, *Counter-Unmanned Aircraft System* (2023) [10] | Drone size groups 1–5, defence in several layers, and the sequence detect, identify, decide, engage |
 | DoD Strategy for Countering Unmanned Systems (2024) [26] | The five top-level goals of the U.S. approach to countering drones |
 | RUSI, *Protecting the Force from Uncrewed Aerial Systems* (2024) [27] | No single sensor or countermeasure is enough |
 | CNAS, *Countering the Swarm* (2025) [28] | The threat of drone swarms and the need for defence in several layers |
-| NATO IAMD COE report [22] | What radar and RF sensors cannot detect in small drones |
+| NATO IAMD COE, *The Evolving Asymmetric Threat of Unmanned Aircraft Systems* (c. 2024) [22] | What radar and RF sensors cannot detect in small drones |
 
 **Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems with the project.
 
-**Table 3.5.** Comparison with the project.
+**Table 3.5.** Comparison of existing Counter-UAS systems with the proposed project.
 
 | Work | Detection | Response | Risk map for the operator | Recommendation citing doctrine |
 |---|---|---|---|---|
@@ -170,13 +170,17 @@ The gap is that these parts are not combined. Industrial products focus on detec
 
 ## 4 Requirement Specifications
 
-Figure 4.1 shows the users of the system and what each of them can do.
+
+Figure 4.1 illustrates the main actors and functionalities of the proposed UAV Threat Map and Decision Support System. The operator monitors the tactical threat map, reviews alerts, evaluates threats, and makes the final response decisions. The system detects and tracks UAVs using camera-based detection (YOLO), confirms their identity through an ESP32 RF receiver, and performs threat assessment and geospatial risk analysis to plan safe routes. It also provides AI-generated response recommendations supported by retrieved doctrine sources. The system administrator manages sensor configurations, pilot-region settings, and air-traffic data. External components provide the necessary sensor inputs, geographic information, and AI services. The diagram also highlights future ESC 492 developments, including drone swarm tracking and air-traffic anomaly detection.
+
 
 ![Figure 4.1 – Use case diagram](figures/use-case-diagram.png)
 
 **Figure 4.1.** Use case diagram.
 
 ### 4.1 Functional requirements
+
+The functional requirements describe what the system is expected to do. Table 4.1 lists the main functions of the system, including UAV detection, position tracking, threat assessment, risk mapping, and decision support.
 
 **Table 4.1.** Functional requirements.
 
@@ -198,6 +202,8 @@ Figure 4.1 shows the users of the system and what each of them can do.
 
 ### 4.2 Non-functional requirements
 
+The non-functional requirements describe how well the system should perform. Table 4.2 specifies the expected performance, reliability, response time, and detection accuracy of the system.
+
 **Table 4.2.** Non-functional requirements.
 
 | ID | Requirement |
@@ -210,6 +216,8 @@ Figure 4.1 shows the users of the system and what each of them can do.
 | NFR-6 | The YOLO model shall detect UAVs with at least 70% accuracy |
 
 ### 4.3 Domain requirements
+
+The domain requirements describe the technical standards and domain-specific rules that the system must follow. Table 4.3 covers wireless communication, aviation data formats, geographic coordinates, terrain analysis, and Counter-UAS doctrine.
 
 **Table 4.3.** Domain requirements.
 
@@ -277,7 +285,7 @@ A measurable success criterion (e.g. detection up to X m within Y s) is agreed i
 
 The system protects a critical site, such as an airfield, against small non-cooperative UAVs. A sensor node detects a drone, the system places it on a map of the site, estimates its threat level and recommends a response with a cited doctrine passage. The **operator** always makes the final decision; the **system administrator** (the team) configures the sensor and the pilot region. External systems are open geodata, the OpenSky Network [13] and a language-model API (see the use case diagram, Figure 4.1).
 
-The system is a chain of five layers (Table 6.1).
+The proposed system consists of five interconnected layers, as presented in Table 6.1. Each layer performs a specific function and produces outputs that support the overall threat assessment and decision-support process.
 
 **Table 6.1.** System layers.
 
@@ -295,13 +303,13 @@ The system is a chain of five layers (Table 6.1).
 
 ### 6.2 Preliminary design
 
-**Hardware (Figure 6.1).** A Hikvision DS-2CD1643G2-LIZSU camera on a tripod sends video and receives power over a ~30 m Cat6 cable through a PoE injector to the laptop (RTSP, 2560 × 1440 at 20 fps). An ESP32 receiver connects over USB; the mock drone carries a second ESP32 and a power bank. Total procurement cost is ₺10,088.
+The hardware configuration of the proposed system is illustrated in Figure 6.1. A Hikvision DS-2CD1643G2-LIZSU camera on a tripod sends video and receives power over a ~30 m Cat6 cable through a PoE injector to the laptop (RTSP, 2560 × 1440 at 20 fps). An ESP32 receiver connects over USB; the mock drone carries a second ESP32 and a power bank. Total procurement cost is ₺10,088.
 
 ![Figure 6.1 – Deployment diagram](figures/deployment-diagram.jpeg)
 
-**Figure 6.1.** Deployment diagram.
+**Figure 6.1.** Hardware deployment diagram.
 
-**Software subsystems** (all on the laptop):
+The software subsystems of the proposed system operate on a single laptop. Table 6.2 presents the main subsystems, their outputs, and the team members responsible for their development.
 
 **Table 6.2.** Software subsystems.
 
@@ -313,11 +321,11 @@ The system is a chain of five layers (Table 6.1).
 | Knowledge base (RAG [9], LLM API) | Cited explanation | Yağız Akkaya |
 | Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, alert, decision log | Mert Gökalp |
 
-**Processing flow (Figure 6.2).** Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected; in parallel the ESP32 receiver confirms or does not confirm the drone's 2.4 GHz Wi-Fi signal, and the position is mapped onto the pilot region with a scaled transformation. The threat score is then computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route for a response team or an evacuation path is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
+Figure 6.2 illustrates the processing flow of the proposed system. Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected; in parallel the ESP32 receiver confirms or does not confirm the drone's 2.4 GHz Wi-Fi signal, and the position is mapped onto the pilot region with a scaled transformation. The threat score is then computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route for a response team or an evacuation path is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
 
 ![Figure 6.2 – Activity diagram](figures/activity-diagram.png)
 
-**Figure 6.2.** Activity diagram.
+**Figure 6.2.** System activity diagram.
 
 ESC 492 extends this structure with more cameras, fine-tuning on field recordings, swarm tracking and OpenSky anomaly detection.
 
