@@ -41,5 +41,10 @@ plan can refer to it. -->
 ## Domain requirements
 
 | ID | Requirement |
-|---|---|
-| DR-1 | TODO |
+| :--- | :--- |
+| DR-1 | The RF receiver shall use standard 2.4 GHz frequency |
+| DR-2 | The system shall read civilian air-traffic data in ICAO/ADS-B format |
+| DR-3 | The system shall apply restricted airspace boundaries (geofences) according to aviation rules |
+| DR-4 | The system shall use Digital Elevation Model (DEM) data to calculate line of sight and terrain masking |
+| DR-5 | The system shall use standard WGS84 coordinates for map and drone tracking |
+| DR-6 | The system shall base response advice on Counter-UAS rules and doctrine documents |
