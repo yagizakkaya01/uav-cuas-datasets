@@ -8,6 +8,7 @@ The system protects a critical site, such as an airfield, against small non-coop
 
 ![Figure 6.1 – Use case diagram](./use-case-diagram.png)
 
+*Figure 6.1: Use Case Diagram.*
 
 The proposed system consists of five interconnected layers, as presented in Table 6.1. Each layer performs a specific function and produces outputs that support the overall threat assessment and decision-support process.
 
@@ -32,6 +33,10 @@ The hardware configuration of the proposed system is illustrated in Figure 6.2. 
 ![Figure 6.2 – Deployment diagram](./deployment-diagram.jpeg)
 
 
+![Figure 6.2 – Deployment diagram](./deployment-diagram.jpeg)
+
+*Figure 6.2: Hardware Deployment Diagram.*
+
 The software subsystems of the proposed system operate on a single laptop. Table 6.2 presents the main subsystems, their outputs, and the team members responsible for their development.
 
 
@@ -48,5 +53,7 @@ Figure 6.3 illustrates the processing flow of the proposed system. Each frame is
 
 
 ![Figure 6.3 – Activity diagram](./activity-diagram.png)
+
+*Figure 6.3: System Activity Diagram.*
 
 ESC 492 extends this structure with more cameras, fine-tuning on field recordings, swarm tracking and OpenSky anomaly detection.
