@@ -59,7 +59,8 @@ Open datasets are available for training the detector: DUT Anti-UAV [16], UAVSwa
 | DoD Strategy for Countering Unmanned Systems (2024) [20] | The five top-level goals of the U.S. approach to countering drones |
 | RUSI, *Protecting the Force from Uncrewed Aerial Systems* (2024) [21] | No single sensor or countermeasure is enough |
 | CNAS, *Countering the Swarm* (2025) [22] | The threat of drone swarms and the need for defence in several layers |
-| NATO IAMD COE report [9] | What radar and RF sensors cannot detect in small drones |
+| NATO IAMD COE, *The Evolving Asymmetric Threat of Unmanned Aircraft Systems* (c. 2024) [9] | What radar and RF sensors cannot detect in small drones |
+
 
 **Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems with the project.
 
