@@ -1,12 +1,8 @@
-# UAV Threat Map and Decision Support System
+# UAV Threat Map and Decision Support System — ESC 491 First Progress Report
 
-**ESC 491 – First Progress Report**
+![Cover page](figures/cover.png)
 
-12 November 2026
-
-**Supervisors:** Dr. Meryem Erbilek, Dr. Muhammad Sohail
-
-**Group members:** Yaren Duyan, Aydan Doğan, Mert Gökalp, Yağız Akkaya, Adil Mert İş
+Printable cover: [figures/cover.pdf](figures/cover.pdf)
 
 ---
 
