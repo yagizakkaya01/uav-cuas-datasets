@@ -10,6 +10,10 @@ plan can refer to it. -->
 
 ## Functional requirements
 
+The functional requirements describe what the system is expected to do. Table 4.1 lists the main functions of the system, including UAV detection, position tracking, threat assessment, risk mapping, and decision support.
+
+**Table 4.1.** Functional requirements.
+
 | ID | Requirement |
 | :--- | :--- |
 | FR-1 | The ESP32 receiver shall receive 2.4 GHz signals from the mock drone’s transmitter |
@@ -28,6 +32,9 @@ plan can refer to it. -->
 
 ## Non-functional requirements
 
+The non-functional requirements describe how well the system should perform. Table 4.2 specifies the expected performance, reliability, response time, and detection accuracy of the system.
+
+**Table 4.2.** Non-functional requirements.
 
 | ID | Requirement |
 | :--- | :--- |
@@ -39,6 +46,10 @@ plan can refer to it. -->
 | NFR-6 | The YOLO model shall detect UAVs with at least 70% accuracy |
 
 ## Domain requirements
+
+The domain requirements describe the technical standards and domain-specific rules that the system must follow. Table 4.3 covers wireless communication, aviation data formats, geographic coordinates, terrain analysis, and Counter-UAS doctrine.
+
+**Table 4.3.** Domain requirements.
 
 | ID | Requirement |
 | :--- | :--- |
