@@ -30,8 +30,6 @@ The proposed system consists of five interconnected layers, as presented in Tabl
 
 The hardware configuration of the proposed system is illustrated in Figure 6.2. A Hikvision DS-2CD1643G2-LIZSU camera on a tripod sends video and receives power over a ~30 m Cat6 cable through a PoE injector to the laptop (RTSP, 2560 × 1440 at 20 fps). An ESP32 receiver connects over USB; the mock drone carries a second ESP32 and a power bank. Total procurement cost is ₺10,088.
 
-![Figure 6.2 – Deployment diagram](./deployment-diagram.jpeg)
-
 
 ![Figure 6.2 – Deployment diagram](./deployment-diagram.jpeg)
 
