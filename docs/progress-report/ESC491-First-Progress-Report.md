@@ -261,7 +261,7 @@ Development runs in five phases, each ending with a demonstrable output:
 | P4 – Hardware and field | 10–12 | Live single-camera detection on campus, shown on the map |
 | P5 – Final | 13–14 | Report, presentation, demo v1 |
 
-Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [9]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a scaled transformation, always reported as scaled. Tasks are tracked as GitHub issues and merged through pull requests, with a short weekly progress meeting.
+Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [9]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a scaled transformation, always reported as scaled. Work is reviewed and merged through pull requests, with a short weekly progress meeting.
 
 ### 5.3 Testing and validation
 
