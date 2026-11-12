@@ -4,17 +4,17 @@
 
 ## Statement of the problem
 
-### What
+### Problem Definition
 
 Small commercial drones are cheap, easy to buy and hard to see. Over the past decade they have gone from a hobbyist curiosity to a real security problem for airports, military bases and other critical sites. When one appears near such a site, the people protecting it have to answer three questions quickly: is it really a drone, how dangerous is it, and what should we do about it? This project tries to answer all three. A deep-learning detector recognises the drone in a camera image, and its Wi-Fi signal confirms its identity. The system then places it on a real terrain model of the protected site, estimates how threatening it is, and recommends a response that the operator can check against published doctrine.
 
-### Why
+### Significance of the Problem
 
 The problem is no longer hypothetical. In December 2018 drone sightings closed London Gatwick for more than a day [15]. On 22 November 2025, civil and military flights at Eindhoven were halted for about two hours after drones were reported near the airfield [18], and an IISS study counted 144 drone incidents across 13 European countries between August 2024 and February 2026 [16]. In the United States, the FAA has collected more than 20,000 sighting reports since 2014 [2], and in 2026 NATO approved a multi-year, multi-billion-dollar counter-drone initiative [1].
 
 Detecting these aircraft is hard. Small drones have radar cross-sections well below 0 dBsm, so radar alone often misses them [3], and studies of airport protection recommend combining several types of sensors rather than relying on one [17]. Detection, however, is only half of the job. Once a track appears, an operator still has to judge, usually within seconds, which assets are exposed, whether the terrain hides the drone's approach, and which procedure applies. Most counter-UAS products put their effort into the sensors and effectors: radar, RF, electro-optical and acoustic detection, and jamming or interception. As far as we can tell from public documentation, their command-and-control software fuses tracks and assigns effectors, but it does not explain why a track is dangerous in terms of the terrain, the protected assets and doctrine. Türkiye's national UAV traffic platform İHATTYS manages registered, cooperative drones [4]; a drone that does not announce itself is outside its scope by definition. This is the gap we want to address: an explainable layer between "a drone has been detected" and "this is what to do". The project does not build radar sensing or any means of neutralising a drone; it uses a camera and a 2.4 GHz Wi-Fi receiver for detection and concentrates on assessment and decision support. Terrain effects such as line of sight are computed on the terrain model of the pilot region, onto which the detections from the flat campus demo area are mapped.
 
-### How
+### Proposed Solution Approach
 
 The system has five parts, each owned by one team member:
 
