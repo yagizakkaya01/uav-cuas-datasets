@@ -36,13 +36,15 @@ Measurements of commercial drones gave radar reflections far below those of norm
 
 **Academic studies.** Table 3.3 lists the key studies and how each one is used in the project.
 
+
 **Table 3.3.** Key studies.
 
-| Ref. | Topic | Main finding | Use in the project |
-|---|---|---|---|
-| [1] | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
-| [8] | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
-| [10] | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
+| Ref. | Year | Topic | Main finding | Use in the project |
+|---|---|---|---|---|
+| [1] | 2020 | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
+| [8] | 2021 | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
+| [10] | 2021 | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
+
 
 Open datasets are available for training the detector: DUT Anti-UAV [16], UAVSwarm [17] and the Halmstad dataset [10] for cameras, and DroneRF [18] for RF signals.
 
