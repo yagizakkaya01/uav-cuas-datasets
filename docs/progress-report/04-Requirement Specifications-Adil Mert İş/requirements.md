@@ -28,9 +28,15 @@ plan can refer to it. -->
 
 ## Non-functional requirements
 
+
 | ID | Requirement |
-|---|---|
-| NFR-1 | TODO |
+| :--- | :--- |
+| NFR-1 | The system shall continue operating even if the camera or receiver module loses connection |
+| NFR-2 | The YOLO model shall process video frames at least 10 FPS |
+| NFR-3 | The system shall show all threats on the map within 2 seconds |
+| NFR-4 | The LLM API shall generate response advice within 15 seconds |
+| NFR-5 | The web dashboard shall load within 5 seconds |
+| NFR-6 | The YOLO model shall detect UAVs with at least 70% accuracy |
 
 ## Domain requirements
 
