@@ -8,7 +8,9 @@ The system protects a critical site, such as an airfield, against small non-coop
 
 ![Figure 6.1 – Use case diagram](./use-case-diagram.png)
 
-The system is a chain of five layers:
+
+The proposed system consists of five interconnected layers, as presented in Table 6.1. Each layer performs a specific function and produces outputs that support the overall threat assessment and decision-support process.
+
 
 | Layer | Question it answers | Output |
 |---|---|---|
@@ -24,11 +26,14 @@ The system is a chain of five layers:
 
 ## 6.2 Preliminary design
 
-**Hardware (Figure 6.2).** A Hikvision DS-2CD1643G2-LIZSU camera on a tripod sends video and receives power over a ~30 m Cat6 cable through a PoE injector to the laptop (RTSP, 2560 × 1440 at 20 fps). An ESP32 receiver connects over USB; the mock drone carries a second ESP32 and a power bank. Total procurement cost is ₺10,088.
+
+The hardware configuration of the proposed system is illustrated in Figure 6.2. A Hikvision DS-2CD1643G2-LIZSU camera on a tripod sends video and receives power over a ~30 m Cat6 cable through a PoE injector to the laptop (RTSP, 2560 × 1440 at 20 fps). An ESP32 receiver connects over USB; the mock drone carries a second ESP32 and a power bank. Total procurement cost is ₺10,088.
 
 ![Figure 6.2 – Deployment diagram](./deployment-diagram.jpeg)
 
-**Software subsystems** (all on the laptop):
+
+The software subsystems of the proposed system operate on a single laptop. Table 6.2 presents the main subsystems, their outputs, and the team members responsible for their development.
+
 
 | Subsystem | Output | Owner |
 |---|---|---|
@@ -38,7 +43,9 @@ The system is a chain of five layers:
 | Knowledge base (RAG, LLM API) | Cited explanation | Yağız Akkaya |
 | Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, alert, decision log | Mert Gökalp |
 
-**Processing flow (Figure 6.3).** Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected, the threat score is computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
+
+Figure 6.3 illustrates the processing flow of the proposed system. Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected, the threat score is computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
+
 
 ![Figure 6.3 – Activity diagram](./activity-diagram.png)
 
