@@ -321,7 +321,7 @@ The system is a chain of five layers (Table 6.1).
 | Knowledge base (RAG [9], LLM API) | Cited explanation | Yağız Akkaya |
 | Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, alert, decision log | Mert Gökalp |
 
-**Processing flow (Figure 6.2).** Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected, the threat score is computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
+**Processing flow (Figure 6.2).** Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected; in parallel the ESP32 receiver confirms or does not confirm the drone's 2.4 GHz Wi-Fi signal, and the position is mapped onto the pilot region with a scaled transformation. The threat score is then computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route for a response team or an evacuation path is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
 
 ![Figure 6.2 – Activity diagram](figures/activity-diagram.png)
 
