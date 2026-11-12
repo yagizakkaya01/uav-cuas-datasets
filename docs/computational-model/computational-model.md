@@ -57,7 +57,7 @@ This table answers the standard question "what are the components of the computa
 | **Inputs** | AHN 0.5 m DSM and DTM, 3DBAG footprints and heights, ESA WorldCover classes, OSM aeroway features, OurAirports runway thresholds |
 | **Outputs** | Raster stack on a common grid: terrain height, surface height, object height (nDSM = DSM − DTM), building mask, tree mask, protected-asset mask, restricted-zone mask, approach-corridor mask |
 | **Parameters** | Cell size 10 m (AHN averaged); runway buffer 3,000 m; corridor length and half-width (**assumption:** 5 km × 500 m from each threshold, to be refined from ADS-B tracks) |
-| **Algorithm** | Resample to 10 m, rasterise vectors, derive corridors from runway heading |
+| **Algorithm** | Resample to 10 m, rasterise vectors, derive corridors from runway heading. Surface height for line of sight should be aggregated by maximum, not average (section 9.5) |
 | **Assumptions** | Data are static for the demo period |
 
 **Eindhoven size:** the AOI is 4,518 × 3,338 m, so a 10 m grid has 452 × 334 ≈ 151,000 cells. Every algorithm below runs on a laptop in seconds at this size.
@@ -127,6 +127,8 @@ Features, each normalised to 0–1:
 
 Score: T = Σ wᵢ fᵢ (weights sum to 1), then levels by thresholds (**assumption:** < 0.3 low, < 0.6 medium, < 0.8 high, otherwise critical), with hard overrides: f_zone = 1 or f_corr = 1 → at least "high".
 
+The score has no RF feature yet, although the system is meant to fuse camera and Wi-Fi evidence; section 9.3 proposes one.
+
 A fuzzy-logic version (triangular membership functions, rule base) is the main alternative. Arapoglou et al. (2025) used a three-stage fuzzy hierarchy for counter-UAV sensor selection in MATLAB. They also noted it was validated only in simulation, which would be true for us as well. **Recommendation:** start with the weighted score because it is transparent and easy to explain to examiners, and keep fuzzy logic as an extension.
 
 ### M5. Risk field
@@ -135,7 +137,7 @@ Risk in each cell c is the threat score spread over the predicted positions:
 
 Risk(c) = Σ_τ T · 𝒩(c; μ_τ, Σ_τ) + zone cost(c)
 
-The Gaussian widens with prediction time τ, so far-future positions are less certain. The zone cost adds a fixed penalty inside the restricted zone. The cylindrical threat-zone cost of arXiv 2501.14503, already listed in Layer 3, can be used as the static term.
+This formula has no line-of-sight term yet; section 9.2 proposes one. The Gaussian widens with prediction time τ, so far-future positions are less certain. The zone cost adds a fixed penalty inside the restricted zone. The cylindrical threat-zone cost of arXiv 2501.14503, already listed in Layer 3, can be used as the static term.
 
 ### M6. Route and sector planning
 
@@ -196,7 +198,7 @@ Sensor-placement or blind-spot results for the real air base are computed only l
 
 ## 6. Mapping the physical demo onto Eindhoven
 
-The campus demo area is about 15 × 17 m and has one fixed camera. A demo track p_campus is mapped to Eindhoven with a similarity transform p_EHEH = s · R(θ) · (p_campus − o_campus) + o_EHEH, with a chosen scale s (**assumption:** s = 100, so 15 m on campus = 1.5 km at the airport), rotation θ and anchor points. The scaled track then drives M3–M7. The report must state that demo distances are scaled and not real Eindhoven measurements.
+The campus demo area is about 15 × 17 m and has one fixed camera. A demo track p_campus is mapped to Eindhoven with a similarity transform p_EHEH = s · R(θ) · (p_campus − o_campus) + o_EHEH, with a chosen scale s (**assumption:** s = 100, so 15 m on campus = 1.5 km at the airport), rotation θ and anchor points. The scaled track then drives M3–M7. The report must state that demo distances are scaled and not real Eindhoven measurements. Scaling position alone also scales speed; section 9.1 adds a time scale.
 
 ---
 
@@ -222,6 +224,46 @@ Following the supervisors' advice to keep it simple, the minimum working chain i
 7. Rule table with a RAG explanation
 
 IMM, D* Lite, fuzzy scoring and learned intent prediction are listed as extensions for ESC 492.
+
+---
+
+## 9. Open design issues and proposed revisions (12 November 2026)
+
+These points come from the [architecture review](../design-review/architecture-review-2026-11-12.md). They are **proposals**; the sections above are unchanged apart from the pointers to this section.
+
+### 9.1 Scaling needs a time scale
+
+With s = 100, a mock drone carried at 1 m/s moves at 100 m/s on the Eindhoven grid, far above the 5–20 m/s assumed in the validation plan, and a 0.5 m campus error becomes 50 m. Time-to-reach (f_ttr) and the M3 prediction then lose their meaning.
+
+Proposed rule: the mapping has a position scale s and a time scale k, so mapped speed is v_EHEH = (s / k) · v_campus. With s = 100 and k = 10, 1 m/s on campus becomes 10 m/s. The decision engine reads tracks from a *track source*: a scenario player with realistic kinematics, or the live adapter that applies s and k. Demo accuracy figures (range, position error, latency) are reported at campus scale only.
+
+### 9.2 Line-of-sight term in the risk field
+
+Define a static coverage layer C(c, h) ∈ {0, 1} for a hypothetical sensor placement in the pilot region: 1 if a target at height h above cell c is visible to at least one sensor (M1 viewshed). It is computed once per placement and altitude band, not per frame. The risk field becomes
+
+Risk(c) = Σ_τ T · 𝒩(c; μ_τ, Σ_τ) · (1 + β · (1 − C(c, h))) + zone cost(c)
+
+so predicted positions in uncovered cells weigh more (**assumption:** β to be tuned). Sensor placements are hypothetical and site-specific coverage maps stay out of the public repository.
+
+### 9.3 RF evidence in the threat score
+
+Proposed replacement for the known-MAC check: the receiver records a baseline of the access points normally present in the demo area and reports an *emitter anomaly* when a new access point appears with steady, dense traffic and a changing signal strength. A feature f_rf ∈ [0, 1] is set when an anomaly coincides in time with a camera track, and enters T with its own weight. A phone hotspot is used as a distractor in testing. The ESP32 listens on one channel at a time, so the mock drone's channel may be fixed as a stated assumption. To be agreed with the RF owner and the supervisors.
+
+### 9.4 One range method
+
+M2 estimates range from the apparent box size, while the progress report projects onto a plane at a known flight height. With the camera at about 1.75 m and the target at about 3 m, the elevation angle at 15 m is about 5°, and the plane projection turns a 1° angle error or a 0.3 m height error into roughly 20–25 % range error. Range from box size is better conditioned (about 33 pixels at 15 m with the 2.8 mm setting and the assumed 2.0 µm pitch). Proposal: keep box-size range as the primary method, or mount the camera higher.
+
+### 9.5 Grid aggregation
+
+Averaging the 0.5 m surface model to 10 m lowers the height of buildings and tree lines. For M1 line of sight, aggregate surface height by maximum (conservative for blocking), and keep the average for terrain height.
+
+### 9.6 Update rates and events
+
+M1 runs per frame. M2–M5 run a few times per second. M6 and M7 run on events: a confirmed track, or a change of threat level (with hysteresis so the level does not flicker). The action and its doctrine passages are selected deterministically; the language model only writes the explanation, and a template text is used if the API is unavailable.
+
+### 9.7 Source for threat levels and actions
+
+The M4 thresholds and the M7 action table are assumptions. The IATA guidance material on unauthorized UA near airports classifies events into Low / Medium / High impact from parameters close to the M4 features and gives the response per level; it is now listed in [Layer 2](../../layers/02-semantic-threat-knowledge-base.md). Proposal: derive the features, thresholds and actions from it and cite it per rule, keeping ATP 3-01.81 for the military side.
 
 ---
 

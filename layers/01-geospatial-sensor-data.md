@@ -12,6 +12,8 @@ This layer handles terrain modeling, road/building context, baseline air-traffic
 
 ## 1.1 Terrain / GIS
 
+> **Note (Nov 2026):** the global 30 m models below were the first terrain sources checked. The pilot-region candidates use national LiDAR models where they exist (for example AHN 0.5 m for Eindhoven); see [`docs/pilot-region/`](../docs/pilot-region/). A 30 m model differs from AHN by 3.3 m RMSE in the Eindhoven test, so it is a fallback, not the primary source.
+
 | Source | Status | License | Notes |
 |---|:---:|---|---|
 | **[Copernicus DEM GLO-30 — OpenTopography](https://opentopography.org)** | 🟡 | Free, attribution required (DLR/Airbus/ESA) | Global DSM, 30 m resolution, COG/GeoTIFF. **What to look for:** on the Data Catalog page, find "Copernicus 30m Global DEM" → "Get Copernicus 30m Data" → draw your AOI bounding box → select product type **DSM**, format **GeoTIFF**. Excluded countries: only Armenia & Azerbaijan — Turkey is fully covered. |
@@ -28,6 +30,8 @@ This layer handles terrain modeling, road/building context, baseline air-traffic
 | **[pyopensky](https://github.com/open-aviation/pyopensky)** | 🟢 | Open | Python client for the Trino interface — follow the README for connection setup and example queries. |
 
 ## 1.3 Real UAV Detection & Tracking Datasets (vision / IR / RF / acoustic)
+
+> **Note (Nov 2026):** with the single-camera, single-target, daytime demo scope, the visible-light detection sets are the ones used for training. DroneRF and DroneDetect are raw SDR captures; the demo's ESP32 receiver works at Wi-Fi packet level and cannot use them, so they are context only. UAVSwarm and the infrared part of Halmstad are ESC 492 material.
 
 | Source | Status | License | Notes |
 |---|:---:|---|---|
@@ -55,14 +59,14 @@ This layer handles terrain modeling, road/building context, baseline air-traffic
 
 ## 1.5 Team-Collected Field Data (Physical Demo)
 
-Recorded by the team during field tests with the mast-mounted sensor nodes. Status: **planned** — rows are added to [`docs/verified-access-log.md`](../docs/verified-access-log.md) once recorded.
+Recorded by the team during field tests with the single-camera demo setup (see [`docs/hardware/`](../docs/hardware/)). Status: **planned** — rows are added to [`docs/verified-access-log.md`](../docs/verified-access-log.md) once recorded.
 
 | Data | Sensor | Purpose | Notes |
 |---|---|---|---|
-| Camera footage of the 3D-printed drone mock-up | Node cameras (USB/CSI) | Fine-tuning and field evaluation of the visual detector | Reduces the domain gap between public datasets and our mock-up; annotate in YOLO format |
-| Wi-Fi control-link captures | Wi-Fi adapters in monitor mode / ESP32 | Training and testing the RF detection chain | 2.4 GHz band, same band family as the DroneRF and DroneDetect recordings |
-| Node positions and orientations | GPS / surveyed coordinates | Placing detections on the terrain model, line-of-sight and coverage checks | Stored in PostGIS alongside the DEM and OSM layers |
-| Ground-truth mock-up trajectory | Manual log / GPS on the mock-up | Measuring detection range, latency and localisation error | Basis for the evaluation reported in ESC 492 |
+| Camera footage of the 3D-printed mock drone | Fixed PoE IP camera (RTSP) | Fine-tuning and field evaluation of the visual detector | Reduces the domain gap between public datasets and our mock drone; annotate in YOLO format |
+| Wi-Fi captures of the demo area, with and without the mock drone | ESP32 receiver | Baseline of the normal Wi-Fi environment and testing of the RF confirmation | 2.4 GHz Wi-Fi, packet level; record at the hours of the demo on several days |
+| Camera position, height and orientation | Tape measure / surveyed points | Placing detections in the local frame of the demo area | Needed for camera calibration and position estimates |
+| Ground-truth mock-drone path | Marked ground points / manual log | Measuring detection range, latency and localisation error | Method still to be defined (see the [design review](../docs/design-review/architecture-review-2026-11-12.md)) |
 
 > 🇹🇷 Fiziksel demoda ekibin kendi topladığı veriler: dron maketinin kamera görüntüleri, Wi-Fi sinyal kayıtları, sensör düğümlerinin konumları ve maketin gerçek rotası. Bu veriler hem modelleri sahaya uyarlamak hem de sistemin başarımını ölçmek için kullanılacak.
 
