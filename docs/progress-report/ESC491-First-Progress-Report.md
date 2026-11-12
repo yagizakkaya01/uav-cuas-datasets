@@ -170,7 +170,9 @@ The gap is that these parts are not combined. Industrial products focus on detec
 
 ## 4 Requirement Specifications
 
-Figure 4.1 shows the users of the system and what each of them can do.
+
+Figure 4.1 illustrates the main actors and functionalities of the proposed UAV Threat Map and Decision Support System. The operator monitors the tactical threat map, reviews alerts, evaluates threats, and makes the final response decisions. The system detects and tracks UAVs using camera-based detection (YOLO), confirms their identity through an ESP32 RF receiver, and performs threat assessment and geospatial risk analysis to plan safe routes. It also provides AI-generated response recommendations supported by retrieved doctrine sources. The system administrator manages sensor configurations, pilot-region settings, and air-traffic data. External components provide the necessary sensor inputs, geographic information, and AI services. The diagram also highlights future ESC 492 developments, including drone swarm tracking and air-traffic anomaly detection.
+
 
 ![Figure 4.1 – Use case diagram](figures/use-case-diagram.png)
 
