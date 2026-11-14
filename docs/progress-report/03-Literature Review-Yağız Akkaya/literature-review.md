@@ -37,9 +37,9 @@ Measurements of commercial drones gave radar reflections far below those of norm
 **Academic studies.** Table 3.3 lists the key studies and how each one is used in the project.
 
 
-**Table 3.3.** Key studies.
+**Table 3.3.** Key studies related to out project.
 
-| Ref. | Year | Topic | Main finding | Use in the project |
+| Ref. | Year | Topic | Main finding | Use it as referance at the project |
 |---|---|---|---|---|
 | [1] | 2020 | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
 | [8] | 2021 | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
