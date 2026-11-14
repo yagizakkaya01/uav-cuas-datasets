@@ -70,8 +70,8 @@
 <path d="M1370,942.0 L1370,1034" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <path d="M1370,1045 L1370,1108.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <rect x="1198.0" y="1108.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
-<text x="1370" y="1144.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Compute threat score</text>
-<text x="1370" y="1172.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">(camera + Wi-Fi)</text>
+<text x="1370" y="1144.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Fuse camera + Wi-Fi and</text>
+<text x="1370" y="1172.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">compute threat score</text>
 <path d="M1370,1192.0 L1370,1248.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <rect x="1198.0" y="1248.0" width="344" height="84" rx="18" fill="#e3f1e4" stroke="#3d7d46" stroke-width="2.8"/>
 <text x="1370" y="1284.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Propagate risk and</text>

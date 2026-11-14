@@ -114,7 +114,7 @@ bar(JOIN, 80, 1530)
 path([(F, 900 + h), (F, JOIN - 6)])
 path([(F, JOIN + 5), (F, 1150 - h)])
 
-box(F, 1150, ["Compute threat score", "(camera + Wi-Fi)"], "orange")
+box(F, 1150, ["Fuse camera + Wi-Fi and", "compute threat score"], "orange")
 path([(F, 1150 + h), (F, 1290 - h)])
 box(F, 1290, ["Propagate risk and", "line of sight on the grid"], "green")
 path([(F, 1290 + h), (F, 1430 - R)])
