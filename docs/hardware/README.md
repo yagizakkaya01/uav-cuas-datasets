@@ -7,7 +7,7 @@
 - **Area:** outdoor, the square area at the east end of the strip north of Academic Hall 1, METU NCC. Approx. **15 m × 17 m (~260 m²)**, estimated from the Google Maps scale bar; to be confirmed on site with a tape measure.
 - **Single node, single camera:** one fixed PoE IP camera (motorized varifocal 2.8–12 mm; the lens zooms, the camera does not rotate). No Jetson, no Raspberry Pi.
 - **All processing on a team laptop** (RTX 4070): YOLO detection, risk engine, C2 interface. The LLM is used via an API for the demo (no local LLM).
-- **RF confirmation:** two ESP32 boards. One is a transmitter on a **mock drone**, one is a receiver connected to the laptop over USB. The receiver confirms presence and identity (known MAC) of the drone; it does not localise it.
+- **RF confirmation:** two ESP32 boards. One is a transmitter on a **mock drone**, one is a receiver connected to the laptop over USB. The receiver confirms the drone's presence by detecting a change from the normal Wi-Fi background of the area; it does not localise it. MAC addresses are not used anywhere in the system (decision of 12 Nov 2026).
 
 ```
 [IP camera] ──Cat6 ~30 m──► [PoE injector] ──patch──► Laptop (detection, risk engine, C2, LLM API)
@@ -43,7 +43,7 @@ Prices checked on the linked pages on 2 Nov 2026 and may change.
 - Single-node system: a 3-node system is too expensive for a graduation project, and since all nodes do the same job, testing with one node is enough.
 - One ESP32 receiver is enough for the test area regardless of the number of nodes.
 - Mock drone instead of a real drone, because a real drone may not use 2.4 GHz Wi-Fi; SDR is the alternative but too expensive.
-- The critical test is detection in the presence of other Wi-Fi transmitters (campus Wi-Fi, phones): either test away from interference or filter the target (e.g. by MAC).
+- The critical test is detection in the presence of other Wi-Fi transmitters (campus Wi-Fi, phones): either test away from interference or filter the target (e.g. by MAC). *Superseded on 12 Nov 2026: MAC addresses are not used; the receiver compares against a recorded baseline of the normal Wi-Fi background instead.*
 - Extra items may be needed later; this set is enough to start.
 
 ### Known follow-ups (not yet reflected in the accepted list)

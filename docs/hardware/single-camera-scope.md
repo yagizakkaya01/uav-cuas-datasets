@@ -24,7 +24,7 @@ Dr. Meryem Erbilek said there is no budget figure and the list should be kept as
 2. **Position from one camera with a known flight height.** No triangulation. The drone is assumed to fly at a fixed, known height (e.g. 3 m). Its position on the map is estimated by projecting its image position to the ground using this height.
 3. **The flight zone is limited to the camera's field of view.** The drone flies at most ~15–20 m from the camera, within the angle the lens is set to. This limit is enforced in software with a geofence.
 4. **One target, daytime, clear weather.** One drone at a time. Night, rain and fog are out of scope.
-5. **The RF side only confirms.** One ESP32 confirms the drone's presence and identity (known MAC); it does not give position. Other transmissions such as campus Wi-Fi and phones are filtered out by MAC (Dr. Sohail's interference note).
+5. **The RF side only confirms.** One ESP32 confirms the drone's presence by detecting a change from the normal Wi-Fi background of the area (a baseline recorded beforehand); it does not give position. MAC addresses are not used anywhere in the system (decision of 12 Nov 2026); the earlier idea of filtering by a known MAC is dropped.
 6. **Processing is central.** Detection, the risk engine and the interface run on the laptop. The language model is used through an API for the demo.
 7. **The success criterion is defined in advance.** For example, a target such as "detection up to X m from the camera within Y seconds" is agreed in writing with the supervisors. The demo is evaluated against this target. Field test videos are kept as backup evidence.
 
