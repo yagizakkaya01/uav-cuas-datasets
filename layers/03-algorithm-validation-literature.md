@@ -6,6 +6,8 @@ This layer has no single labeled benchmark dataset — instead, the flood-fill/B
 
 > 🇹🇷 **Kısaca:** Sistem, haritayı küçük karelere böler; tehlikeli bölgeleri işaretler ve bu bölgelerden kaçınan en güvenli rotayı hesaplar. Bu yöntemin doğru ve geçerli olduğunu göstermek için benzer yaklaşımları kullanan bilimsel makaleler burada listelenmiştir.
 
+> **Note (Nov 2026):** the current design spreads risk with a Gaussian field around predicted positions instead of flood-fill/BFS, and routes with A\*; see the [computational model](../docs/computational-model/computational-model.md).
+
 [← Back to README](../README.md)
 
 ---

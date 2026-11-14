@@ -8,7 +8,7 @@
 ![License](https://img.shields.io/badge/license-CC0%201.0-blue)
 ![Layers](https://img.shields.io/badge/architecture%20layers-5-informational)
 ![Sources](https://img.shields.io/badge/verified%20sources-35%2B-success)
-![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--07-lightgrey)
+![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--12-lightgrey)
 
 <p align="center">
   <img src="./assets/demo-threat-map.gif" alt="Concept animation: sensor detection, risk propagation and route replanning on a grid threat map" width="860">
@@ -94,6 +94,9 @@ uav-cuas-datasets/
     ├── pilot-region/                          ← pilot region proposals (Eindhoven, Gatwick, Aalborg, Akrotiri) & comparison
     ├── hardware/                              ← accepted procurement list & demo setup
     ├── diagrams/                              ← UML diagrams (use case, deployment, activity)
+    ├── computational-model/                   ← sub-models M0–M7, inputs, parameters, validation plan
+    ├── design-review/                         ← architecture and data review (12 Nov 2026, proposals)
+    ├── progress-report/                       ← ESC 491 First Progress Report
     ├── team-plan.md                           ← task distribution & semester plan (first plan, 15 Oct 2026)
     ├── legend.md
     ├── verified-access-log.md
@@ -130,7 +133,7 @@ The system will be demonstrated **physically**, not only in simulation. Current 
 
 - **One fixed PoE IP camera** (4 MP, motorized 2.8–12 mm varifocal) on a tripod at the edge of a ~15 m × 17 m outdoor area next to Academic Hall 1
 - **All processing on a laptop**: visual detection, risk engine and C2 interface; the LLM is called through an API for the demo
-- A **mock drone** carrying an **ESP32 Wi-Fi transmitter**; a second ESP32 on the laptop confirms the drone through its Wi-Fi signal (known MAC), while the camera provides its position
+- A **mock drone** carrying an **ESP32 Wi-Fi transmitter**; a second ESP32 on the laptop confirms the drone by detecting a change from the normal Wi-Fi background of the area, while the camera provides its position. MAC addresses are not used anywhere in the system (decision of 12 Nov 2026)
 - Detections are mapped on the **pilot-region terrain model** and explained on the operator interface in real time
 
 The multi-node design in the proposal is kept as the scaling path in the report; the demo uses a single node. Details, procurement list and scope assumptions: [`docs/hardware/`](./docs/hardware/). Pilot region candidates (not yet decided): [`docs/pilot-region/`](./docs/pilot-region/).
@@ -147,7 +150,7 @@ The most important tables from the project documents, in one place. Each table l
 
 ### Pilot region candidates
 
-Four candidates, compared on 7 Nov 2026. **The team has not decided yet.** Full table, sources and data tests: [`docs/pilot-region/comparison.md`](./docs/pilot-region/comparison.md).
+Four candidates, compared on 7–8 Nov 2026. **The team has not decided yet.** Full table, sources and data tests: [`docs/pilot-region/comparison.md`](./docs/pilot-region/comparison.md).
 
 | Criterion | Eindhoven (NL) | Gatwick (UK) | Aalborg (DK) | Akrotiri / Chania, Crete (GR) |
 |---|---|---|---|---|
@@ -156,8 +159,8 @@ Four candidates, compared on 7 Nov 2026. **The team has not decided yet.** Full 
 | Drone incident | 22 Nov 2025 closure, C-UAS activated | Dec 2018, ~30–33 h closure | 24–25 Sep 2025, ~3 h closure | None found (only exercise target drones at NAMFI) |
 | Terrain | AHN 0.5 m DSM/DTM | EA 1 m DSM/DTM | DHM 0.4 m (download needs a free token) | Copernicus 30 m, hilly (0–517 m) |
 | Building heights | 3DBAG, measured for every building | Derive from DSM − DTM | None; derive from DHM | None; estimated by building type |
-| Drone restriction zones | PDOK / LVNL API (polygons not yet retrieved) | NATS UAS zones, downloaded | Map only, no reusable data | Web map only |
-| Data access test | Partly (6 Nov) | Partly (7 Nov) | Partly (7 Nov) | Partly (8 Nov), GeoPackage + sample line of sight |
+| Drone restriction zones | No open source left (PDOK / LVNL API retired 30 Jun 2026); 3 km runway buffer used as an assumption | NATS UAS zones, downloaded | Map only, no reusable data | Web map only |
+| Data access test | Done (8 Nov): 11 of 15 sources passed | Partly (7 Nov) | Partly (7 Nov) | Partly (8 Nov), GeoPackage + sample line of sight |
 | Main strength | Building data and incident record | Restriction-zone data and peer-reviewed literature | Link to visual detection (night incident, Halmstad dataset) | Hilly terrain for line-of-sight analysis |
 
 ### Hardware request (accepted by the supervisors)
@@ -200,6 +203,10 @@ From the first semester plan (15 Oct 2026). Full plan with the 14-week schedule:
 | 9 | End-to-end demo with recorded data (desk) | Mert Gökalp |
 | 12 | Live detection with a single node in the field, shown on the map | Adil Mert İş, Aydan Doğan |
 | 14 | Final report, presentation, demo v1 | Everyone |
+
+### Design review
+
+A review of the architecture, the pilot-region choice and data adequacy (12 Nov 2026) lists open design issues and proposed fixes: [`docs/design-review/`](./docs/design-review/architecture-review-2026-11-12.md). The items are proposals until the team and supervisors agree.
 
 ### System diagrams
 
