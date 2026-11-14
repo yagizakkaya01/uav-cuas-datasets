@@ -356,6 +356,24 @@ In the first half of the semester the team has:
 
 **What we would do differently:** Comparing four regions in depth took more time than planned. A shorter list of criteria agreed at the start would have led to a decision sooner. Some work was kept on personal computers instead of the shared repository, which made it less visible to the rest of the team. From now on, all work will be pushed to the repository as it is produced.
 
+
+### 7.4 Future Work and Next Steps
+
+In the next stages of the project, the team will focus on completing the system development, integrating the individual components, and evaluating the overall performance. The planned activities are as follows:
+
+- **Pilot-region selection:** Select the final pilot region from the four candidates (Eindhoven, Gatwick, Aalborg and Akrotiri/Chania), considering data availability, terrain characteristics and suitability for the project.
+
+- **Geospatial model:** Prepare the selected region's Digital Elevation Model (DEM), OpenStreetMap (OSM) data, building information and road network. These datasets will be used for line-of-sight analysis, risk mapping and safe-route planning.
+
+- **System development:** Continue developing the main system components, including YOLO-based UAV detection and tracking, ESP32-based wireless confirmation, geospatial risk assessment, A* pathfinding and RAG-based decision support.
+
+- **System integration:** Connect the five system layers to enable data exchange between UAV detection, knowledge retrieval, geospatial analysis, threat assessment and the C2 interface.
+
+- **Testing and validation:** Test the individual components and the integrated system using recorded datasets and the planned campus demonstration setup. Evaluate detection performance, position accuracy, risk assessment and response generation.
+
+- **ESC 492 development:** Extend and improve the system based on testing results, evaluate its overall performance and prepare the final demonstration and project report. Potential extensions include multiple-camera support, improved detection models, drone swarm tracking and air-traffic anomaly detection.
+
+
 ## References
 
 [1] Office of the Sussex Police and Crime Commissioner, "Performance & Accountability Meeting," minutes, 18 Oct. 2019. [Online]. Available: https://www.sussex-pcc.gov.uk/media/4422/10-pam-minutes-18102019.pdf
