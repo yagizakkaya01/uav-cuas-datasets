@@ -53,7 +53,7 @@ Open datasets are available for training the detector: DUT Anti-UAV [16], UAVSwa
 
 **Table 3.4.** Main documents in the knowledge base.
 
-| Document | Content to be used in the project |
+| Document | Content will be used in the project |
 |---|---|
 | ATP 3-01.81, *Counter-Unmanned Aircraft System* (2023) [19] | Drone size groups 1–5, defence in several layers, and the sequence detect, identify, decide, engage |
 | DoD Strategy for Countering Unmanned Systems (2024) [20] | The five top-level goals of the U.S. approach to countering drones |
