@@ -36,31 +36,36 @@ Measurements of commercial drones gave radar reflections far below those of norm
 
 **Academic studies.** Table 3.3 lists the key studies and how each one is used in the project.
 
+
 **Table 3.3.** Key studies.
 
-| Ref. | Topic | Main finding | Use in the project |
-|---|---|---|---|
-| [1] | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
-| [8] | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
-| [10] | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
+| Ref. | Year | Topic | Main finding | Use in the project |
+|---|---|---|---|---|
+| [1] | 2020 | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
+| [8] | 2021 | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
+| [10] | 2021 | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
+
 
 Open datasets are available for training the detector: DUT Anti-UAV [16], UAVSwarm [17] and the Halmstad dataset [10] for cameras, and DroneRF [18] for RF signals.
 
 **Doctrine.** The system's recommendations must come from accepted procedures, not from what a language model produces by itself. The knowledge base is therefore built only from public documents (Table 3.4), and every recommendation shows its source.
 
+
 **Table 3.4.** Main documents in the knowledge base.
 
-| Document | Content used by the project |
+| Document | Content to be used in the project |
 |---|---|
 | ATP 3-01.81, *Counter-Unmanned Aircraft System* (2023) [19] | Drone size groups 1–5, defence in several layers, and the sequence detect, identify, decide, engage |
 | DoD Strategy for Countering Unmanned Systems (2024) [20] | The five top-level goals of the U.S. approach to countering drones |
 | RUSI, *Protecting the Force from Uncrewed Aerial Systems* (2024) [21] | No single sensor or countermeasure is enough |
 | CNAS, *Countering the Swarm* (2025) [22] | The threat of drone swarms and the need for defence in several layers |
-| NATO IAMD COE report [9] | What radar and RF sensors cannot detect in small drones |
+| NATO IAMD COE, *The Evolving Asymmetric Threat of Unmanned Aircraft Systems* (c. 2024) [9] | What radar and RF sensors cannot detect in small drones |
+
 
 **Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems with the project.
 
-**Table 3.5.** Comparison with the project.
+
+**Table 3.5.**  Comparison of existing Counter-UAS systems with the proposed project.
 
 | Work | Detection | Response | Risk map for the operator | Recommendation citing doctrine |
 |---|---|---|---|---|

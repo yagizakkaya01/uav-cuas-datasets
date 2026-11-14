@@ -10,18 +10,52 @@ plan can refer to it. -->
 
 ## Functional requirements
 
+The functional requirements describe what the system is expected to do. Table 4.1 lists the main functions of the system, including UAV detection, position tracking, threat assessment, risk mapping, and decision support.
+
+**Table 4.1.** Functional requirements.
+
 | ID | Requirement |
-|---|---|
-| FR-1 | TODO |
+| :--- | :--- |
+| FR-1 | The ESP32 receiver shall receive 2.4 GHz signals from the mock drone’s transmitter |
+| FR-2 | The IP camera shall send video frames to the main computer |
+| FR-3 | The system shall use a YOLO model to detect the target drone |
+| FR-4 | The system shall estimate the drone’s position on a map and track its movement |
+| FR-5 | The system shall compute a threat score by combining visual detections and wi-fi signals |
+| FR-6 | The system shall map risk zones based on line of sight and terrain |
+| FR-7 | The system shall suggest safe flight paths to avoid threat zones |
+| FR-8 | The system shall use an LLM API to retrieve doctrine documents and suggest responses |
+| FR-9 | The system shall display a real-time tactical threat map on the dashboard |
+| FR-10 | The system shall allow the operator to evaluate alerts and ask why a response was suggested |
+| FR-11 | The system shall allow the operator to replay a recorded mission scenario |
+| FR-12 | The system shall allow administrators to configure sensor parameters, geofence, and map layers |
+| FR-13 | The system shall load air-traffic data by using OpenSky Network API |
 
 ## Non-functional requirements
 
+The non-functional requirements describe how well the system should perform. Table 4.2 specifies the expected performance, reliability, response time, and detection accuracy of the system.
+
+**Table 4.2.** Non-functional requirements.
+
 | ID | Requirement |
-|---|---|
-| NFR-1 | TODO |
+| :--- | :--- |
+| NFR-1 | The system shall continue operating even if the camera or receiver module loses connection |
+| NFR-2 | The YOLO model shall process video frames at least 10 FPS |
+| NFR-3 | The system shall show all threats on the map within 2 seconds |
+| NFR-4 | The LLM API shall generate response advice within 15 seconds |
+| NFR-5 | The web dashboard shall load within 5 seconds |
+| NFR-6 | The YOLO model shall detect UAVs with at least 70% accuracy |
 
 ## Domain requirements
 
+The domain requirements describe the technical standards and domain-specific rules that the system must follow. Table 4.3 covers wireless communication, aviation data formats, geographic coordinates, terrain analysis, and Counter-UAS doctrine.
+
+**Table 4.3.** Domain requirements.
+
 | ID | Requirement |
-|---|---|
-| DR-1 | TODO |
+| :--- | :--- |
+| DR-1 | The RF receiver shall use standard 2.4 GHz frequency |
+| DR-2 | The system shall read civilian air-traffic data in ICAO/ADS-B format |
+| DR-3 | The system shall apply restricted airspace boundaries (geofences) according to aviation rules |
+| DR-4 | The system shall use Digital Elevation Model (DEM) data to calculate line of sight and terrain masking |
+| DR-5 | The system shall use standard WGS84 coordinates for map and drone tracking |
+| DR-6 | The system shall base response advice on Counter-UAS rules and doctrine documents |
