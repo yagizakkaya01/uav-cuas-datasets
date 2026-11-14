@@ -43,7 +43,7 @@ Prices checked on the linked pages on 2 Nov 2026 and may change.
 - Single-node system: a 3-node system is too expensive for a graduation project, and since all nodes do the same job, testing with one node is enough.
 - One ESP32 receiver is enough for the test area regardless of the number of nodes.
 - Mock drone instead of a real drone, because a real drone may not use 2.4 GHz Wi-Fi; SDR is the alternative but too expensive.
-- The critical test is detection in the presence of other Wi-Fi transmitters (campus Wi-Fi, phones): either test away from interference or filter the target (e.g. by MAC). *Superseded on 12 Nov 2026: MAC addresses are not used; the receiver compares against a recorded baseline of the normal Wi-Fi background instead.*
+- The critical test is detection in the presence of other Wi-Fi transmitters (campus Wi-Fi, phones): either test away from interference or filter the target (e.g. by signal strength or timing). *Superseded on 12 Nov 2026: MAC addresses are not used; the receiver compares against a recorded baseline of the normal Wi-Fi background instead.*
 - Extra items may be needed later; this set is enough to start.
 
 ### Known follow-ups (not yet reflected in the accepted list)
