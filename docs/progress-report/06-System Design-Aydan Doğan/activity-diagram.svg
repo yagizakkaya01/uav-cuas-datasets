@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2356" height="2612" viewBox="0 0 2356 2612">
+<defs><marker id="a" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b1f27"/></marker></defs>
+<rect width="2356" height="2612" fill="#ffffff"/>
+<rect x="30" y="30" width="2296" height="2552" fill="#fcfcfd" stroke="#d5d9e0" stroke-width="2"/>
+<rect x="30" y="30" width="2296" height="92" fill="#f3f5f8" stroke="#d5d9e0" stroke-width="2"/>
+<text x="400.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Sensors</text>
+<text x="400.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">camera · ESP32 receiver (Adil Mert)</text>
+<line x1="770" y1="30" x2="770" y2="2582" stroke="#d5d9e0" stroke-width="2"/>
+<text x="970.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Visual detection</text>
+<text x="970.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">Aydan</text>
+<line x1="1170" y1="30" x2="1170" y2="2582" stroke="#d5d9e0" stroke-width="2"/>
+<text x="1370.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Fusion and risk</text>
+<text x="1370.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">Mert · Yaren</text>
+<line x1="1570" y1="30" x2="1570" y2="2582" stroke="#d5d9e0" stroke-width="2"/>
+<text x="1770.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Knowledge base</text>
+<text x="1770.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">Yağız</text>
+<line x1="1970" y1="30" x2="1970" y2="2582" stroke="#d5d9e0" stroke-width="2"/>
+<text x="2148.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Operator and C2</text>
+<text x="2148.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">operator · Mert</text>
+<circle cx="392.5" cy="165" r="19" fill="#1b1f27"/>
+<path d="M392.5,184 L392.5,234" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="80" y="235" width="630" height="10" fill="#1b1f27"/>
+<path d="M570,245 L570,298.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<path d="M215,245 L215,298.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="398.0" y="298.0" width="344" height="84" rx="18" fill="#dce9f5" stroke="#2f6aa3" stroke-width="2.8"/>
+<text x="570" y="348.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Capture video frame</text>
+<path d="M742.0,340 L798.0,340" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="798.0" y="298.0" width="344" height="84" rx="18" fill="#dce9f5" stroke="#2f6aa3" stroke-width="2.8"/>
+<text x="970" y="334.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Run YOLO detection</text>
+<text x="970" y="362.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">on the frame</text>
+<path d="M970,382.0 L970,450" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<polygon points="970,450 1000,480 970,510 940,480" fill="#ffffff" stroke="#1b1f27" stroke-width="2.2"/>
+<text x="1014" y="466" text-anchor="start" font-family="Inter, DejaVu Sans, sans-serif" font-size="21" fill="#1b1f27">UAV detected?</text>
+<path d="M940,480 L690,480 L690,382.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="760" y="468" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[no]</text>
+<path d="M970,510 L970,578.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="984" y="556" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[yes]</text>
+<rect x="798.0" y="578.0" width="344" height="84" rx="18" fill="#dce9f5" stroke="#2f6aa3" stroke-width="2.8"/>
+<text x="970" y="614.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Update track and estimate</text>
+<text x="970" y="642.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">ground position (known height)</text>
+<path d="M970,662.0 L970,730" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<polygon points="970,730 1000,760 970,790 940,760" fill="#ffffff" stroke="#1b1f27" stroke-width="2.2"/>
+<text x="1014" y="746" text-anchor="start" font-family="Inter, DejaVu Sans, sans-serif" font-size="21" fill="#1b1f27">Inside geofenced zone?</text>
+<path d="M940,760 L620,760 L620,382.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="760" y="748" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[no]</text>
+<path d="M970,790 L970,858.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="984" y="836" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[yes]</text>
+<rect x="798.0" y="858.0" width="344" height="84" rx="18" fill="#dce9f5" stroke="#2f6aa3" stroke-width="2.8"/>
+<text x="970" y="894.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Mark drone position</text>
+<text x="970" y="922.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">as detected</text>
+<path d="M1142.0,900 L1198.0,900" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1198.0" y="858.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
+<text x="1370" y="894.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Map position onto pilot region</text>
+<text x="1370" y="922.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">(scaled transformation)</text>
+<rect x="43.0" y="298.0" width="344" height="84" rx="18" fill="#dce9f5" stroke="#2f6aa3" stroke-width="2.8"/>
+<text x="215" y="334.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Receive 2.4 GHz Wi-Fi</text>
+<text x="215" y="362.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">frames (ESP32)</text>
+<path d="M215,382.0 L215,470" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<polygon points="215,470 245,500 215,530 185,500" fill="#ffffff" stroke="#1b1f27" stroke-width="2.2"/>
+<text x="257" y="488" text-anchor="start" font-family="Inter, DejaVu Sans, sans-serif" font-size="21" fill="#1b1f27">Drone's Wi-Fi</text>
+<text x="257" y="515" text-anchor="start" font-family="Inter, DejaVu Sans, sans-serif" font-size="21" fill="#1b1f27">signal present?</text>
+<path d="M215,530 L215,790" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="229" y="640" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[confirmed]</text>
+<path d="M185,500 L70,500 L70,820 L185,820" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="62" y="740" transform="rotate(-90 62 740)" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[not confirmed]</text>
+<polygon points="215,790 245,820 215,850 185,820" fill="#ffffff" stroke="#1b1f27" stroke-width="2.2"/>
+<path d="M215,850 L215,1034" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="229" y="935" font-family="Inter, DejaVu Sans, sans-serif" font-size="20" font-style="italic" fill="#555b66">Wi-Fi status</text>
+<rect x="80" y="1035" width="1450" height="10" fill="#1b1f27"/>
+<path d="M1370,942.0 L1370,1034" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<path d="M1370,1045 L1370,1108.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1198.0" y="1108.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
+<text x="1370" y="1144.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Compute threat score</text>
+<text x="1370" y="1172.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">(camera + Wi-Fi)</text>
+<path d="M1370,1192.0 L1370,1248.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1198.0" y="1248.0" width="344" height="84" rx="18" fill="#e3f1e4" stroke="#3d7d46" stroke-width="2.8"/>
+<text x="1370" y="1284.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Propagate risk and</text>
+<text x="1370" y="1312.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">line of sight on the grid</text>
+<path d="M1370,1332.0 L1370,1400" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<polygon points="1370,1400 1400,1430 1370,1460 1340,1430" fill="#ffffff" stroke="#1b1f27" stroke-width="2.2"/>
+<text x="1326" y="1416" text-anchor="end" font-family="Inter, DejaVu Sans, sans-serif" font-size="21" fill="#1b1f27">Above alert level?</text>
+<path d="M1400,1430 L1976.0,1430" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="1422" y="1418" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[no]</text>
+<rect x="1976.0" y="1388.0" width="344" height="84" rx="18" fill="#f6dfe1" stroke="#b0404a" stroke-width="2.8"/>
+<text x="2148" y="1424.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Update track symbol</text>
+<text x="2148" y="1452.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">on the map</text>
+<path d="M2148,1472.0 L2148,1525" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<circle cx="2148" cy="1545" r="19" fill="#ffffff" stroke="#1b1f27" stroke-width="2.4"/>
+<path d="M2135,1532 L2161,1558 M2135,1558 L2161,1532" stroke="#1b1f27" stroke-width="2.4"/>
+<path d="M1370,1460 L1370,1538.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="1384" y="1505" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[yes]</text>
+<rect x="1198.0" y="1538.0" width="344" height="84" rx="18" fill="#e3f1e4" stroke="#3d7d46" stroke-width="2.8"/>
+<text x="1370" y="1574.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Plan safe route for</text>
+<text x="1370" y="1602.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">response team (A*)</text>
+<path d="M1542.0,1580 L1598.0,1580" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1598.0" y="1538.0" width="344" height="84" rx="18" fill="#efe1f3" stroke="#8a4ea0" stroke-width="2.8"/>
+<text x="1770" y="1574.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Retrieve doctrine</text>
+<text x="1770" y="1602.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">passages (RAG)</text>
+<path d="M1770,1622.0 L1770,1678.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1598.0" y="1678.0" width="344" height="84" rx="18" fill="#efe1f3" stroke="#8a4ea0" stroke-width="2.8"/>
+<text x="1770" y="1714.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Generate cited</text>
+<text x="1770" y="1742.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">recommendation (LLM)</text>
+<path d="M1942.0,1720 L1976.0,1720" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1976.0" y="1678.0" width="344" height="84" rx="18" fill="#f6dfe1" stroke="#b0404a" stroke-width="2.8"/>
+<text x="2148" y="1714.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Show alert, MIL-STD-2525</text>
+<text x="2148" y="1742.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">symbol and recommendation</text>
+<path d="M2148,1762.0 L2148,1818.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1976.0" y="1818.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
+<text x="2148" y="1854.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Operator reviews</text>
+<text x="2148" y="1882.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">the recommendation</text>
+<path d="M2148,1902.0 L2148,1970" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<polygon points="2148,1970 2178,2000 2148,2030 2118,2000" fill="#ffffff" stroke="#1b1f27" stroke-width="2.2"/>
+<text x="2192" y="1988" text-anchor="start" font-family="Inter, DejaVu Sans, sans-serif" font-size="21" fill="#1b1f27">Accept?</text>
+<path d="M2118,2000 L1770,2000 L1770,2098.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="2048" y="1988" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[no]</text>
+<path d="M2148,2030 L2148,2098.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<text x="2162" y="2075" font-family="DejaVu Sans Mono, monospace" font-size="19" fill="#555b66">[yes]</text>
+<rect x="1598.0" y="2098.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
+<text x="1770" y="2134.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Record operator</text>
+<text x="1770" y="2162.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">override</text>
+<path d="M1942.0,2140 L1976.0,2140" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<rect x="1976.0" y="2098.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
+<text x="2148" y="2134.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Log decision</text>
+<text x="2148" y="2162.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">and response</text>
+<path d="M2148,2182.0 L2148,2248" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
+<circle cx="2148" cy="2270" r="22" fill="#ffffff" stroke="#1b1f27" stroke-width="2.8"/>
+<circle cx="2148" cy="2270" r="13" fill="#1b1f27"/>
+<path d="M50,2440 L734,2440 L758,2464 L758,2536 L50,2536 z" fill="#f3f5f8" stroke="#555b66" stroke-width="1.6"/>
+<text x="70" y="2478" font-family="Inter, DejaVu Sans, sans-serif" font-size="18" fill="#3b414c">The loop runs for every frame (~20 fps).</text>
+<text x="70" y="2508" font-family="Inter, DejaVu Sans, sans-serif" font-size="18" fill="#3b414c">ESC 491 scope: one mock drone, daytime, one camera, one ESP32 receiver.</text>
+</svg>
