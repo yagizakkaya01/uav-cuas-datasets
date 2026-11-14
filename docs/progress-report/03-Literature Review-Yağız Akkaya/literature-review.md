@@ -65,7 +65,7 @@ Open datasets are available for training the detector: DUT Anti-UAV [16], UAVSwa
 **Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems with the project.
 
 
-**Table 3.5.**  Comparison of existing Counter-UAS systems with the proposed project.
+**Table 3.5.**  Comparison of liceature.
 
 | Work | Detection | Response | Risk map for the operator | Recommendation citing doctrine |
 |---|---|---|---|---|
