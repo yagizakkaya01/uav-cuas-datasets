@@ -23,7 +23,7 @@ The proposed system consists of five interconnected layers, as presented in Tabl
 
 **Design principles:** every recommendation cites its source and the language model only explains a rule-based decision; the operator accepts or overrides every recommendation and nothing is acted on automatically; all data are open and citable; layers communicate only through defined messages; the design scales by adding cameras that run the same process.
 
-**Main design decisions** (agreed with the supervisors to keep the system simple and low-cost): one fixed PoE IP camera instead of four Jetson nodes; all processing on a team laptop (RTX 4070) instead of edge boards; the language model through an API instead of locally; a 3D-printed mock drone with an ESP32 transmitter instead of a real drone; standard 2.4 GHz Wi-Fi wireless communication used only to confirm the drone's identity by its MAC address; ground position from one camera and a known flight height. The ESC 491 demo covers one drone, daytime, clear weather and a ~15–20 m geofenced flight zone.
+**Main design decisions** (agreed with the supervisors to keep the system simple and low-cost): one fixed PoE IP camera instead of four Jetson nodes; all processing on a team laptop (RTX 4070) instead of edge boards; the language model through an API instead of locally; a 3D-printed mock drone with an ESP32 transmitter instead of a real drone; standard 2.4 GHz Wi-Fi wireless communication used only to confirm the drone's identity; ground position from one camera and a known flight height. The ESC 491 demo covers one drone, daytime, clear weather and a ~15–20 m geofenced flight zone.
 
 ## 6.2 Preliminary design
 
@@ -41,7 +41,7 @@ The software subsystems of the proposed system operate on a single laptop. Table
 | Subsystem | Output | Owner |
 |---|---|---|
 | Visual detection and tracking (YOLO on CUDA) | Track ID, ground position | Aydan Doğan |
-| Wireless confirmation (2.4 GHz Wi-Fi; ESP32 sniffer, MAC filter) | Confirmed / not confirmed | Adil Mert İş |
+| Wireless confirmation (2.4 GHz Wi-Fi; ESP32 sniffer) | Confirmed / not confirmed | Adil Mert İş |
 | Risk grid and routing (PostGIS, line of sight, A\*) | Risk grid, safe route | Yaren Duyan |
 | Knowledge base (RAG, LLM API) | Cited explanation | Yağız Akkaya |
 | Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, alert, decision log | Mert Gökalp |
