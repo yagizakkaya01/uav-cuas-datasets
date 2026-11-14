@@ -124,13 +124,13 @@ Measurements of commercial drones gave radar reflections far below those of norm
 
 **Academic studies.** Table 3.3 lists the key studies and how each one is used in the project.
 
-**Table 3.3.** Key studies.
+**Table 3.3.** Key studies related to our project.
 
-| Ref. | Year | Topic | Main finding | Use in the project |
+| Study | Year | Topic | Main finding | Use it as reference in the project |
 |---|---|---|---|---|
-| [7] | 2020 | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
-| [6] | 2021 | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
-| [16] | 2021 | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
+| G. Lykou, D. Moustakas and D. Gritzalis, "Defending airports from UAS: A survey on cyber-attacks and counter-drone sensing technologies," *Sensors* [7] | 2020 | Sensors at airports | No single sensor is enough; jamming is restricted | Reason for combining camera and RF |
+| M. Ezuma, C. K. Anjinappa, M. Funderburk and I. Guvenc, "Radar cross section based statistical recognition of UAVs at microwave frequencies," arXiv [6] | 2021 | Radar | Small drones reflect very little radar energy | Shows why radar alone is not enough |
+| F. Svanström, F. Alonso-Fernandez and C. Englund, "A dataset for multi-sensor drone detection," *Data in Brief* [16] | 2021 | Camera detection | Open infrared and visible dataset recorded at airports | Training data and camera range estimate |
 
 Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwarm [15] and the Halmstad dataset [16] for cameras, and DroneRF [17] for RF signals.
 
@@ -138,7 +138,7 @@ Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwa
 
 **Table 3.4.** Main documents in the knowledge base.
 
-| Document | Content to be used in the project |
+| Document | Content that will be used in the project |
 |---|---|
 | ATP 3-01.81, *Counter-Unmanned Aircraft System* (2023) [10] | Drone size groups 1–5, defence in several layers, and the sequence detect, identify, decide, engage |
 | DoD Strategy for Countering Unmanned Systems (2024) [26] | The five top-level goals of the U.S. approach to countering drones |
@@ -148,7 +148,7 @@ Open datasets are available for training the detector: DUT Anti-UAV [14], UAVSwa
 
 **Turkish defence industry.** Counter-drone systems are also an active industrial field in Türkiye. Table 3.5 compares publicly announced Turkish systems with the project.
 
-**Table 3.5.** Comparison of existing Counter-UAS systems with the proposed project.
+**Table 3.5.** Comparison of literature.
 
 | Work | Detection | Response | Risk map for the operator | Recommendation citing doctrine |
 |---|---|---|---|---|
