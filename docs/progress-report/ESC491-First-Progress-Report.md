@@ -314,7 +314,7 @@ The proposed system consists of five interconnected layers, as presented in Tabl
 
 The hardware and software deployment architecture of the proposed system is illustrated in Figure 6.1. A fixed Hikvision DS-2CD1643G2-LIZSU IP camera mounted on a tripod sends video and receives power through approximately 30 m of Cat6 cable connected to a PoE injector. The injector connects to the team laptop through a short Cat6 cable. The camera provides an RTSP video stream at 2560 × 1440 resolution and 20 fps.
 
-The mock drone is a 3D-printed model equipped with an ESP32 transmitter and a 10,000 mAh power bank. It transmits 2.4 GHz Wi-Fi frames. A separate ESP32 receiver compares the Wi-Fi traffic it hears with the normal background of the area (recorded beforehand) and sends the result and sends the received information to the laptop through USB serial communication. The total planned procurement cost is ₺10,088.
+The mock drone is a 3D-printed model equipped with an ESP32 transmitter and a 10,000 mAh power bank. It transmits 2.4 GHz Wi-Fi frames. A separate ESP32 receiver compares the Wi-Fi traffic it hears with the normal background of the area (recorded beforehand) and sends the result to the laptop through USB serial communication. The total planned procurement cost is ₺10,088.
 
 ![Figure 6.1 – Deployment diagram](figures/deployment-diagram.jpeg)
 
