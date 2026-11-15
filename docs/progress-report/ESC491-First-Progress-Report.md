@@ -53,7 +53,7 @@ Small commercial drones are cheap, easy to buy and hard to see. Over the past de
 
 The problem is no longer hypothetical. In December 2018 drone sightings closed London Gatwick for more than a day [1]. On 22 November 2025, civil and military flights at Eindhoven were halted for about two hours after drones were reported near the airfield [2], and an IISS study counted 144 drone incidents across 13 European countries between August 2024 and February 2026 [3]. In the United States, the FAA has collected more than 20,000 sighting reports since 2014 [4], and in 2026 NATO approved a multi-year, multi-billion-dollar counter-drone initiative [5].
 
-Detecting these aircraft is hard. Small drones have radar cross-sections well below 0 dBsm, so radar alone often misses them [6], and studies of airport protection recommend combining several types of sensors rather than relying on one [7]. Detection, however, is only half of the job. Once a track appears, an operator still has to judge, usually within seconds, which assets are exposed, whether the terrain hides the drone's approach, and which procedure applies. Most counter-UAS products put their effort into the sensors and effectors: radar, RF, electro-optical and acoustic detection, and jamming or interception. As far as we can tell from public documentation, their command-and-control software fuses tracks and assigns effectors, but it does not explain why a track is dangerous in terms of the terrain, the protected assets and doctrine. Türkiye's national UAV traffic platform İHATTYS manages registered, cooperative drones [8]; a drone that does not announce itself is outside its scope by definition. This is the gap we want to address: an explainable layer between "a drone has been detected" and "this is what to do". The project does not build radar sensing or any means of neutralising a drone; it uses a camera and a 2.4 GHz Wi-Fi receiver for detection and concentrates on assessment and decision support. Terrain effects such as line of sight are computed on the terrain model of the pilot region, onto which the detections from the flat campus demo area are mapped.
+Detecting these aircraft is hard. Small drones have radar cross-sections well below 0 dBsm, so radar alone often misses them [6], and studies of airport protection recommend combining several types of sensors rather than relying on one [7]. Detection, however, is only half of the job. Once a track appears, an operator still has to judge, usually within seconds, which assets are exposed, whether the terrain hides the drone's approach, and which procedure applies. Most counter-UAS products put their effort into the sensors and effectors: radar, RF, electro-optical and acoustic detection, and jamming or interception. As far as we can tell from public documentation, their command-and-control software fuses tracks and assigns effectors, but it does not explain why a track is dangerous in terms of the terrain, the protected assets and doctrine. Türkiye's national UAV traffic platform İHATTYS manages registered, cooperative drones [8]; a drone that does not announce itself is outside its scope by definition. This is the gap we want to address: an explainable layer between "a drone has been detected" and "this is what to do". The project does not build radar sensing or any means of neutralising a drone; it uses a camera for detection and a 2.4 GHz Wi-Fi receiver for confirmation, and concentrates on assessment and decision support. Terrain effects such as line of sight are computed on the terrain model of the pilot region, onto which the detections from the flat campus demo area are mapped.
 
 #### 2.1.3 Proposed Solution Approach
 
@@ -192,8 +192,8 @@ The functional requirements describe what the system is expected to do. Table 4.
 | FR-4 | The system shall estimate the drone’s position on a map and track its movement |
 | FR-5 | The system shall compute a threat score by combining visual detections and Wi-Fi signals |
 | FR-6 | The system shall map risk zones based on line of sight and terrain |
-| FR-7 | The system shall suggest safe flight paths to avoid threat zones |
-| FR-8 | The system shall use an LLM API to retrieve doctrine documents and suggest responses |
+| FR-7 | The system shall suggest safe routes for a response team or an evacuation path that avoid threat zones |
+| FR-8 | The system shall retrieve relevant doctrine passages and use an LLM API to explain the suggested response with citations |
 | FR-9 | The system shall display a real-time tactical threat map on the dashboard |
 | FR-10 | The system shall allow the operator to evaluate alerts and ask why a response was suggested |
 | FR-11 | The system shall allow the operator to replay a recorded mission scenario |
@@ -261,7 +261,7 @@ Development runs in five phases, each ending with a demonstrable output:
 | P4 – Hardware and field | 10–12 | Live single-camera detection on campus, shown on the map |
 | P5 – Final | 13–14 | Report, presentation, demo v1 |
 
-Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [9]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a scaled transformation, always reported as scaled. Work is reviewed and merged through pull requests, with a short weekly progress meeting.
+Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [9]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a similarity transform that scales distance by s = 100 and time by k = 10. The time scale is needed because scaling distance alone also scales speed: a mock drone carried at 1 m/s would move at 100 m/s on the pilot-region grid, and the time-to-reach feature of the threat score would lose its meaning; with k = 10 it moves at a realistic 10 m/s. Mapped distances are always reported as scaled, and demo accuracy figures (detection range, position error, latency) are reported at campus scale only. Work is reviewed and merged through pull requests, with a short weekly progress meeting.
 
 ### 5.3 Testing and validation
 
@@ -277,7 +277,7 @@ Testing moves from module tests on mock data, to desk integration with recorded 
 | Knowledge base | Recall@k, MRR; share of correctly cited answers |
 | Whole chain | End-to-end latency; warning time; false alarms |
 
-A measurable success criterion (e.g. detection up to X m within Y s) is agreed in writing with the supervisors before the field test, and threat levels are cross-checked against a published airport drone-risk framework [36].
+The success criterion for the field test follows from the requirements: the mock drone is detected anywhere in the ~15 m × 17 m demo area and shown on the map within 2 s (NFR-3), with the detector running at 10 FPS or more (NFR-2). This criterion is confirmed in writing with the supervisors before the field test, and threat levels are cross-checked against a published airport drone-risk framework [36].
 
 ## 6 System Design
 
@@ -291,7 +291,7 @@ The proposed system consists of five interconnected layers, as presented in Tabl
 
 | Layer | Question it answers | Output |
 |---|---|---|
-| 1. Sensing and detection | Is there a drone, and where? | Tracks (camera), identity confirmation (2.4 GHz wireless communication) |
+| 1. Sensing and detection | Is there a drone, and where? | Tracks (camera), confirmation of the drone's 2.4 GHz Wi-Fi signal |
 | 2. Knowledge base | What does doctrine say? | Cited doctrine passages |
 | 3. Geospatial risk | Which areas are exposed? | Risk grid, line of sight, safe route |
 | 4. Fusion and threat assessment | How dangerous is it? | Threat score and level |
@@ -299,7 +299,7 @@ The proposed system consists of five interconnected layers, as presented in Tabl
 
 **Design principles:** every recommendation cites its source and the language model only explains a rule-based decision; the operator accepts or overrides every recommendation and nothing is acted on automatically; all data are open and citable; layers communicate only through defined messages; the design scales by adding cameras that run the same process.
 
-**Main design decisions** (agreed with the supervisors to keep the system simple and low-cost): one fixed PoE IP camera instead of four Jetson nodes; all processing on a team laptop (RTX 4070) instead of edge boards; the language model through an API instead of locally; a 3D-printed mock drone with an ESP32 transmitter instead of a real drone; standard 2.4 GHz Wi-Fi wireless communication used only to confirm the drone's identity; ground position from one camera and a known flight height. The ESC 491 demo covers one drone, daytime, clear weather and a ~15 m × 17 m geofenced flight zone.
+**Main design decisions** (agreed with the supervisors to keep the system simple and low-cost): one fixed PoE IP camera instead of four Jetson nodes; all processing on a team laptop (RTX 4070) instead of edge boards; the language model through an API instead of locally; a 3D-printed mock drone with an ESP32 transmitter instead of a real drone; a standard 2.4 GHz Wi-Fi receiver used only to confirm that the mock drone's signal is present, not to locate or identify it; ground position from one camera and a known flight height. The ESC 491 demo covers one drone, daytime, clear weather and a ~15 m × 17 m geofenced flight zone.
 
 ### 6.2 Preliminary design
 
@@ -321,7 +321,7 @@ The software subsystems of the proposed system operate on a single laptop. Table
 | Knowledge base (RAG [9], LLM API) | Cited explanation | Yağız Akkaya |
 | Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, alert, decision log | Mert Gökalp |
 
-Figure 6.2 illustrates the processing flow of the proposed system. Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected; in parallel the ESP32 receiver confirms or does not confirm the drone's 2.4 GHz Wi-Fi signal, and the position is mapped onto the pilot region with a scaled transformation. The threat score is then computed and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route for a response team or an evacuation path is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
+Figure 6.2 illustrates the processing flow of the proposed system. Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected; in parallel the ESP32 receiver confirms or does not confirm the drone's 2.4 GHz Wi-Fi signal, and the position is mapped onto the pilot region with a scaled transformation. The camera and Wi-Fi evidence are then fused into a threat score, and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route for a response team or an evacuation path is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
 
 ![Figure 6.2 – Activity diagram](figures/activity-diagram.png)
 
