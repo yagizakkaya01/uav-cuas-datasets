@@ -49,6 +49,7 @@ The report first states the problem and the project's aim and objectives. It the
 
 Small commercial drones are cheap, easy to buy and hard to see. Over the past decade they have gone from a hobbyist curiosity to a real security problem for airports, military bases and other critical sites. When one appears near such a site, the people protecting it have to answer three questions quickly: is it really a drone, how dangerous is it, and what should we do about it? This project tries to answer all three. A deep-learning detector recognises the drone in a camera image, and its Wi-Fi signal confirms its identity. The system then places it on a real terrain model of the protected site, estimates how threatening it is, and recommends a response that the operator can check against published doctrine.
 
+
 #### 2.1.2 Significance of the Problem
 
 The problem is no longer hypothetical. In December 2018 drone sightings closed London Gatwick for more than a day [1]. On 22 November 2025, civil and military flights at Eindhoven were halted for about two hours after drones were reported near the airfield [2], and an IISS study counted 144 drone incidents across 13 European countries between August 2024 and February 2026 [3]. In the United States, the FAA has collected more than 20,000 sighting reports since 2014 [4], and in 2026 NATO approved a multi-year, multi-billion-dollar counter-drone initiative [5].
@@ -192,8 +193,8 @@ The functional requirements describe what the system is expected to do. Table 4.
 | FR-4 | The system shall estimate the drone’s position on a map and track its movement |
 | FR-5 | The system shall compute a threat score by combining visual detections and Wi-Fi signals |
 | FR-6 | The system shall map risk zones based on line of sight and terrain |
-| FR-7 | The system shall suggest safe routes for a response team or an evacuation path that avoid threat zones |
-| FR-8 | The system shall retrieve relevant doctrine passages and use an LLM API to explain the suggested response with citations |
+| FR-7 | The system shall calculate safe routes for response teams or evacuation paths that avoid identified threat zones using the geospatial risk grid. |
+| FR-8 | The system shall use a RAG retriever to retrieve relevant Counter-UAS doctrine passages and an LLM API to explain rule-based response recommendations using the retrieved evidence. |
 | FR-9 | The system shall display a real-time tactical threat map on the dashboard |
 | FR-10 | The system shall allow the operator to evaluate alerts and ask why a response was suggested |
 | FR-11 | The system shall allow the operator to replay a recorded mission scenario |
@@ -263,27 +264,40 @@ Development runs in five phases, each ending with a demonstrable output:
 
 Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [9]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a similarity transform that scales distance by s = 100 and time by k = 10. The time scale is needed because scaling distance alone also scales speed: a mock drone carried at 1 m/s would move at 100 m/s on the pilot-region grid, and the time-to-reach feature of the threat score would lose its meaning; with k = 10 it moves at a realistic 10 m/s. Mapped distances are always reported as scaled, and demo accuracy figures (detection range, position error, latency) are reported at campus scale only. Work is reviewed and merged through pull requests, with a short weekly progress meeting.
 
+
 ### 5.3 Testing and validation
 
-Testing moves from module tests on mock data, to desk integration with recorded video and Wi-Fi logs, to a live field test with the mock drone at known distances and height. Because a real airfield attack cannot be staged, the decision layers are also evaluated with Monte Carlo runs of synthetic tracks over the pilot-region grid.
+Testing moves from module tests on mock data, to desk integration with recorded video and Wi-Fi logs, and finally to a live field test with the mock drone at known distances and height. Because a real airfield attack cannot be staged, the decision layers are also evaluated with Monte Carlo runs of synthetic tracks over the pilot-region grid.
 
-**Table 5.2.** Evaluation metrics.
+Each module is evaluated using measurable performance metrics aligned with the functional and non-functional requirements. Table 5.2 presents the evaluation metrics and proposed acceptance criteria.
 
-| Evaluated | Metric |
-|---|---|
-| Visual detection | Precision, recall, mAP@0.5; detection range; frames per second |
-| Tracking | Position RMSE against the known path; track breaks |
-| Wireless confirmation (2.4 GHz Wi-Fi) | Correct and false confirmations with other Wi-Fi devices present |
-| Knowledge base | Recall@k, MRR; share of correctly cited answers |
-| Whole chain | End-to-end latency; warning time; false alarms |
+**Table 5.2.** Evaluation metrics and acceptance criteria.
 
-The success criterion for the field test follows from the requirements: the mock drone is detected anywhere in the ~15 m × 17 m demo area and shown on the map within 2 s (NFR-3), with the detector running at 10 FPS or more (NFR-2). This criterion is confirmed in writing with the supervisors before the field test, and threat levels are cross-checked against a published airport drone-risk framework [36].
+| Evaluated | Metric | Acceptance criterion |
+|---|---|---|
+| Visual detection | Precision, recall, mAP@0.5; detection range; frames per second | mAP@0.5 ≥ 0.70; at least 10 FPS |
+| Tracking | Position RMSE against the known path; track breaks | Position error and track continuity measured against reference data |
+| Wireless confirmation (2.4 GHz Wi-Fi) | Correct and false confirmations with other Wi-Fi devices present | Confirmation performance and false confirmations measured |
+| Knowledge base | Recall@k, MRR; correctness of document and page citations | Every response recommendation includes a verifiable document and page reference |
+| Geospatial risk analysis | Line-of-sight correctness; risk-zone consistency | LOS and risk zones validated against reference scenarios |
+| Safe routing | Route validity; avoidance of threat zones | Generated response-team or evacuation routes avoid defined high-risk zones |
+| Whole chain | End-to-end latency; warning time; false alarm rate | Threat map updates within 2 seconds; false alarms measured and reported |
+| Decision support | Response generation time; operator override and decision logging | LLM explanation within 15 seconds; operator decisions recorded |
+| Dashboard | Page loading time | Dashboard loads within 5 seconds |
+
+The visual detector is evaluated using precision, recall, and mAP@0.5 on labeled UAV test data. Tracking accuracy is measured against known reference positions. The geospatial module is tested using reference scenarios to verify line-of-sight calculations, risk-zone generation, and safe route planning.
+
+The knowledge base is evaluated using retrieval metrics and citation correctness. Each generated recommendation must include the source document and page number. The decision-support module is tested to ensure that the operator can review, accept, or override recommendations and that all decisions are logged.
+
+Final acceptance criteria for metrics without defined thresholds, including tracking error, wireless confirmation performance, and false alarm rate, will be agreed upon with the supervisors before field testing. Threat levels will also be cross-checked against a published airport drone-risk framework [36].
+
+
 
 ## 6 System Design
 
 ### 6.1 Conceptual design
 
-The system protects a critical site, such as an airfield, against small non-cooperative UAVs. A sensor node detects a drone, the system places it on a map of the site, estimates its threat level and recommends a response with a cited doctrine passage. The **operator** always makes the final decision; the **system administrator** (the team) configures the sensor and the pilot region. External systems are open geodata, the OpenSky Network [13] and a language-model API (see the use case diagram, Figure 4.1).
+The system protects a critical site, such as an airfield, against small non-cooperative UAVs. A fixed IP camera detects a drone, while an ESP32 receiver checks its 2.4 GHz Wi-Fi signal for identity confirmation. The system estimates the drone's position, places it on a map of the site, calculates its threat level, and recommends a response supported by cited doctrine passages. The **operator** always makes the final decision; the **system administrator** (the team) configures the sensors and the pilot region. External systems include open geodata, the OpenSky Network [13], and a language-model API (see the use case diagram, Figure 4.1).
 
 The proposed system consists of five interconnected layers, as presented in Table 6.1. Each layer performs a specific function and produces outputs that support the overall threat assessment and decision-support process.
 
@@ -291,43 +305,56 @@ The proposed system consists of five interconnected layers, as presented in Tabl
 
 | Layer | Question it answers | Output |
 |---|---|---|
-| 1. Sensing and detection | Is there a drone, and where? | Tracks (camera), confirmation of the drone's 2.4 GHz Wi-Fi signal |
-| 2. Knowledge base | What does doctrine say? | Cited doctrine passages |
-| 3. Geospatial risk | Which areas are exposed? | Risk grid, line of sight, safe route |
-| 4. Fusion and threat assessment | How dangerous is it? | Threat score and level |
-| 5. Decision support and C2 | What should the operator do? | MIL-STD-2525 [11] map, alert, cited recommendation |
+| 1. Sensing and detection | Is there a drone, and where? | Camera-based UAV tracks and identity confirmation using 2.4 GHz Wi-Fi signals |
+| 2. Knowledge base | What does doctrine say? | Relevant doctrine passages retrieved by RAG, including document and page references |
+| 3. Geospatial risk | Which areas are exposed? | Risk grid, line-of-sight analysis, and safe response-team or evacuation routes |
+| 4. Fusion and threat assessment | How dangerous is it? | Threat score and threat level |
+| 5. Decision support and C2 | What should the operator do? | MIL-STD-2525 [11] tactical symbols, alerts, and cited response recommendations |
 
-**Design principles:** every recommendation cites its source and the language model only explains a rule-based decision; the operator accepts or overrides every recommendation and nothing is acted on automatically; all data are open and citable; layers communicate only through defined messages; the design scales by adding cameras that run the same process.
+**Design principles:** Every recommendation includes a verifiable document and page reference. The RAG retriever identifies relevant doctrine passages, while the language model explains a rule-based response recommendation using the retrieved evidence. The operator accepts or overrides every recommendation, and no response is executed automatically. Operator decisions and overrides are recorded in the event log. The system uses open and citable data sources, and its layers communicate through defined interfaces. The design can be extended by adding more cameras following the same processing workflow.
 
-**Main design decisions** (agreed with the supervisors to keep the system simple and low-cost): one fixed PoE IP camera instead of four Jetson nodes; all processing on a team laptop (RTX 4070) instead of edge boards; the language model through an API instead of locally; a 3D-printed mock drone with an ESP32 transmitter instead of a real drone; a standard 2.4 GHz Wi-Fi receiver used only to confirm that the mock drone's signal is present, not to locate or identify it; ground position from one camera and a known flight height. The ESC 491 demo covers one drone, daytime, clear weather and a ~15 m × 17 m geofenced flight zone.
+**Main design decisions** (agreed with the supervisors to keep the system simple and low-cost): one fixed PoE IP camera instead of four Jetson nodes; all processing on a team laptop (RTX 4070) instead of edge boards; the language model accessed through an external API instead of running locally; a 3D-printed mock drone equipped with an ESP32 transmitter and a 10,000 mAh power bank; a separate ESP32 receiver connected to the laptop through USB; standard 2.4 GHz Wi-Fi communication used only to confirm the mock drone's identity; and ground position estimated from one camera and a known flight height. The ESC 491 demonstration covers one mock drone, daytime, clear weather, and a ~15 m × 17 m geofenced zone.
 
 ### 6.2 Preliminary design
 
-The hardware configuration of the proposed system is illustrated in Figure 6.1. A Hikvision DS-2CD1643G2-LIZSU camera on a tripod sends video and receives power over a ~30 m Cat6 cable through a PoE injector to the laptop (RTSP, 2560 × 1440 at 20 fps). An ESP32 receiver connects over USB; the mock drone carries a second ESP32 and a power bank. Total procurement cost is ₺10,088.
+The hardware and software deployment architecture of the proposed system is illustrated in Figure 6.1. A fixed Hikvision DS-2CD1643G2-LIZSU IP camera mounted on a tripod sends video and receives power through approximately 30 m of Cat6 cable connected to a PoE injector. The injector connects to the team laptop through a short Cat6 cable. The camera provides an RTSP video stream at 2560 × 1440 resolution and 20 fps.
+
+The mock drone is a 3D-printed model equipped with an ESP32 transmitter and a 10,000 mAh power bank. It transmits 2.4 GHz Wi-Fi frames with a known MAC address. A separate ESP32 receiver captures these signals and sends the received information to the laptop through USB serial communication. The total planned procurement cost is ₺10,088.
 
 ![Figure 6.1 – Deployment diagram](figures/deployment-diagram.jpeg)
 
-**Figure 6.1.** Hardware deployment diagram.
+**Figure 6.1.** Hardware and software deployment diagram of the proposed system.
 
-The software subsystems of the proposed system operate on a single laptop. Table 6.2 presents the main subsystems, their outputs, and the team members responsible for their development.
+All main software components run on the team laptop equipped with an NVIDIA RTX 4070 GPU. These include visual detection and tracking, RF confirmation, fusion and threat scoring, risk-grid analysis and routing, RAG retrieval, the recommendation engine, the C2 web server, and event logging. The laptop also stores pilot-region geospatial data in PostGIS and doctrine documents in a local knowledge base. The operator accesses the C2 interface through a local web browser.
+
+Table 6.2 presents the main software subsystems, their outputs, and the team members responsible for their development.
 
 **Table 6.2.** Software subsystems.
 
 | Subsystem | Output | Owner |
 |---|---|---|
-| Visual detection and tracking (YOLO on CUDA) | Track ID, ground position | Aydan Doğan |
+| Visual detection and tracking (YOLO on CUDA) | Track ID, estimated ground position | Aydan Doğan |
 | Wireless confirmation (2.4 GHz Wi-Fi; ESP32 sniffer) | Confirmed / not confirmed | Adil Mert İş |
-| Risk grid and routing (PostGIS, line of sight, A\*) | Risk grid, safe route | Yaren Duyan |
-| Knowledge base (RAG [9], LLM API) | Cited explanation | Yağız Akkaya |
-| Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, alert, decision log | Mert Gökalp |
+| Risk grid and routing (PostGIS, line of sight, A*/Dijkstra) | Risk grid, line-of-sight results, safe response-team or evacuation routes | Yaren Duyan |
+| Knowledge base (RAG [9], LLM API) | Retrieved doctrine passages, document and page references, cited explanations | Yağız Akkaya |
+| Fusion, threat score, C2 interface (Leaflet, milsymbol.js) | Threat level, MIL-STD-2525 symbols, alerts, decision log | Mert Gökalp |
 
-Figure 6.2 illustrates the processing flow of the proposed system. Each frame is checked for a UAV; a detected drone's track and ground position are updated and checked against the geofence. A drone inside the geofence is marked as detected; in parallel the ESP32 receiver confirms or does not confirm the drone's 2.4 GHz Wi-Fi signal, and the position is mapped onto the pilot region with a scaled transformation. The camera and Wi-Fi evidence are then fused into a threat score, and the risk is propagated on the grid. Below the alert level only the map symbol is updated; above it, a safe route for a response team or an evacuation path is planned, doctrine is retrieved and a cited recommendation is shown to the operator, whose decision or override is logged.
+The geospatial module uses WGS84 coordinates for geographic data exchange and map display, while distance calculations, line-of-sight analysis, risk-grid generation, and route planning are performed in an appropriate projected Coordinate Reference System (CRS). The risk-grid and routing module uses terrain and building data stored in PostGIS to identify exposed areas and calculate routes that avoid high-risk zones. Open geospatial and air-traffic data, including DEM, OSM, and OpenSky sources, are downloaded before the demonstration.
+
+Figure 6.2 illustrates the activity diagram and processing flow of the proposed system. The process begins with capturing video frames from the fixed IP camera. Each frame is analyzed using YOLO to detect a UAV. If no UAV is detected, the system continues capturing frames. When a UAV is detected, its track is updated and its ground position is estimated using a known flight height.
+
+The estimated position is then checked against the geofenced zone. If the UAV is outside the zone, the system returns to frame capture. Otherwise, the drone is marked as detected, and its threat score is calculated. The system then propagates risk and performs line-of-sight analysis on the geospatial grid.
+
+If the threat score is below the alert threshold, the system only updates the drone's track symbol on the map. If the threshold is exceeded, the geospatial module calculates a safe route for a response team or an evacuation path using A* or Dijkstra's algorithm. The RAG service retrieves relevant Counter-UAS doctrine passages from the local knowledge base, including document and page references. The recommendation engine applies rule-based decision logic, while the external LLM API generates a cited explanation of the recommended response using the retrieved evidence.
+
+The system displays the alert, MIL-STD-2525 tactical symbol, and response recommendation to the operator through the C2 interface. The operator reviews the recommendation and decides whether to accept or override it. If the recommendation is rejected, the override is recorded. In both cases, the final decision and response are logged.
 
 ![Figure 6.2 – Activity diagram](figures/activity-diagram.png)
 
-**Figure 6.2.** System activity diagram.
+**Figure 6.2.** Activity diagram showing UAV detection, geospatial risk assessment, safe route planning, doctrine retrieval, and operator decision-making.
 
-ESC 492 extends this structure with more cameras, fine-tuning on field recordings, swarm tracking and OpenSky anomaly detection.
+ESC 492 extends this structure with more cameras, fine-tuning on field recordings, swarm tracking, and OpenSky anomaly detection.
+
 
 ## 7 Conclusion
 
@@ -355,6 +382,24 @@ In the first half of the semester the team has:
 **What went well:** Building the project on real, checked sources has paid off: every candidate region was backed by an actual data download rather than a description, and errors were found and corrected early. Clear ownership of the layers meant that region proposals, diagrams and the hardware list could be prepared in parallel. Regular feedback from the supervisors kept the scope realistic.
 
 **What we would do differently:** Comparing four regions in depth took more time than planned. A shorter list of criteria agreed at the start would have led to a decision sooner. Some work was kept on personal computers instead of the shared repository, which made it less visible to the rest of the team. From now on, all work will be pushed to the repository as it is produced.
+
+
+### 7.4 Future Work and Next Steps
+
+In the next stages of the project, the team will focus on completing the system development, integrating the individual components, and evaluating the overall performance. The planned activities are as follows:
+
+- **Pilot-region selection:** Select the final pilot region from the four candidates (Eindhoven, Gatwick, Aalborg and Akrotiri/Chania), considering data availability, terrain characteristics and suitability for the project.
+
+- **Geospatial model:** Prepare the selected region's Digital Elevation Model (DEM), OpenStreetMap (OSM) data, building information and road network. These datasets will be used for line-of-sight analysis, risk mapping and safe-route planning.
+
+- **System development:** Continue developing the main system components, including YOLO-based UAV detection and tracking, ESP32-based wireless confirmation, geospatial risk assessment, A* pathfinding and RAG-based decision support.
+
+- **System integration:** Connect the five system layers to enable data exchange between UAV detection, knowledge retrieval, geospatial analysis, threat assessment and the C2 interface.
+
+- **Testing and validation:** Test the individual components and the integrated system using recorded datasets and the planned campus demonstration setup. Evaluate detection performance, position accuracy, risk assessment and response generation.
+
+- **ESC 492 development:** Extend and improve the system based on testing results, evaluate its overall performance and prepare the final demonstration and project report. Potential extensions include multiple-camera support, improved detection models, drone swarm tracking and air-traffic anomaly detection.
+
 
 ## References
 
