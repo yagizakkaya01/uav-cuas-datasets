@@ -346,7 +346,7 @@ The system displays the alert, MIL-STD-2525 tactical symbol, and response recomm
 
 ![Figure 6.2 – Activity diagram](figures/activity-diagram.png)
 
-**Figure 6.2.** Activity diagram showing UAV detection, geospatial risk assessment, safe route planning, doctrine retrieval, and operator decision-making.
+**Figure 6.2.** System activity diagram.
 
 ESC 492 extends this structure with more cameras, fine-tuning on field recordings, swarm tracking, and OpenSky anomaly detection.
 
