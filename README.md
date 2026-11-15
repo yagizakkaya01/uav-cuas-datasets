@@ -8,12 +8,12 @@
 ![License](https://img.shields.io/badge/license-CC0%201.0-blue)
 ![Layers](https://img.shields.io/badge/architecture%20layers-5-informational)
 ![Sources](https://img.shields.io/badge/verified%20sources-35%2B-success)
-![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--12-lightgrey)
+![Last Updated](https://img.shields.io/badge/last%20updated-2026--11--15-lightgrey)
 
 <p align="center">
-  <img src="./assets/demo-threat-map.gif" alt="Concept animation: sensor detection, risk propagation and route replanning on a grid threat map" width="860">
+  <img src="./assets/demo-threat-map.gif" alt="Concept animation: one camera and an ESP32 receiver detect a mock drone, the threat score crosses the alert level and the operator gets a cited recommendation" width="860">
   <br>
-  <sub><i>Concept illustration of the C2 engine (detect → propagate risk → replan route). Synthetic scenario — not real data.<br>Sistemin çalışma mantığını gösteren temsili animasyon: dron tespit edilir, tehlikeli bölge belirlenir, rota güvenli yöne çevrilir. Gerçek veri değildir.</i></sub>
+  <sub><i>Concept illustration of the single-node demo: camera detection (YOLO) → track → ESP32 2.4 GHz presence → threat score → alert and cited recommendation, with the operator making the final decision. Track symbols follow APP-6 / MIL-STD-2525 affiliation frames; steps follow the ATP 3-01.81 active measures (no engagement). Synthetic scenario — not real data.<br>Tek kameralı demonun temsili animasyonu: kamera dronu tespit eder, ESP32 Wi-Fi varlığını doğrular, tehdit puanı alarm eşiğini geçince operatöre kaynaklı öneri gider; son kararı operatör verir. Gerçek veri değildir.</i></sub>
 </p>
 
 > A curated, evidence-based catalog of **real, citable, and — wherever possible — openly accessible** datasets and literature underpinning a NATO/C4ISR-themed senior capstone project: a **Spatial-Semantic UAV/Drone Threat Mapping & C2 Engine** for tactical field operations.
@@ -121,9 +121,9 @@ uav-cuas-datasets/
 
 | Member | Focus | Main work |
 |---|---|---|
-| Adil Mert İş (EEE) | Sensor node & RF sensing | IP camera node hardware, power and data links, Wi-Fi/RF control-link detection, detection-range model; joint design of the physical demo and project-wide integration |
+| Adil Mert İş (EEE) | Sensor node & RF sensing | IP camera node hardware, power and data links, ESP32 2.4 GHz Wi-Fi presence detection (change from the normal background, no identity), detection-range model; joint design of the physical demo and project-wide integration |
 | Yaren Duyan (CNG) | Geospatial risk engine | PostGIS terrain + OSM model, grid risk propagation, terrain masking, A\*/Dijkstra safe routes |
-| Aydan Doğan (CNG) | Visual detection & tracking | UAV detection on the IP camera stream, multi-target and swarm tracking, OpenSky baseline anomalies |
+| Aydan Doğan (CNG) | Visual detection & tracking | YOLO UAV detection on the IP camera stream (trained on the team laptop's RTX 4070) and tracking; swarm tracking and OpenSky anomalies are ESC 492 extensions |
 | Yağız Akkaya (CNG) | Threat knowledge base | RAG over unclassified doctrine, LLM (via API for the demo), mandatory source citation |
 | Mert Gökalp (CNG) | Fusion, C2 engine & interface | Composite threat score, recommendations, web C2 map with MIL-STD-2525 symbols |
 
@@ -135,12 +135,15 @@ The system will be demonstrated **physically**, not only in simulation. Current 
 - **All processing on a laptop**: visual detection, risk engine and C2 interface; the LLM is called through an API for the demo
 - A **mock drone** carrying an **ESP32 Wi-Fi transmitter**; a second ESP32 on the laptop confirms the drone by detecting a change from the normal Wi-Fi background of the area, while the camera provides its position. MAC addresses are not used anywhere in the system (decision of 12 Nov 2026)
 - Detections are mapped on the **pilot-region terrain model** and explained on the operator interface in real time
+- **Event-driven processing:** detection runs on every frame; route planning, doctrine retrieval (RAG) and the LLM explanation run only when the threat score exceeds the alert level. The operator accepts or overrides every recommendation, and nothing is executed automatically
 
 The multi-node design in the proposal is kept as the scaling path in the report; the demo uses a single node. Details, procurement list and scope assumptions: [`docs/hardware/`](./docs/hardware/). Pilot region candidates (not yet decided): [`docs/pilot-region/`](./docs/pilot-region/).
 
 Detection models are trained and evaluated on the public datasets in [`/layers`](./layers); the field recordings from the demo are logged as **team-collected data** (see Layer 1, section 1.5).
 
-> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışmanlar: Meryem Erbilek — CNG, Muhammad Sohail — EEE). Demo fiziksel olarak yapılacak: tek bir IP kamera ve dizüstü bilgisayar, ESP32 verici taşıyan bir maket drone'u hem görüntüden hem Wi-Fi sinyalinden tespit edecek ve sonuç canlı olarak harita arayüzünde gösterilecek.
+**Still open (team decisions, not settled):** how the drone's ground position is estimated from the single camera (the progress report currently assumes a known flight height), and whether and how the Wi-Fi presence result enters the threat score.
+
+> 🇹🇷 **Ekip ve demo:** 4 CNG + 1 EEE öğrencisinden oluşan disiplinlerarası bir ESC 491/492 projesidir (danışmanlar: Meryem Erbilek — CNG, Muhammad Sohail — EEE). Demo fiziksel olarak yapılacak: tek bir IP kamera ve dizüstü bilgisayar, ESP32 verici taşıyan bir maket drone'u görüntüden tespit edecek, Wi-Fi tarafı ise yalnızca ortamdaki normal sinyal düzeninden sapmayı (varlığı) doğrulayacak, kimlik veya MAC kullanılmayacak. Rota, RAG ve LLM yalnızca alarm eşiği aşılınca çalışır. Konum yöntemi ve Wi-Fi'nin tehdit puanına katılıp katılmayacağı henüz ekip kararı bekliyor.
 
 ---
 
@@ -204,6 +207,25 @@ From the first semester plan (15 Oct 2026). Full plan with the 14-week schedule:
 | 12 | Live detection with a single node in the field, shown on the map | Adil Mert İş, Aydan Doğan |
 | 14 | Final report, presentation, demo v1 | Everyone |
 
+### First progress report
+
+The ESC 491 First Progress Report (22 pages) is merged into `main`: [PDF](./docs/progress-report/ESC491-First-Progress-Report.pdf) · [Markdown](./docs/progress-report/ESC491-First-Progress-Report.md) · [section folders and owners](./docs/progress-report/README.md).
+
+| Section | Owner |
+|---|---|
+| Executive Summary, Introduction, Conclusion | Mert Gökalp |
+| Literature Review | Yağız Akkaya |
+| Requirement Specifications | Adil Mert İş |
+| Research Method, System Design | Aydan Doğan |
+
+Yaren Duyan contributed acceptance criteria (Table 5.2), the expanded System Design sections 6.1–6.2 and Conclusion section 7.4.
+
+> 🇹🇷 **İlk ilerleme raporu** tamamlandı ve `main`e eklendi. Her bölümün sahibi yukarıdaki tabloda; birleşik PDF ve Markdown sürümü `docs/progress-report/` klasöründe.
+
+### Computational model
+
+Sub-models M0–M7 (grid, line of sight and camera pixels-on-target, Kalman tracking, threat score, risk field, routing, rule table + RAG), their inputs, parameters and validation plan: [`docs/computational-model/computational-model.md`](./docs/computational-model/computational-model.md).
+
 ### Design review
 
 A review of the architecture, the pilot-region choice and data adequacy (12 Nov 2026) lists open design issues and proposed fixes: [`docs/design-review/`](./docs/design-review/architecture-review-2026-11-12.md). The items are proposals until the team and supervisors agree.
@@ -216,7 +238,7 @@ UML diagrams of the demo system. All diagrams with previews: [`docs/diagrams/`](
 |---|---|---|
 | Use case | Aydan Doğan | [use-case-diagram.png](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/use-case-diagram.png) |
 | Deployment | Aydan Doğan | [deployment-diagram.jpeg](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/deployment-diagram.jpeg) |
-| Activity (detection to decision) | Aydan Doğan | [activity-diagram.jpeg](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.jpeg) |
+| Activity (detection to decision) | Aydan Doğan | [activity-diagram.png](./docs/diagrams/Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.png) |
 
 ---
 

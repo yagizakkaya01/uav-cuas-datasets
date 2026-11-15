@@ -6,7 +6,7 @@ UML diagrams of the ESC 491 demo system (single laptop with RTX 4070, one fixed 
 |---|---|---|
 | Use case | Aydan Doğan | [use-case-diagram.png](./Diagrams-Aydan%20Do%C4%9Fan/use-case-diagram.png) |
 | Deployment | Aydan Doğan | [deployment-diagram.jpeg](./Diagrams-Aydan%20Do%C4%9Fan/deployment-diagram.jpeg) |
-| Activity (detection to decision) | Aydan Doğan | [activity-diagram.jpeg](./Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.jpeg) |
+| Activity (detection to decision) | Aydan Doğan | [activity-diagram.png](./Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.png) |
 
 ## Use case diagram
 
@@ -18,4 +18,4 @@ UML diagrams of the ESC 491 demo system (single laptop with RTX 4070, one fixed 
 
 ## Activity diagram
 
-![Activity diagram](./Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.jpeg)
+![Activity diagram](./Diagrams-Aydan%20Do%C4%9Fan/activity-diagram.png)
