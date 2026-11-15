@@ -22,8 +22,8 @@ The functional requirements describe what the system is expected to do. Table 4.
 | FR-4 | The system shall estimate the drone’s position on a map and track its movement |
 | FR-5 | The system shall compute a threat score by combining visual detections and wi-fi signals |
 | FR-6 | The system shall map risk zones based on line of sight and terrain |
-| FR-7 | The system shall suggest safe routes for a response team or an evacuation path that avoid threat zones |
-| FR-8 | The system shall retrieve relevant doctrine passages and use an LLM API to explain the suggested response with citations |
+| FR-7 | The system shall calculate safe routes for response teams or evacuation paths that avoid identified threat zones using the geospatial risk grid. |
+| FR-8 | The system shall use a RAG retriever to retrieve relevant Counter-UAS doctrine passages and an LLM API to explain rule-based response recommendations using the retrieved evidence. |
 | FR-9 | The system shall display a real-time tactical threat map on the dashboard |
 | FR-10 | The system shall allow the operator to evaluate alerts and ask why a response was suggested |
 | FR-11 | The system shall allow the operator to replay a recorded mission scenario |
@@ -43,7 +43,7 @@ The non-functional requirements describe how well the system should perform. Tab
 | NFR-3 | The system shall show all threats on the map within 2 seconds |
 | NFR-4 | The LLM API shall generate response advice within 15 seconds |
 | NFR-5 | The web dashboard shall load within 5 seconds |
-| NFR-6 | The YOLO model shall detect UAVs with at least 70% accuracy |
+| NFR-6 | The YOLO model shall reach at least 0.70 mAP@0.5 on the UAV test set |
 
 ## Domain requirements
 

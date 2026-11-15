@@ -6,7 +6,7 @@
 
 ### Problem Definition
 
-Small commercial drones are cheap, easy to buy and hard to see. Over the past decade they have gone from a hobbyist curiosity to a real security problem for airports, military bases and other critical sites. When one appears near such a site, the people protecting it have to answer three questions quickly: is it really a drone, how dangerous is it, and what should we do about it? This project tries to answer all three. A deep-learning detector recognises the drone in a camera image, and its Wi-Fi signal confirms its identity. The system then places it on a real terrain model of the protected site, estimates how threatening it is, and recommends a response that the operator can check against published doctrine.
+Small commercial drones are cheap, easy to buy and hard to see. Over the past decade they have gone from a hobbyist curiosity to a real security problem for airports, military bases and other critical sites. When one appears near such a site, the people protecting it have to answer three questions quickly: is it really a drone, how dangerous is it, and what should we do about it? This project tries to answer all three. A deep-learning detector recognises the drone in a camera image, and a Wi-Fi receiver confirms that its signal is present. The system then places it on a real terrain model of the protected site, estimates how threatening it is, and recommends a response that the operator can check against published doctrine.
 
 ### Significance of the Problem
 
@@ -19,7 +19,7 @@ Detecting these aircraft is hard. Small drones have radar cross-sections well be
 The system has five parts, each owned by one team member:
 
 - A camera node detects the drone in an IP camera stream with a deep-learning detector.
-- A 2.4 GHz Wi-Fi receiver confirms the drone's identity from its signal.
+- A 2.4 GHz Wi-Fi receiver confirms that the drone's signal is present while the camera tracks it.
 - A geospatial engine places the track on a terrain and building model of the site, spreads its risk over a grid while taking line of sight into account, and computes safe routes.
 - A knowledge base uses retrieval-augmented generation [5] to find relevant passages in unclassified counter-UAS doctrine such as ATP 3-01.81 [14].
 - A fusion and command-and-control layer combines the camera and Wi-Fi evidence into a single threat score. It shows the result on a web map with MIL-STD-2525 symbols [6], together with a recommendation that cites the document and page it is based on.
@@ -40,8 +40,8 @@ The original multi-node design stays in the report as the way the system would s
 
 **Objectives:**
 
-1. Detect a single mock UAV in the camera stream in daylight and estimate its ground position from a known flight height, within a detection range and latency to be agreed with the supervisors.
-2. Confirm the drone's presence from its Wi-Fi transmissions while filtering out other transmitters such as campus Wi-Fi and phones.
+1. Detect a single mock UAV in the camera stream in daylight and estimate its ground position from a known flight height, showing it on the map within the latency set in the non-functional requirements and within a detection range to be agreed with the supervisors.
+2. Confirm the drone's presence from changes in the 2.4 GHz Wi-Fi background of the demo area, accepting a confirmation only together with a camera track, so that other transmitters such as campus Wi-Fi and phones cannot confirm a drone on their own.
 3. Build a terrain and infrastructure model of the selected pilot region from open data, and use it to compute line of sight, a risk grid and safe routes.
 4. Retrieve relevant passages from unclassified counter-UAS doctrine and generate recommendations in which every statement cites its source document and page.
 5. Fuse camera and Wi-Fi evidence into a single threat score that shows how it was calculated, and present tracks, alerts and recommendations on a web map with MIL-STD-2525 symbols, logging every operator decision.

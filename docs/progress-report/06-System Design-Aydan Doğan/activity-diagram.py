@@ -25,7 +25,7 @@ add('<defs><marker id="a" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9"
     f'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="{INK}"/></marker></defs>')
 add(f'<rect width="{W}" height="{H}" fill="#ffffff"/>')
 
-lanes = [(30, 770, "Sensors", "camera · ESP32 receiver (Adil Mert)"),
+lanes = [(30, 770, "Sensors", "camera (Aydan) · ESP32 receiver (Adil Mert)"),
          (770, 1170, "Visual detection", "Aydan"),
          (1170, 1570, "Fusion and risk", "Mert · Yaren"),
          (1570, 1970, "Knowledge base", "Yağız"),
@@ -147,9 +147,10 @@ add(f'<circle cx="{O}" cy="2270" r="22" fill="#ffffff" stroke="{INK}" stroke-wid
 add(f'<circle cx="{O}" cy="2270" r="13" fill="{INK}"/>')
 
 # note
-nx, ny, nw, nh = 50, 2440, 708, 96
+nx, ny, nw, nh = 50, 2410, 708, 126
 add(f'<path d="M{nx},{ny} L{nx+nw-24},{ny} L{nx+nw},{ny+24} L{nx+nw},{ny+nh} L{nx},{ny+nh} z" fill="#f3f5f8" stroke="{GREY}" stroke-width="1.6"/>')
-for i, t in enumerate(["The loop runs for every frame (~20 fps).",
+for i, t in enumerate(["Detection runs on every frame (~20 fps); route, doctrine",
+                       "retrieval and LLM run only when the alert level is crossed.",
                        "ESC 491 scope: one mock drone, daytime, one camera, one ESP32 receiver."]):
     add(f'<text x="{nx+20}" y="{ny+38+i*30}" font-family="{FONT}" font-size="18" fill="#3b414c">{t}</text>')
 

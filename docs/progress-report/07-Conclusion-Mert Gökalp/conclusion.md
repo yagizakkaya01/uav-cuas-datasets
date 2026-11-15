@@ -8,7 +8,7 @@ In the first half of the semester the team has:
 
 - revised the proposal after the first advisor meeting (1 October);
 - agreed on a task distribution and a 14-week plan (15 October);
-- built a public catalogue of more than 35 data sources, 15 of which were accessed and checked by team members;
+- built a public catalogue of more than 35 data sources, 15 of which were tested by team members (12 successfully);
 - had a minimal hardware list accepted by the supervisors (₺10,088);
 - prepared and tested four pilot-region candidates (Eindhoven, Gatwick, Aalborg and Akrotiri/Chania) with downloaded data;
 - drawn the use case, activity and deployment diagrams of the demo system.
