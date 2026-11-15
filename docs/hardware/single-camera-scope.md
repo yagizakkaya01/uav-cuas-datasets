@@ -15,7 +15,7 @@ Dr. Meryem Erbilek said there is no budget figure and the list should be kept as
 ```
 
 - The camera gets power and sends video over a single cable. Video goes directly to the laptop. No Raspberry Pi and no switch are needed.
-- The ESP32 receiver sits next to the laptop and both gets power and sends data over USB. Its job is to confirm the drone's presence and identity, not to locate it, so placing it at the edge of the area is enough.
+- The ESP32 receiver sits next to the laptop and both gets power and sends data over USB. Its job is to confirm the drone's presence, not to identify or locate it, so placing it at the edge of the area is enough.
 
 ## Assumptions that narrow the project (for the report and the request form)
 

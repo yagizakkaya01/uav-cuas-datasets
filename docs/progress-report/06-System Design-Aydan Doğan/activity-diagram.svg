@@ -4,7 +4,7 @@
 <rect x="30" y="30" width="2296" height="2552" fill="#fcfcfd" stroke="#d5d9e0" stroke-width="2"/>
 <rect x="30" y="30" width="2296" height="92" fill="#f3f5f8" stroke="#d5d9e0" stroke-width="2"/>
 <text x="400.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Sensors</text>
-<text x="400.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">camera · ESP32 receiver (Adil Mert)</text>
+<text x="400.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">camera (Aydan) · ESP32 receiver (Adil Mert)</text>
 <line x1="770" y1="30" x2="770" y2="2582" stroke="#d5d9e0" stroke-width="2"/>
 <text x="970.0" y="74" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="24" font-weight="600" fill="#1b1f27">Visual detection</text>
 <text x="970.0" y="104" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#555b66">Aydan</text>
@@ -70,8 +70,8 @@
 <path d="M1370,942.0 L1370,1034" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <path d="M1370,1045 L1370,1108.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <rect x="1198.0" y="1108.0" width="344" height="84" rx="18" fill="#f9e6d6" stroke="#b5651d" stroke-width="2.8"/>
-<text x="1370" y="1144.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Compute threat score</text>
-<text x="1370" y="1172.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">(camera + Wi-Fi)</text>
+<text x="1370" y="1144.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Fuse camera + Wi-Fi and</text>
+<text x="1370" y="1172.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">compute threat score</text>
 <path d="M1370,1192.0 L1370,1248.0" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <rect x="1198.0" y="1248.0" width="344" height="84" rx="18" fill="#e3f1e4" stroke="#3d7d46" stroke-width="2.8"/>
 <text x="1370" y="1284.0" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="22" fill="#1b1f27">Propagate risk and</text>
@@ -125,7 +125,8 @@
 <path d="M2148,2182.0 L2148,2248" fill="none" stroke="#1b1f27" stroke-width="2.4" marker-end="url(#a)"/>
 <circle cx="2148" cy="2270" r="22" fill="#ffffff" stroke="#1b1f27" stroke-width="2.8"/>
 <circle cx="2148" cy="2270" r="13" fill="#1b1f27"/>
-<path d="M50,2440 L734,2440 L758,2464 L758,2536 L50,2536 z" fill="#f3f5f8" stroke="#555b66" stroke-width="1.6"/>
-<text x="70" y="2478" font-family="Inter, DejaVu Sans, sans-serif" font-size="18" fill="#3b414c">The loop runs for every frame (~20 fps).</text>
+<path d="M50,2410 L734,2410 L758,2434 L758,2536 L50,2536 z" fill="#f3f5f8" stroke="#555b66" stroke-width="1.6"/>
+<text x="70" y="2448" font-family="Inter, DejaVu Sans, sans-serif" font-size="18" fill="#3b414c">Detection runs on every frame (~20 fps); route, doctrine</text>
+<text x="70" y="2478" font-family="Inter, DejaVu Sans, sans-serif" font-size="18" fill="#3b414c">retrieval and LLM run only when the alert level is crossed.</text>
 <text x="70" y="2508" font-family="Inter, DejaVu Sans, sans-serif" font-size="18" fill="#3b414c">ESC 491 scope: one mock drone, daytime, one camera, one ESP32 receiver.</text>
 </svg>
