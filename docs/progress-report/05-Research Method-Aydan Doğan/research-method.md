@@ -21,6 +21,8 @@ A *simulation-only* study would give no physical evidence for detection, and a *
 
 Development runs in five phases, each ending with a demonstrable output:
 
+**Table 5.1.** Development phases.
+
 | Phase | Weeks | Output |
 |---|---|---|
 | P1 – Requirements and contracts | 1–3 | Hardware list, interface definitions, data downloaded |
@@ -29,11 +31,13 @@ Development runs in five phases, each ending with a demonstrable output:
 | P4 – Hardware and field | 10–12 | Live single-camera detection on campus, shown on the map |
 | P5 – Final | 13–14 | Report, presentation, demo v1 |
 
-Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [8]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a scaled transformation, always reported as scaled. Tasks are tracked as GitHub issues and merged through pull requests, with a short weekly progress meeting.
+Each layer has one owner and exchanges data only through agreed messages, so everyone can work with mock data in parallel. The first version uses the simplest method at each step (YOLO detection, Kalman filter, weighted threat score, Gaussian risk grid, A\* routing, rule table with a retrieval-augmented explanation [8]); advanced methods are left for ESC 492. Campus tracks are mapped onto the pilot region with a similarity transform that scales distance by s = 100 and time by k = 10. The time scale is needed because scaling distance alone also scales speed: a mock drone carried at 1 m/s would move at 100 m/s on the pilot-region grid, and the time-to-reach feature of the threat score would lose its meaning; with k = 10 it moves at a realistic 10 m/s. Mapped distances are always reported as scaled, and demo accuracy figures (detection range, position error, latency) are reported at campus scale only. Work is reviewed and merged through pull requests, with a short weekly progress meeting.
 
 ## 5.3 Testing and validation
 
 Testing moves from module tests on mock data, to desk integration with recorded video and Wi-Fi logs, to a live field test with the mock drone at known distances and height. Because a real airfield attack cannot be staged, the decision layers are also evaluated with Monte Carlo runs of synthetic tracks over the pilot-region grid.
+
+**Table 5.2.** Evaluation metrics.
 
 | Evaluated | Metric |
 |---|---|
@@ -43,16 +47,16 @@ Testing moves from module tests on mock data, to desk integration with recorded 
 | Knowledge base | Recall@k, MRR; share of correctly cited answers |
 | Whole chain | End-to-end latency; warning time; false alarms |
 
-A measurable success criterion (e.g. detection up to X m within Y s) is agreed in writing with the supervisors before the field test, and threat levels are cross-checked against a published airport drone-risk framework [9].
+The success criterion for the field test follows from the requirements: the mock drone is detected anywhere in the ~15 m × 17 m demo area and shown on the map within 2 s (NFR-3), with the detector running at 10 FPS or more (NFR-2). This criterion is confirmed in writing with the supervisors before the field test, and threat levels are cross-checked against a published airport drone-risk framework [9].
 
 ## References
 
-[1] K. Peffers, T. Tuunanen, M. A. Rothenberger and S. Chatterjee, "A design science research methodology for information systems research," *J. Management Information Systems*, vol. 24, no. 3, pp. 45–77, 2007.
-[2] M. Schäfer et al., "Bringing up OpenSky: A large-scale ADS-B sensor network for research," in *Proc. IPSN*, 2014, pp. 83–94.
-[3] J. Zhao, J. Zhang, D. Li and D. Wang, "Vision-based anti-UAV detection and tracking," *IEEE Trans. Intelligent Transportation Systems*, vol. 23, 2022.
-[4] C. Wang et al., "UAVSwarm dataset: An unmanned aerial vehicle swarm dataset for multiple object tracking," *Remote Sensing*, vol. 14, no. 11, p. 2601, 2022.
-[5] F. Svanström, F. Alonso-Fernandez and C. Englund, "A dataset for multi-sensor drone detection," *Data in Brief*, vol. 39, 2021.
-[6] M. S. Allahham et al., "DroneRF dataset: A dataset of drones for RF-based detection, classification and identification," *Data in Brief*, vol. 26, 2019.
-[7] Y. Akkaya et al., "uav-cuas-datasets," GitHub, 2026. https://github.com/yagizakkaya01/uav-cuas-datasets
-[8] P. Lewis et al., "Retrieval-augmented generation for knowledge-intensive NLP tasks," in *Proc. NeurIPS*, 2020.
-[9] D. Pascarella et al., "A methodological framework for the risk assessment of drone intrusions in airports," *Aerospace*, vol. 9, no. 12, p. 747, 2022.
+[1] K. Peffers, T. Tuunanen, M. A. Rothenberger, and S. Chatterjee, "A design science research methodology for information systems research," *J. Management Information Systems*, vol. 24, no. 3, pp. 45–77, 2007.
+[2] M. Schäfer, M. Strohmeier, V. Lenders, I. Martinovic, and M. Wilhelm, "Bringing up OpenSky: A large-scale ADS-B sensor network for research," in *Proc. 13th Int. Symp. Inf. Process. Sensor Netw. (IPSN)*, Berlin, Germany, Apr. 2014, pp. 83–94, doi: 10.1109/IPSN.2014.6846743.
+[3] J. Zhao, J. Zhang, D. Li, and D. Wang, "Vision-based anti-UAV detection and tracking," *IEEE Trans. Intell. Transp. Syst.*, 2022; DUT Anti-UAV dataset. [Online]. Available: https://github.com/wangdongdut/DUT-Anti-UAV
+[4] "UAVSwarm dataset," GitHub repository. [Online]. Available: https://github.com/UAVSwarm/UAVSwarm-dataset
+[5] F. Svanström, F. Alonso-Fernandez, and C. Englund, "A dataset for multi-sensor drone detection," *Data in Brief*, 2021, doi: 10.1016/j.dib.2021.107521. [Online]. Available: https://arxiv.org/abs/2111.01888 (data: https://github.com/DroneDetectionThesis/Drone-detection-dataset)
+[6] M. F. Al-Sa'd, M. S. Allahham, A. Mohamed, A. Al-Ali, T. Khattab, and A. Erbad, "DroneRF dataset: A dataset of drones for RF-based detection, classification, and identification," Mendeley Data, V1, 2019, doi: 10.17632/f4c2b4n755.1.
+[7] Y. Akkaya et al., "uav-cuas-datasets: Real data sources for UAV threat mapping," GitHub repository, 2026. [Online]. Available: https://github.com/yagizakkaya01/uav-cuas-datasets
+[8] P. Lewis et al., "Retrieval-augmented generation for knowledge-intensive NLP tasks," in *Proc. Advances in Neural Information Processing Systems (NeurIPS)*, 2020.
+[9] D. Pascarella, G. Gigante, A. Vozella, P. Bieber, T. Dubot, E. Martinavarro, G. Barraco, and G. Li Calzi, "A methodological framework for the risk assessment of drone intrusions in airports," *Aerospace*, vol. 9, no. 12, Art. no. 747, 2022, doi: 10.3390/aerospace9120747.
